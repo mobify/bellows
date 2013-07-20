@@ -1,0 +1,11 @@
+{
+    "saucelabs": {
+        "username": "mobify",
+        "key": "74a753e6-4dd0-4435-89f3-c6c4b829f2ff"
+    },
+    "aws": {
+        "key": "AKIAJLWNV746CAURP6WQ",
+        "secret": "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",
+        "bucket": "mobify"
+    }
+}
