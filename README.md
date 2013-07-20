@@ -128,15 +128,15 @@ Recalculate the heights of bellows item elements. This is used when the heights 
 
 Set the class names for the different elements, if deviating from the defaults.
   
-  $(".m-bellows").bellows({
-    closedClass: 'm-closed',
-    openedClass: 'm-opened',
-    activeClass: 'm-active',
-    contentClass: 'm-content',
-    innerContentClass: 'm-inner-content',
-    headerClass: 'm-header',
-    itemClass: 'm-item'
-  });
+    $(".m-bellows").bellows({
+      closedClass: 'm-closed',
+      openedClass: 'm-opened',
+      activeClass: 'm-active',
+      contentClass: 'm-content',
+      innerContentClass: 'm-inner-content',
+      headerClass: 'm-header',
+      itemClass: 'm-item'
+    });
 
 ## Event hooks
 
