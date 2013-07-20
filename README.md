@@ -1,12 +1,12 @@
 # Mobify Bellows
 
-A mobile-first accordion module for progressive disclosure on the web.
+A responsive, mobile-first accordion UI module for progressive disclosure on the web.
 
 ## Usage
 
     <!-- include bellows.css -->
-    <link rel="stylesheet" href="http://cdn.mobify.com/bellows/0.3.0/bellows.min.css">
-    <link rel="stylesheet" href="http://cdn.mobify.com/bellows/0.3.0/bellows-style.min.css">
+    <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.0/bellows.min.css">
+    <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.0/bellows-style.min.css">
 
     <!-- the markup -->
     <ul class="m-bellows">
@@ -51,7 +51,7 @@ A mobile-first accordion module for progressive disclosure on the web.
     <!-- include zepto.js or jquery.js -->
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <!-- include bellows.js -->
-    <script src="http://cdn.mobify.com/bellows/0.3.0/bellows.js"></script>
+    <script src="http://cdn.mobify.com/modules/bellows/0.3.0/bellows.js"></script>
     <!-- construct the bellows -->
     <script>$('.m-bellows').bellows();
     </script>
