@@ -66,7 +66,7 @@ module.exports = function(grunt) {
             upload: [
                 { // build
                     src: "build/*",
-                    dest: "bellows/<%= pkg.version %>/",
+                    dest: "modules/bellows/<%= pkg.version %>/",
                     rel: "build"
                 }
             ]
