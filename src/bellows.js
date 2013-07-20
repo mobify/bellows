@@ -91,14 +91,14 @@ Mobify.UI.Utils = (function($) {
 })(Mobify.$);
 
 
-Mobify.UI.Accordion = (function($, Utils) {
+Mobify.UI.Bellows = (function($, Utils) {
    
     var has = $.support;
 
     // Constructor
-    var Accordion = function(element, options) {
+    var Bellows = function(element, options) {
 
-        // Accordion settings
+        // Bellows settings
         this.settings = $.extend({
             dragRadius: 10
             , closedClass: 'm-closed'
@@ -119,7 +119,7 @@ Mobify.UI.Accordion = (function($, Utils) {
         return this;
     };
 
-    Accordion.prototype.bind = function() {
+    Bellows.prototype.bind = function() {
         var $element = this.$element
             , xy
             , dxy
@@ -152,7 +152,7 @@ Mobify.UI.Accordion = (function($, Utils) {
             $element.css('min-height', height + 'px');         
         }
 
-        // Calculate height of individual accordion item (useful for dynamic item creation)
+        // Calculate height of individual bellows item (useful for dynamic item creation)
         function recalculateItemHeight($item) {
             var $content = $item.find('.' + contentClass);
             // determine which height function to use (outerHeight not supported by zepto)
@@ -163,7 +163,7 @@ Mobify.UI.Accordion = (function($, Utils) {
             }
             $content.css('max-height', contentHeight * 1.5 +'px'); 
             // if transitions are supported, minimize browser reflow by adding the height
-            // of the to-be expanded content element to the height of the entire accordion
+            // of the to-be expanded content element to the height of the entire bellows
             //recalculateHeight();
         }
 
@@ -210,7 +210,7 @@ Mobify.UI.Accordion = (function($, Utils) {
         }
 
         function up(e) {
-            // if there is dragging, do not close/open accordion
+            // if there is dragging, do not close/open bellows
             if (dxy) {
                 dx = xy.x - dxy.x;
                 dy = xy.y - dxy.y;
@@ -263,30 +263,30 @@ Mobify.UI.Accordion = (function($, Utils) {
         
     };
                  
-    Accordion.prototype.unbind = function() {
+    Bellows.prototype.unbind = function() {
         this.$element.off();      
     }
                  
-    Accordion.prototype.destroy = function() {
+    Bellows.prototype.destroy = function() {
         this.unbind();
         this.$element.remove();
     }
 
-    return Accordion;
+    return Bellows;
     
 })(Mobify.$, Mobify.UI.Utils);
     
 (function($) {
-    $.fn.accordion = function(options) {
+    $.fn.bellows = function(options) {
         return this.each(function (i, elem) {
             var $this = $(this)
-              , accordion = this.accordion;
+              , bellows = this.bellows;
 
-            if (!accordion) {
-                accordion = new Mobify.UI.Accordion(this, options); // pass through options
+            if (!bellows) {
+                bellows = new Mobify.UI.Bellows(this, options); // pass through options
             } 
 
-            this.accordion = accordion; // Provide the accordion object to callers
+            this.bellows = bellows; // Provide the bellows object to callers
         })
     };
 })(Mobify.$);
