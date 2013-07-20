@@ -2,6 +2,12 @@
 
 A responsive, mobile-first accordion UI module for progressive disclosure on the web.
 
+## Docs
+
+You can find docs and examples here: http://github.mobify.io/bellows.
+
+Checkout the `gh-pages` branch to make changes to the docs.
+
 ## Usage
 
     <!-- include bellows.css -->
@@ -172,7 +178,7 @@ Execute this function every time an bellows item is closed
 | Internet Explorer | 8.0     | Degraded. No transitions.  |
 | Internet Explorer | 9.0     | Degraded. No transitions.  |
 | Internet Explorer | 10.0    | Supported                  |
-| Mobile Safari     | 3.1.*   | Degraded. No transitions   |
+| Mobile Safari     | 3.1.x   | Degraded. No transitions   |
 | Mobile Safari     | 4.0+    | Supported                  |
 | Android Browser   | 2.1+    | Supported                  |
 | Chrome (Android)  | 1.0+    | Supported                  |
