@@ -5,7 +5,8 @@ A mobile-first accordion module for progressive disclosure on the web.
 ## Usage
 
     <!-- include accordion.css -->
-    <link rel="stylesheet" href="accordion.css">
+    <link rel="stylesheet" href="http://cdn.mobify.com/accordion/0.3.0/accordion.min.css">
+    <link rel="stylesheet" href="http://cdn.mobify.com/accordion/0.3.0/accordion-style.min.css">
 
     <!-- the markup -->
     <ul class="m-accordion">
@@ -48,9 +49,9 @@ A mobile-first accordion module for progressive disclosure on the web.
     </ul>
 
     <!-- include zepto.js or jquery.js -->
-    <script src="zepto.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <!-- include accordion.js -->
-    <script src="accordion.js"></script>
+    <script src="http://cdn.mobify.com/accordion/0.3.0/accordion.js"></script>
     <!-- construct the accordion -->
     <script>$('.m-accordion').accordion();
     </script>
