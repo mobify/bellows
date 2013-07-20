@@ -116,7 +116,7 @@ Open the selected bellows item
     
 Close the selected bellows item
 
-  bellows.close($("#some-item"));
+    bellows.close($("#some-item"));
 
 ### recalculateItemHeight($item)
 
