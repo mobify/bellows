@@ -28,6 +28,13 @@ module.exports = function(grunt) {
             files: ["src/**/*"],
             tasks: ['build']
         },
+        copy: {
+            main: {
+                files: [
+                    {expand: true, flatten: true, src: ['src/**'], dest: 'build/', filter: 'isFile'}
+                ]
+            }
+        },
         uglify: {
             options: {
                 banner: '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -83,10 +90,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-zip');
     grunt.loadNpmTasks('grunt-s3');
     grunt.loadNpmTasks('grunt-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     // Default task(s).
     grunt.registerTask('serve', ['connect', 'watch']);
-    grunt.registerTask('build', ['uglify', 'cssmin', 'zip']);
+    grunt.registerTask('build', ['copy', 'uglify', 'cssmin', 'zip']);
     grunt.registerTask('release', ['build', 'shell:tagRelease', 's3']);
     grunt.registerTask('default', 'build');
 
