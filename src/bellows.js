@@ -188,7 +188,7 @@ Mobify.UI.Bellows = (function($, Utils) {
             // toggle active class on close only if there is no transition support
             if(!Utils.events.transitionend) $item.removeClass(activeClass);
             // set max-height to 0 upon close
-            $item.find('.' + contentClass).css('max-height', 0);
+            $item.find('.' + contentClass).css('max-height', '0px');
         }
         
         function open($item) {
