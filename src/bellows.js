@@ -91,6 +91,9 @@ Mobify.UI.Utils = (function($) {
 })(Mobify.$);
 
 
+/*
+ Supports accordions in an accordion
+*/
 Mobify.UI.Bellows = (function($, Utils) {
    
     var has = $.support;
@@ -113,7 +116,7 @@ Mobify.UI.Bellows = (function($, Utils) {
             , onClosed: null
         }, options || {});
 
-        this.$element = $(element);
+        this.$element = $(element).attr( 'data-accordion-level', $(element).parents('.m-accordion').length + 1);
         
         $.extend(this, this.bind());
         return this;
@@ -145,26 +148,34 @@ Mobify.UI.Bellows = (function($, Utils) {
         function recalculateHeight() {
             // recalculate proper height
             var height = 0;
-            $('.' + itemClass, $element).each(function(index) {
+
+            $element.children( '.' + itemClass).each(function(index) {
                 var $item = $(this);
                 height += $item.height();
             });
             $element.css('min-height', height + 'px');         
         }
 
-        // Calculate height of individual bellows item (useful for dynamic item creation)
-        function recalculateItemHeight($item) {
-            var $content = $item.find('.' + contentClass);
+        // Calculate height of individual accordion item (useful for dynamic item creation)
+        function recalculateItemHeight($item, $loopOnce) {
+
+            var $content = $item.children('.' + contentClass);
             // determine which height function to use (outerHeight not supported by zepto)
             var contentChildren = $content.children();
-            var contentHeight = ('outerHeight' in contentChildren) ? contentChildren['outerHeight']() : contentChildren['height']();
-            if (Utils.events.transitionend) {
-                $element.css('min-height', $element.height() + contentHeight + 'px');
-            }
-            $content.css('max-height', contentHeight * 1.5 +'px'); 
-            // if transitions are supported, minimize browser reflow by adding the height
-            // of the to-be expanded content element to the height of the entire bellows
-            //recalculateHeight();
+            setTimeout( function () {
+                var contentHeight = ('outerHeight' in contentChildren) ? contentChildren['outerHeight']() : contentChildren['height']();
+                $content.css('max-height', contentHeight * 1.5 +'px'); 
+                // if transitions are supported, minimize browser reflow by adding the height
+                // of the to-be expanded content element to the height of the entire accordion
+                if (Utils.events.transitionend) {
+                    $element.css('min-height', $element.height() + contentHeight + 'px');
+                }
+                recalculateHeight();
+
+                if( $loopOnce == null && $item.closest('.m-accordion').attr('data-accordion-level') > 1 ) {
+                    recalculateItemHeight( $item.parent().closest('li'), true )
+                }
+            }, 50 );
         }
 
         // Execute any callback functions that are passed to open/close
@@ -181,22 +192,26 @@ Mobify.UI.Bellows = (function($, Utils) {
         }
 
         function close($item) {
-            if($item.hasClass(closedClass)) { executeCallbacks('closing'); }
-            // toggle opened and closed classes
-            $item.removeClass(openedClass);
-            $item.addClass(closedClass);
-            // toggle active class on close only if there is no transition support
-            if(!Utils.events.transitionend) $item.removeClass(activeClass);
-            // set max-height to 0 upon close
-            $item.find('.' + contentClass).css('max-height', '0px');
+            if( $element.attr('data-accordion-level') == $item.closest('.m-accordion').attr('data-accordion-level') ) {
+                if($item.hasClass(closedClass)) { executeCallbacks('closing'); }
+                // toggle opened and closed classes
+                $item.removeClass(openedClass);
+                $item.addClass(closedClass);
+                // toggle active class on close only if there is no transition support
+                if(!Utils.events.transitionend) $item.removeClass(activeClass);
+                // set max-height to 0 upon close
+                $item.children('.' + contentClass).css('max-height', '0px');
+            }
         }
         
         function open($item) {
-            if($item.hasClass(openedClass)) { executeCallbacks('opening'); }
-            $item.addClass(activeClass);
-            $item.removeClass(closedClass);
-            $item.addClass(openedClass)
-            recalculateItemHeight($item);
+            if( $element.attr('data-accordion-level') == $item.closest('.m-accordion').attr('data-accordion-level') ) {
+                if($item.hasClass(openedClass)) { executeCallbacks('opening'); }
+                $item.addClass(activeClass);
+                $item.removeClass(closedClass);
+                $item.addClass(openedClass)
+                recalculateItemHeight($item);
+            }
         }
 
         function down(e) {
