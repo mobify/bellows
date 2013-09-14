@@ -192,26 +192,22 @@ Mobify.UI.Bellows = (function($, Utils) {
         }
 
         function close($item) {
-            if( $element.attr('data-accordion-level') == $item.closest('.m-accordion').attr('data-accordion-level') ) {
-                if($item.hasClass(closedClass)) { executeCallbacks('closing'); }
-                // toggle opened and closed classes
-                $item.removeClass(openedClass);
-                $item.addClass(closedClass);
-                // toggle active class on close only if there is no transition support
-                if(!Utils.events.transitionend) $item.removeClass(activeClass);
-                // set max-height to 0 upon close
-                $item.children('.' + contentClass).css('max-height', '0px');
-            }
+            if($item.hasClass(closedClass)) { executeCallbacks('closing'); }
+            // toggle opened and closed classes
+            $item.removeClass(openedClass);
+            $item.addClass(closedClass);
+            // toggle active class on close only if there is no transition support
+            if(!Utils.events.transitionend) $item.removeClass(activeClass);
+            // set max-height to 0 upon close
+            $item.children('.' + contentClass).css('max-height', '0px');
         }
         
         function open($item) {
-            if( $element.attr('data-accordion-level') == $item.closest('.m-accordion').attr('data-accordion-level') ) {
-                if($item.hasClass(openedClass)) { executeCallbacks('opening'); }
-                $item.addClass(activeClass);
-                $item.removeClass(closedClass);
-                $item.addClass(openedClass)
-                recalculateItemHeight($item);
-            }
+            if($item.hasClass(openedClass)) { executeCallbacks('opening'); }
+            $item.addClass(activeClass);
+            $item.removeClass(closedClass);
+            $item.addClass(openedClass)
+            recalculateItemHeight($item);
         }
 
         function down(e) {
