@@ -162,20 +162,18 @@ Mobify.UI.Bellows = (function($, Utils) {
             var $content = $item.children('.' + contentClass);
             // determine which height function to use (outerHeight not supported by zepto)
             var contentChildren = $content.children();
-            setTimeout( function () {
-                var contentHeight = ('outerHeight' in contentChildren) ? contentChildren['outerHeight']() : contentChildren['height']();
-                $content.css('max-height', contentHeight * 1.5 +'px'); 
-                // if transitions are supported, minimize browser reflow by adding the height
-                // of the to-be expanded content element to the height of the entire accordion
-                if (Utils.events.transitionend) {
-                    $element.css('min-height', $element.height() + contentHeight + 'px');
-                }
-                recalculateHeight();
+            var contentHeight = ('outerHeight' in contentChildren) ? contentChildren['outerHeight']() : contentChildren['height']();
+            $content.css('max-height', contentHeight * 1.5 +'px'); 
+            // if transitions are supported, minimize browser reflow by adding the height
+            // of the to-be expanded content element to the height of the entire accordion
+            if (Utils.events.transitionend) {
+                $element.css('min-height', $element.height() + contentHeight + 'px');
+            }
+            recalculateHeight();
 
-                if( $loopOnce == null && $item.closest('.m-accordion').attr('data-accordion-level') > 1 ) {
-                    recalculateItemHeight( $item.parent().closest('li'), true )
-                }
-            }, 50 );
+            if( $loopOnce == null && $item.closest('.m-accordion').attr('data-accordion-level') > 1 ) {
+                recalculateItemHeight( $item.parent().closest('li'), true )
+            }
         }
 
         // Execute any callback functions that are passed to open/close
@@ -228,7 +226,6 @@ Mobify.UI.Bellows = (function($, Utils) {
                 dxy = undefined;
                 if ((dx*dx) + (dy*dy) > dragRadius*dragRadius) return;
             }
-
             // close or open item depending on active class
             var $item = $(this).parent();
             if ($item.hasClass(activeClass)) {
@@ -254,7 +251,7 @@ Mobify.UI.Bellows = (function($, Utils) {
             open($element.find('.' + openedClass));
         }
 
-        var headerSelector = '.' + headerClass;
+        var headerSelector = '> .' + itemClass + ' > .' + headerClass;
         $element
             .on(Utils.events.down, headerSelector, down)
             .on(Utils.events.move, headerSelector, move)
