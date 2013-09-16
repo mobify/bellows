@@ -1,4 +1,4 @@
-var Mobify = window.Mobify = window.Mobify || {}; 
+var Mobify = window.Mobify = window.Mobify || {};
 Mobify.$ = Mobify.$ || window.Zepto || window.jQuery;
 Mobify.UI = Mobify.UI || {};
 
@@ -71,7 +71,7 @@ Mobify.UI.Utils = (function($) {
             'MSTransition':'msTransitionEnd',
             'MozTransition':'transitionend',
             'WebkitTransition':'webkitTransitionEnd'
-        }
+        };
 
         var t;
         for(t in transitions){
@@ -91,6 +91,9 @@ Mobify.UI.Utils = (function($) {
 })(Mobify.$);
 
 
+/*
+ Supports accordions in an accordion
+*/
 Mobify.UI.Bellows = (function($, Utils) {
    
     var has = $.support;
@@ -139,42 +142,52 @@ Mobify.UI.Bellows = (function($, Utils) {
             if ($item.hasClass(closedClass)) $(this).parent().removeClass(activeClass);
             // Execute any callbacks that were passed
             executeCallbacks($item.hasClass(closedClass) ? 'closing' : 'opening');
-            recalculateHeight();
+            recalculateHeight($element);
         };
 
-        function recalculateHeight() {
-            // recalculate proper height
+        // Recalculate proper height for specified bellows
+        function recalculateHeight($bellows) {
             var height = 0;
-            $('.' + itemClass, $element).each(function(index) {
+
+            $bellows.children( '.' + itemClass).each(function(index) {
                 var $item = $(this);
                 height += $item.height();
             });
-            $element.css('min-height', height + 'px');         
+            $bellows.css('min-height', height + 'px');
         }
 
-        // Calculate height of individual bellows item (useful for dynamic item creation)
+        // Calculate height of individual accordion item (useful for dynamic item creation)
         function recalculateItemHeight($item) {
-            var $content = $item.find('.' + contentClass);
+
+            var $content = $item.children('.' + contentClass);
             // determine which height function to use (outerHeight not supported by zepto)
             var contentChildren = $content.children();
             var contentHeight = ('outerHeight' in contentChildren) ? contentChildren['outerHeight']() : contentChildren['height']();
-            if (Utils.events.transitionend) {
-                $element.css('min-height', $element.height() + contentHeight + 'px');
-            }
-            $content.css('max-height', contentHeight * 1.5 +'px'); 
+            $content.css('max-height', contentHeight * 1.5 +'px');
             // if transitions are supported, minimize browser reflow by adding the height
-            // of the to-be expanded content element to the height of the entire bellows
-            //recalculateHeight();
+            // of the to-be expanded content element to the height of the entire accordion
+            if (Utils.events.transitionend) {
+                $element.css('min-height', $element.height() + 'px');
+            }
+
+            $currentBellows = $item.closest('.m-bellows');
+            recalculateHeight($currentBellows);
+
+            // Resize the parent bellows if it exists
+            $parentBellows = $currentBellows.parent().closest('.m-bellows');
+            if($parentBellows.length > 0) {
+                recalculateItemHeight( $item.parent().closest('li'));
+            }
         }
 
         // Execute any callback functions that are passed to open/close
         function executeCallbacks(type) {
-            if(type === 'opening' && typeof settings['onOpened'] === "function") { 
+            if(type === 'opening' && typeof settings['onOpened'] === "function") {
                 settings['onOpened'].apply(this, arguments);
-            } 
-            if(type === 'closing' && typeof settings['onClosed'] === "function") { 
+            }
+            if(type === 'closing' && typeof settings['onClosed'] === "function") {
                 settings['onClosed'].apply(this, arguments);
-            } 
+            }
             if(typeof settings['onTransitionDone'] === "function") {
                 settings['onTransitionDone'].apply(this, arguments);
             }
@@ -188,14 +201,14 @@ Mobify.UI.Bellows = (function($, Utils) {
             // toggle active class on close only if there is no transition support
             if(!Utils.events.transitionend) $item.removeClass(activeClass);
             // set max-height to 0 upon close
-            $item.find('.' + contentClass).css('max-height', '0px');
+            $item.children('.' + contentClass).css('max-height', '0px');
         }
         
         function open($item) {
             if($item.hasClass(openedClass)) { executeCallbacks('opening'); }
             $item.addClass(activeClass);
             $item.removeClass(closedClass);
-            $item.addClass(openedClass)
+            $item.addClass(openedClass);
             recalculateItemHeight($item);
         }
 
@@ -217,7 +230,6 @@ Mobify.UI.Bellows = (function($, Utils) {
                 dxy = undefined;
                 if ((dx*dx) + (dy*dy) > dragRadius*dragRadius) return;
             }
-
             // close or open item depending on active class
             var $item = $(this).parent();
             if ($item.hasClass(activeClass)) {
@@ -243,7 +255,7 @@ Mobify.UI.Bellows = (function($, Utils) {
             open($element.find('.' + openedClass));
         }
 
-        var headerSelector = '.' + headerClass;
+        var headerSelector = '> .' + itemClass + ' > .' + headerClass;
         $element
             .on(Utils.events.down, headerSelector, down)
             .on(Utils.events.move, headerSelector, move)
@@ -264,13 +276,13 @@ Mobify.UI.Bellows = (function($, Utils) {
     };
                  
     Bellows.prototype.unbind = function() {
-        this.$element.off();      
-    }
+        this.$element.off();
+    };
                  
     Bellows.prototype.destroy = function() {
         this.unbind();
         this.$element.remove();
-    }
+    };
 
     return Bellows;
     
@@ -284,9 +296,9 @@ Mobify.UI.Bellows = (function($, Utils) {
 
             if (!bellows) {
                 bellows = new Mobify.UI.Bellows(this, options); // pass through options
-            } 
+            }
 
             this.bellows = bellows; // Provide the bellows object to callers
-        })
+        });
     };
 })(Mobify.$);

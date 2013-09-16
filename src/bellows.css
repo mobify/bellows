@@ -13,7 +13,7 @@
     overflow: hidden;
     max-height: 0;
 }
-.m-bellows .m-active .m-content {
+.m-bellows .m-active > .m-content {
     max-height: 10000px; /* IE hack */
 }
 
