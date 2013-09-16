@@ -1,4 +1,4 @@
-var Mobify = window.Mobify = window.Mobify || {}; 
+var Mobify = window.Mobify = window.Mobify || {};
 Mobify.$ = Mobify.$ || window.Zepto || window.jQuery;
 Mobify.UI = Mobify.UI || {};
 
@@ -71,7 +71,7 @@ Mobify.UI.Utils = (function($) {
             'MSTransition':'msTransitionEnd',
             'MozTransition':'transitionend',
             'WebkitTransition':'webkitTransitionEnd'
-        }
+        };
 
         var t;
         for(t in transitions){
@@ -116,7 +116,7 @@ Mobify.UI.Bellows = (function($, Utils) {
             , onClosed: null
         }, options || {});
 
-        this.$element = $(element).attr( 'data-accordion-level', $(element).parents('.m-accordion').length + 1);
+        this.$element = $(element);
         
         $.extend(this, this.bind());
         return this;
@@ -142,48 +142,52 @@ Mobify.UI.Bellows = (function($, Utils) {
             if ($item.hasClass(closedClass)) $(this).parent().removeClass(activeClass);
             // Execute any callbacks that were passed
             executeCallbacks($item.hasClass(closedClass) ? 'closing' : 'opening');
-            recalculateHeight();
+            recalculateHeight($element);
         };
 
-        function recalculateHeight() {
-            // recalculate proper height
+        // Recalculate proper height for specified bellows
+        function recalculateHeight($bellows) {
             var height = 0;
 
-            $element.children( '.' + itemClass).each(function(index) {
+            $bellows.children( '.' + itemClass).each(function(index) {
                 var $item = $(this);
                 height += $item.height();
             });
-            $element.css('min-height', height + 'px');         
+            $bellows.css('min-height', height + 'px');
         }
 
         // Calculate height of individual accordion item (useful for dynamic item creation)
-        function recalculateItemHeight($item, $loopOnce) {
+        function recalculateItemHeight($item) {
 
             var $content = $item.children('.' + contentClass);
             // determine which height function to use (outerHeight not supported by zepto)
             var contentChildren = $content.children();
             var contentHeight = ('outerHeight' in contentChildren) ? contentChildren['outerHeight']() : contentChildren['height']();
-            $content.css('max-height', contentHeight * 1.5 +'px'); 
+            $content.css('max-height', contentHeight * 1.5 +'px');
             // if transitions are supported, minimize browser reflow by adding the height
             // of the to-be expanded content element to the height of the entire accordion
             if (Utils.events.transitionend) {
-                $element.css('min-height', $element.height() + contentHeight + 'px');
+                $element.css('min-height', $element.height() + 'px');
             }
-            recalculateHeight();
 
-            if( $loopOnce == null && $item.closest('.m-accordion').attr('data-accordion-level') > 1 ) {
-                recalculateItemHeight( $item.parent().closest('li'), true )
+            $currentBellows = $item.closest('.m-bellows');
+            recalculateHeight($currentBellows);
+
+            // Resize the parent bellows if it exists
+            $parentBellows = $currentBellows.parent().closest('.m-bellows');
+            if($parentBellows.length > 0) {
+                recalculateItemHeight( $item.parent().closest('li'));
             }
         }
 
         // Execute any callback functions that are passed to open/close
         function executeCallbacks(type) {
-            if(type === 'opening' && typeof settings['onOpened'] === "function") { 
+            if(type === 'opening' && typeof settings['onOpened'] === "function") {
                 settings['onOpened'].apply(this, arguments);
-            } 
-            if(type === 'closing' && typeof settings['onClosed'] === "function") { 
+            }
+            if(type === 'closing' && typeof settings['onClosed'] === "function") {
                 settings['onClosed'].apply(this, arguments);
-            } 
+            }
             if(typeof settings['onTransitionDone'] === "function") {
                 settings['onTransitionDone'].apply(this, arguments);
             }
@@ -204,7 +208,7 @@ Mobify.UI.Bellows = (function($, Utils) {
             if($item.hasClass(openedClass)) { executeCallbacks('opening'); }
             $item.addClass(activeClass);
             $item.removeClass(closedClass);
-            $item.addClass(openedClass)
+            $item.addClass(openedClass);
             recalculateItemHeight($item);
         }
 
@@ -272,13 +276,13 @@ Mobify.UI.Bellows = (function($, Utils) {
     };
                  
     Bellows.prototype.unbind = function() {
-        this.$element.off();      
-    }
+        this.$element.off();
+    };
                  
     Bellows.prototype.destroy = function() {
         this.unbind();
         this.$element.remove();
-    }
+    };
 
     return Bellows;
     
@@ -292,9 +296,9 @@ Mobify.UI.Bellows = (function($, Utils) {
 
             if (!bellows) {
                 bellows = new Mobify.UI.Bellows(this, options); // pass through options
-            } 
+            }
 
             this.bellows = bellows; // Provide the bellows object to callers
-        })
+        });
     };
 })(Mobify.$);
