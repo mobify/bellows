@@ -134,7 +134,8 @@ Mobify.UI.Bellows = (function($, Utils) {
             , activeClass = settings.activeClass
             , contentClass = settings.contentClass
             , headerClass = settings.headerClass
-            , itemClass = settings.itemClass;
+            , itemClass = settings.itemClass
+            , moduleClass = settings.moduleClass;
 
         function endTransition(){
             // transition attached to .content elements, use parent to grab .item
@@ -172,17 +173,14 @@ Mobify.UI.Bellows = (function($, Utils) {
                 $element.css('min-height', $element.height() + 'px');
             }
 
-            // wait for 150ms to make sure that the children have correctly set heights before calculating 
-            setTimeout(function() {
-                $currentBellows = $item.closest('.' + moduleClass);
-                recalculateHeight($currentBellows);
+            $currentBellows = $item.closest('.' + moduleClass);
+            recalculateHeight($currentBellows);
 
-                // Resize the parent bellows if it exists
-                $parentBellows = $currentBellows.parent().closest('.' + moduleClass);
-                if($parentBellows.length > 0) {
-                    recalculateItemHeight( $item.parent().closest('.' + itemClass));
-                }
-            }, 150);
+            // Resize the parent bellows if it exists
+            $parentBellows = $currentBellows.parent().closest('.' + moduleClass);
+            if($parentBellows.length > 0) {
+                recalculateItemHeight( $item.parent().closest('.' + itemClass));
+            }
             
         }
 
