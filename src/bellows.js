@@ -111,6 +111,7 @@ Mobify.UI.Bellows = (function($, Utils) {
             , innerContentClass: 'm-inner-content'
             , headerClass: 'm-header'
             , itemClass: 'm-item'
+            , moduleClass: 'm-bellows'
             , onTransitionDone: null
             , onOpened: null
             , onClosed: null
@@ -133,7 +134,8 @@ Mobify.UI.Bellows = (function($, Utils) {
             , activeClass = settings.activeClass
             , contentClass = settings.contentClass
             , headerClass = settings.headerClass
-            , itemClass = settings.itemClass;
+            , itemClass = settings.itemClass
+            , moduleClass = settings.moduleClass;
 
         function endTransition(){
             // transition attached to .content elements, use parent to grab .item
@@ -153,6 +155,7 @@ Mobify.UI.Bellows = (function($, Utils) {
                 var $item = $(this);
                 height += $item.height();
             });
+
             $bellows.css('min-height', height + 'px');
         }
 
@@ -170,14 +173,17 @@ Mobify.UI.Bellows = (function($, Utils) {
                 $element.css('min-height', $element.height() + 'px');
             }
 
-            $currentBellows = $item.closest('.m-bellows');
-            recalculateHeight($currentBellows);
+            // we need to wait to recalculate, so that the heights are calculated properly first
+            setTimeout(function() {
+                $currentBellows = $item.closest('.' + moduleClass);
+                recalculateHeight($currentBellows);
 
-            // Resize the parent bellows if it exists
-            $parentBellows = $currentBellows.parent().closest('.m-bellows');
-            if($parentBellows.length > 0) {
-                recalculateItemHeight( $item.parent().closest('li'));
-            }
+                // Resize the parent bellows if it exists
+                $parentBellows = $currentBellows.parent().closest('.' + moduleClass);
+                if($parentBellows.length > 0) {
+                    recalculateItemHeight( $item.parent().closest('.' + itemClass));
+                }
+            }, 150);
         }
 
         // Execute any callback functions that are passed to open/close
@@ -255,12 +261,13 @@ Mobify.UI.Bellows = (function($, Utils) {
             open($element.find('.' + openedClass));
         }
 
-        var headerSelector = '> .' + itemClass + ' > .' + headerClass;
-        $element
-            .on(Utils.events.down, headerSelector, down)
-            .on(Utils.events.move, headerSelector, move)
-            .on(Utils.events.up, headerSelector, up)
-            .on('click', headerSelector, click);
+        var $headers = $element.children('.' + itemClass).children('.' + headerClass);
+
+        $headers
+            .on(Utils.events.down, down)
+            .on(Utils.events.move, move)
+            .on(Utils.events.up, up)
+            .on('click', click);
         if (Utils.events.transitionend) {
             $element.on(Utils.events.transitionend, '.' + contentClass, endTransition);
         }
