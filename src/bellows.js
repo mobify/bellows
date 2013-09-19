@@ -173,15 +173,17 @@ Mobify.UI.Bellows = (function($, Utils) {
                 $element.css('min-height', $element.height() + 'px');
             }
 
-            $currentBellows = $item.closest('.' + moduleClass);
-            recalculateHeight($currentBellows);
+            // we need to wait to recalculate, so that the heights are calculated properly first
+            setTimeout(function() {
+                $currentBellows = $item.closest('.' + moduleClass);
+                recalculateHeight($currentBellows);
 
-            // Resize the parent bellows if it exists
-            $parentBellows = $currentBellows.parent().closest('.' + moduleClass);
-            if($parentBellows.length > 0) {
-                recalculateItemHeight( $item.parent().closest('.' + itemClass));
-            }
-            
+                // Resize the parent bellows if it exists
+                $parentBellows = $currentBellows.parent().closest('.' + moduleClass);
+                if($parentBellows.length > 0) {
+                    recalculateItemHeight( $item.parent().closest('.' + itemClass));
+                }
+            }, 150);
         }
 
         // Execute any callback functions that are passed to open/close
