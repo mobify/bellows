@@ -4,7 +4,7 @@ A responsive, mobile-first accordion UI module for progressive disclosure on the
 
 ## Docs
 
-You can find docs and examples here: http://github.mobify.io/bellows.
+You can find docs and examples here: http://mobify.github.io/bellows.
 
 Checkout the `gh-pages` branch to make changes to the docs.
 
