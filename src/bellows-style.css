@@ -11,42 +11,40 @@
 }
 
 .bellows__header {
+    position: relative;
+    z-index: 5;
+
     height: 54px;
-    line-height: 52px;
     margin: -1px 0 0;
     padding: 0 20px;
     border: solid 1px #ededed;
     border-width: 1px 0;
-    position: relative;
-    cursor: pointer;
-    z-index: 5;
+    
     background: #ffffff;
     background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 100%); /* W3C */
+    
+    line-height: 52px;
 }
 
     .bellows__header::after {
         content : "+";
-        color: #999;
-        text-shadow: #fff 0 1px 0;
-        display: block;
+        
         position: absolute;
         top: 50%;
         right: 15px;
-        margin-top: -13px;
         z-index: 9;
+        
+        display: block;
+        margin-top: -13px;
+        
+        color: #999;
+        text-shadow: #fff 0 1px 0;
         font-size: 26px;
         line-height: 22px;
         font-weight: bold;
     }
 
-    .bellows__header:hover, .bellows__header:focus {    
-        z-index: 2;
-        background: #ffffff; /* Old browsers */
-        background: linear-gradient(to bottom, #f6f6f6 0%, #f0f0f0 100%); /* W3C */
-        border-bottom-color: #d6d6d6;
-    }
-
-    .bellows__item.bellows--active .bellows__header::after {
+    .bellows__item.bellows--active > .bellows__header::after {
         content : "−";
     }
 

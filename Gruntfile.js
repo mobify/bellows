@@ -45,20 +45,23 @@ module.exports = function(grunt) {
             }
         },
         autoprefixer: {
+            options: {
+              browsers: ['last 4 version', 'ie 8', 'ie 9', 'Android 2']
+            },
             multiple_files: {
                 expand: true,
                 flatten: true,
-                src: 'src/*.css', // -> src/css/file1.css, src/css/file2.css
-                dest: 'src/' // -> dest/css/file1.css, dest/css/file2.css
+                src: 'src/*.css',
+                dest: 'build/'
             }
         },
         cssmin: {
             core: {
-                src: 'src/bellows.css',
+                src: 'build/bellows.css',
                 dest: 'build/bellows.min.css'
             },
             style: {
-                src: 'src/bellows-style.css',
+                src: 'build/bellows-style.css',
                 dest: 'build/bellows-style.min.css'
             }
         },
@@ -99,10 +102,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-s3');
     grunt.loadNpmTasks('grunt-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-autoprefixer');
 
     // Default task(s).
     grunt.registerTask('serve', ['connect', 'watch']);
-    grunt.registerTask('build', ['copy', 'uglify', 'cssmin', 'zip']);
+    grunt.registerTask('build', ['copy', 'uglify', 'autoprefixer', 'cssmin', 'zip']);
     grunt.registerTask('release', ['build', 'shell:tagRelease', 's3']);
     grunt.registerTask('default', 'build');
 
