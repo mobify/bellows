@@ -1,33 +1,12 @@
-.m-bellows {
-    list-style: none;
-}
-.m-bellows li {
-    list-style: none;
-    margin: 0;
-}
-.m-bellows .m-content {
-    -webkit-transition: max-height 0.5s ease;
-    -moz-transition: max-height 0.5s ease;
-    -o-transition: max-height 0.5s ease;
-    transition: max-height 0.5s ease;
-    overflow: hidden;
+.bellows__content {
     max-height: 0;
-}
-.m-bellows .m-active > .m-content {
-    max-height: 10000px; /* IE hack */
-}
-
-.m-bellows .m-header {
-    z-index: 1;
-    position: relative;
-    margin-top: -1px;
-    pointer-events: cursor; /* For iOS */
+    overflow: hidden;
+    
+     /* JS currently requires a transition to exist */
+     /* This should get moved to the theme eventually */
+    transition: max-height 0.1s linear;
 }
 
-.m-bellows h3 {
-    margin: 0;
-}
-
-.m-bellows .m-header > a {
-    pointer-events: none;   
+.bellows__header {
+    cursor: pointer; /* Forces iOS to allow taps on non-tappable elements */
 }

@@ -104,14 +104,14 @@ Mobify.UI.Bellows = (function($, Utils) {
         // Bellows settings
         this.settings = $.extend({
             dragRadius: 10
-            , closedClass: 'm-closed'
-            , openedClass: 'm-opened'
-            , activeClass: 'm-active'
-            , contentClass: 'm-content'
-            , innerContentClass: 'm-inner-content'
-            , headerClass: 'm-header'
-            , itemClass: 'm-item'
-            , moduleClass: 'm-bellows'
+            , closedClass: 'bellows--closed'
+            , openedClass: 'bellows--opened'
+            , activeClass: 'bellows--active'
+            , contentClass: 'bellows__content'
+            , innerContentClass: 'bellows__inner-content'
+            , headerClass: 'bellows__header'
+            , itemClass: 'bellows__item'
+            , moduleClass: 'bellows'
             , onTransitionDone: null
             , onOpened: null
             , onClosed: null

@@ -44,6 +44,14 @@ module.exports = function(grunt) {
                 dest: 'build/bellows.min.js'
             }
         },
+        autoprefixer: {
+            multiple_files: {
+                expand: true,
+                flatten: true,
+                src: 'src/*.css', // -> src/css/file1.css, src/css/file2.css
+                dest: 'src/' // -> dest/css/file1.css, dest/css/file2.css
+            }
+        },
         cssmin: {
             core: {
                 src: 'src/bellows.css',

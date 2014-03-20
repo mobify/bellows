@@ -2,106 +2,106 @@
 <html>
     <head>
         <title>Examples of Bellows in action</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=yes">
         <link rel="stylesheet" href="src/bellows.css">
         <link rel="stylesheet" href="src/bellows-style.css">
     </head>
     <body>
 
-        <ul class="outer-bellows m-bellows">
-            <li class="m-item">
-                <h3 class="m-header">
+        <div class="bellows" role="tablist">
+            <div class="bellows__item" role="tabpanel">
+                <h3 class="bellows__header" role="tab">
                     Item 1
                 </h3>
-                <div class="m-content">
-                    <div class="m-inner-content">
-                        <ul class="inner-bellows m-bellows">
-                            <li class="m-item">
-                                <h3 class="m-header">
+                <div class="bellows__content">
+                    <div class="bellows__inner-content">
+                        <div class="bellows" role="tablist">
+                            <div class="bellows__item" role="tabpanel">
+                                <h3 class="bellows__header" role="tab">
                                     Item 1
                                 </h3>
-                                <div class="m-content">
-                                    <div class="m-inner-content">
+                                <div class="bellows__content">
+                                    <div class="bellows__inner-content">
                                         Item 1 content
                                     </div>
                                 </div>
-                            </li>
-                            <li class="m-item">
-                                <h3 class="m-header">
+                            </div>
+                            <div class="bellows__item" role="tabpanel">
+                                <h3 class="bellows__header" role="tab">
                                     Item 2
                                 </h3>
-                                <div class="m-content">
-                                    <div class="m-inner-content">
+                                <div class="bellows__content">
+                                    <div class="bellows__inner-content">
                                         Item 2 content <br/>
                                         Item 2 content
                                     </div>
                                 </div>
-                            </li>
-                            <li class="m-item">
-                                <h3 class="m-header">
+                            </div>
+                            <div class="bellows__item" role="tabpanel">
+                                <h3 class="bellows__header" role="tab">
                                     Item 3
                                 </h3>
-                                <div class="m-content">
-                                    <div class="m-inner-content">
+                                <div class="bellows__content">
+                                    <div class="bellows__inner-content">
                                         Item 3 content <br/>
                                         Item 3 content <br/>
                                         Item 3 content
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </li>
-            <li class="m-item">
-                <h3 class="m-header">
+            </div>
+            <div class="bellows__item" role="tabpanel">
+                <h3 class="bellows__header" role="tab">
                     Item 2
                 </h3>
-                <div class="m-content">
-                    <div class="m-inner-content">
-                        <ul class="inner-bellows m-bellows">
-                            <li class="m-item">
-                                <h3 class="m-header">
+                <div class="bellows__content">
+                    <div class="bellows__inner-content">
+                        <div class="bellows">
+                            <div class="bellows__item" role="tabpanel">
+                                <h3 class="bellows__header" role="tab">
                                     Item 1
                                 </h3>
-                                <div class="m-content">
-                                    <div class="m-inner-content">
+                                <div class="bellows__content">
+                                    <div class="bellows__inner-content">
                                         Item 1 content
                                     </div>
                                 </div>
-                            </li>
-                            <li class="m-item">
-                                <h3 class="m-header">
+                            </div>
+                            <div class="bellows__item" role="tabpanel">
+                                <h3 class="bellows__header" role="tab">
                                     Item 2
                                 </h3>
-                                <div class="m-content">
-                                    <div class="m-inner-content">
+                                <div class="bellows__content">
+                                    <div class="bellows__inner-content">
                                         Item 2 content <br/>
                                         Item 2 content
                                     </div>
                                 </div>
-                            </li>
-                            <li class="m-item">
-                                <h3 class="m-header">
+                            </div>
+                            <div class="bellows__item" role="tabpanel">
+                                <h3 class="bellows__header" role="tab">
                                     Item 3
                                 </h3>
-                                <div class="m-content">
-                                    <div class="m-inner-content">
+                                <div class="bellows__content">
+                                    <div class="bellows__inner-content">
                                         Item 3 content <br/>
                                         Item 3 content <br/>
                                         Item 3 content
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
 
         <script src="http://code.jquery.com/jquery-1.10.1.js"></script>
         <script src="src/bellows.js"></script>
-        <script>$('.m-bellows').bellows();</script>
+        <script>$('.bellows').bellows();</script>
     </body>
 </html>
 
