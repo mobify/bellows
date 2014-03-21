@@ -6,47 +6,45 @@ A responsive, mobile-first accordion UI module for progressive disclosure on the
 
 You can find docs and examples here: http://mobify.github.io/bellows.
 
-Checkout the `gh-pages` branch to make changes to the docs.
-
 ## Usage
 
     <!-- include bellows.css -->
-    <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.0/bellows.min.css">
-    <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.0/bellows-style.min.css">
+    <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.3/bellows.min.css">
+    <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.3/bellows-style.min.css">
 
     <!-- the markup -->
-    <ul class="m-bellows">
+    <ul class="bellows">
       <!-- the items -->
-      <li class="m-item">
-        <h3 class="m-header">
+      <li class="bellows__item">
+        <h3 class="bellows__header">
           <!-- header title -->
           <a>Tab1</a>
         </h3>
-        <div class="m-content">
-          <div class="m-inner-content">
+        <div class="bellows__content">
+          <div class="bellows__inner-content">
             <!-- content for item -->
             <h2>Content 1</h2>
             <h2>Lorem Ipsum</h2>
           </div>
         </div>
       </li>
-      <li class="m-item">
-        <h3 class="m-header">
+      <li class="bellows__item">
+        <h3 class="bellows__header">
           <a>Tab2</a>
         </h3>
-        <div class="m-content">
-          <div class="m-inner-content">
+        <div class="bellows__content">
+          <div class="bellows__inner-content">
             <h2>Content 2</h2>
             <p>Lorem Ipsum</p>
           </div>
         </div>
       </li>
-      <li class="m-item">
-        <h3 class="m-header">
+      <li class="bellows__item">
+        <h3 class="bellows__header">
           <a>Tab3</a>
         </h3>
-        <div class="m-content">
-          <div class="m-inner-content">
+        <div class="bellows__content">
+          <div class="bellows__inner-content">
             <h2>Content 3</h2>
             <p>Lorem Ipsum</p>
           </div>
@@ -59,7 +57,7 @@ Checkout the `gh-pages` branch to make changes to the docs.
     <!-- include bellows.js -->
     <script src="http://cdn.mobify.com/modules/bellows/0.3.0/bellows.js"></script>
     <!-- construct the bellows -->
-    <script>$('.m-bellows').bellows();
+    <script>$('.bellows').bellows();
     </script>
 
 ## Methods
@@ -68,13 +66,13 @@ Checkout the `gh-pages` branch to make changes to the docs.
 
 Initializes the bellows.
 
-    $('.m-bellows').bellows();
+    $('.bellows').bellows();
 
 ### bellows(options)
 
 Initialize with options.
 
-    $('.m-bellows').bellows({
+    $('.bellows').bellows({
       {
         ...
         options (refer below)
@@ -84,7 +82,7 @@ Initialize with options.
 
 ### Storing bellows object for future use
 
-    var $bellows = $(".m-bellows"); // A Zepto element array is returned
+    var $bellows = $(".bellows"); // A Zepto element array is returned
     var bellows = $bellows[0].bellows; // We access the appropriate bellows from the above array
 
 ### unbind()
@@ -110,7 +108,7 @@ Unbinds the events from the bellows, and removes it from the DOM.
 
 Open the selected bellows item
 
-    bellows.open($(".m-item").eq(2));
+    bellows.open($(".bellows__item").eq(2));
 
 ### close($item)
     
@@ -122,20 +120,20 @@ Close the selected bellows item
 
 Recalculate the heights of bellows item elements. This is used when the heights of the content have changed after creation of the bellows.
 
-    bellows.recalculateItemHeight($(".m-item"));
+    bellows.recalculateItemHeight($(".bellows__item"));
 
 ## Class names
 
 Set the class names for the different elements, if deviating from the defaults.
   
-    $(".m-bellows").bellows({
-      closedClass: 'm-closed',
-      openedClass: 'm-opened',
-      activeClass: 'm-active',
-      contentClass: 'm-content',
-      innerContentClass: 'm-inner-content',
-      headerClass: 'm-header',
-      itemClass: 'm-item'
+    $(".bellows").bellows({
+      closedClass: 'bellows--closed',
+      openedClass: 'bellows--opened',
+      activeClass: 'bellows--active',
+      contentClass: 'bellows__content',
+      innerContentClass: 'bellows__inner-content',
+      headerClass: 'bellows__header',
+      itemClass: 'bellows__item'
     });
 
 ## Event hooks
@@ -144,7 +142,7 @@ Set the class names for the different elements, if deviating from the defaults.
 
 Execute this function every time the selected bellows item is opened or closed.
 
-    $(".m-bellows").bellows({
+    $(".bellows").bellows({
         onTransitionDone: function() { console.log("Animation done"); }
     });
 
@@ -152,7 +150,7 @@ Execute this function every time the selected bellows item is opened or closed.
 
 Execute this function every time the selected bellows item is opened.
 
-    $(".m-bellows").bellows({
+    $(".bellows").bellows({
         onOpened: function() { console.log("Opened"); }
     });
 
@@ -160,7 +158,7 @@ Execute this function every time the selected bellows item is opened.
 
 Execute this function every time an bellows item is closed
     
-    $(".m-bellows").bellows({
+    $(".bellows").bellows({
         onClosed: function() { console.log("Closed"); }
     });
 
