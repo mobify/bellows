@@ -173,7 +173,7 @@ Execute this function every time an bellows item is closed
 | Chrome            | 9.0+    | Supported                  |
 | Opera             | 12.0+   | Supported.                 |
 | Internet Explorer | 6-7.0   | Not Supported              |
-| Internet Explorer | 8.0     | Degraded. No transitions.  |
+| Internet Explorer | 8.0     | Degraded. Bellows is not collapsible.  |
 | Internet Explorer | 9.0     | Degraded. No transitions.  |
 | Internet Explorer | 10.0    | Supported                  |
 | Mobile Safari     | 3.1.x   | Degraded. No transitions   |
