@@ -8,6 +8,7 @@ You can find docs and examples here: http://mobify.github.io/bellows.
 
 ## Usage
 
+```html
     <!-- include bellows.css -->
     <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.3/bellows.min.css">
     <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.3/bellows-style.min.css">
@@ -59,6 +60,7 @@ You can find docs and examples here: http://mobify.github.io/bellows.
     <!-- construct the bellows -->
     <script>$('.bellows').bellows();
     </script>
+```
 
 ## Methods
 
