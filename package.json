@@ -1,6 +1,6 @@
 {
   "name": "bellows",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A responsive, mobile first accordion UI module",
   "devDependencies": {
     "grunt": "~0.4.x",
