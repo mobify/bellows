@@ -12,7 +12,6 @@ Mobify.UI = Mobify.UI || {};
 })(Mobify.$, document);
 
 
-
 /**
     @module Holds common functions relating to UI.
 */

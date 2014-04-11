@@ -54,12 +54,6 @@ module.exports = function(grunt) {
                 dest: 'build/bellows-style.min.css'
             }
         },
-        shell: {
-            tagRelease: {
-                command: 'git tag -a <%= releaseName %> -m "<%= releaseMessage %>" &&' +
-                  'git push origin <%= releaseName %>'
-            }
-        },
         zip: {
             "build/bellows.zip": ["src/bellows.js", "src/bellows.css", 
             "src/bellows-style.css"]
@@ -77,8 +71,18 @@ module.exports = function(grunt) {
                     rel: "build"
                 }
             ]
+        },
+        release: {
+            options: {
+                folder: '.',
+                npm: false,
+                github: {
+                    repo: 'mobify/bellows',
+                    usernameVar: 'GITHUB_USERNAME',
+                    passwordVar: 'GITHUB_TOKEN'
+                }
+            }
         }
-        // TODO: upload over a LATEST version and/or create a redirect?
     });
 
     // Load the task plugins
@@ -91,11 +95,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-s3');
     grunt.loadNpmTasks('grunt-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-release');
 
     // Default task(s).
     grunt.registerTask('serve', ['connect', 'watch']);
     grunt.registerTask('build', ['copy', 'uglify', 'cssmin', 'zip']);
-    grunt.registerTask('release', ['build', 'shell:tagRelease', 's3']);
+    grunt.registerTask('publish' ['build', 'release', 's3'])
     grunt.registerTask('default', 'build');
 
 };
