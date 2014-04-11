@@ -77,6 +77,8 @@ module.exports = function(grunt) {
                 folder: '.',
                 npm: false,
                 bump: false,
+                add: false,
+                commit: false,
                 file: 'bower.json',
                 github: {
                     repo: 'mobify/bellows',
@@ -102,7 +104,7 @@ module.exports = function(grunt) {
     // Default task(s).
     grunt.registerTask('serve', ['connect', 'watch']);
     grunt.registerTask('build', ['copy', 'uglify', 'cssmin', 'zip']);
-    grunt.registerTask('publish' ['build', 'release', 's3'])
+    grunt.registerTask('publish', ['build', 'release', 's3'])
     grunt.registerTask('default', 'build');
 
 };
