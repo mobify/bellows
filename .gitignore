@@ -1,3 +1,7 @@
+.DS_Store
 node_modules/
 localConfig.json
-build/
+build/bellows.zip
+build/bellows-style.css
+build/bellows.css
+build/bellows.js

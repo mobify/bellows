@@ -1,0 +1,24 @@
+{
+  "name": "bellows",
+  "version": "0.3.4",
+  "homepage": "https://github.com/mobify/bellows",
+  "authors": [
+    "Mobify <jobs@mobify.com>"
+  ],
+  "description": "A responsive, mobile first accordion UI module",
+  "main": "build/bellows.min.js",
+  "keywords": [
+    "bellows",
+    "accordion",
+    "toggle",
+    "responsive",
+    "mobile",
+    "mobify"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}
