@@ -12,9 +12,7 @@ module.exports = function(grunt) {
                     })(),
         releaseName: '<%= pkg.name %>-<%= pkg.version %>',
         releaseMessage: '<%= pkg.name %> release <%= pkg.version %>',
-        clean: {
-            buildProducts: "dist/"
-        },
+        clean: ["dist/"],
         connect: {
             server: {
                 options: {
@@ -79,13 +77,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-css');
     grunt.loadNpmTasks('grunt-shell');
-    grunt.loadNpmTasks('grunt-clean');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-autoprefixer');
 
     // Default task(s).
     grunt.registerTask('serve', ['connect', 'watch']);
-    grunt.registerTask('build', ['copy', 'uglify', 'autoprefixer', 'cssmin']);
+    grunt.registerTask('build', ['clean', 'copy', 'uglify', 'autoprefixer', 'cssmin']);
     grunt.registerTask('release', ['build', 'shell:tagRelease']);
     grunt.registerTask('default', 'build');
 
