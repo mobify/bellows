@@ -17,7 +17,7 @@
     overflow: hidden;
 }
 
-.bellows--open .bellows__content-wrapper {
+.bellows--open > .bellows__content-wrapper {
     height: auto;
     overflow: visible;
 }

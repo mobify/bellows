@@ -1,6 +1,6 @@
 (function($) {
-    var noop = function() {
-    };
+    var noop = function() {};
+    var openedClass = 'bellows--open';
 
     function Bellows(element, options) {
         this.init(element, options);
@@ -19,10 +19,10 @@
     Bellows.prototype.init = function(element, options) {
         this.options = $.extend({}, Bellows.DEFAULTS, options);
 
-        this.element = $(element);
-        this.current = null;
-
-        this.element.find('.bellows__content').wrap($('<div class="bellows__content-wrapper" />'));
+        this.$element = $(element)
+            .find('> .bellows__item > .bellows__content')
+            .wrap('<div class="bellows__content-wrapper" />')
+            .end();
 
         this._bindEvents();
     };
@@ -30,7 +30,7 @@
     Bellows.prototype._bindEvents = function() {
         var plugin = this;
 
-        this.element.on('click', '.bellows__header', function() {
+        this.$element.find('> .bellows__item > .bellows__header').on('click', function() {
             plugin.toggle($(this).parent());
         });
     };
@@ -38,21 +38,21 @@
     Bellows.prototype.toggle = function(item) {
         item = this._item(item);
 
-        this[item.hasClass('bellows--open') ? 'close' : 'open'](item);
+        this[item.hasClass(openedClass) ? 'close' : 'open'](item);
     };
 
     Bellows.prototype.open = function(item) {
         item = this._item(item);
 
-        if (item.hasClass('bellows--open')) {
+        if (item.hasClass(openedClass)) {
             return;
         }
 
         var plugin = this;
-        var $content = item.find('.bellows__content-wrapper');
+        var $content = item.find('> .bellows__content-wrapper');
 
         if (this.options.singleItemOpen) {
-            this.element.find('.bellows--open').each(function() {
+            this.$element.find('.' + openedClass).each(function() {
                 plugin.close($(this));
             });
         }
@@ -65,7 +65,7 @@
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
-                    item.addClass('bellows--open');
+                    item.addClass(openedClass);
                     $content.css('height', '');
                     plugin._trigger('opened', { item: item });
                 }
@@ -75,14 +75,14 @@
     Bellows.prototype.close = function(item) {
         item = this._item(item);
 
-        if (!item.hasClass('bellows--open')) {
+        if (!item.hasClass(openedClass)) {
             return;
         }
 
         var plugin = this;
         var $content = item
-            .removeClass('bellows--open')
-            .find('.bellows__content-wrapper');
+            .removeClass(openedClass)
+            .find('> .bellows__content-wrapper');
 
         this._trigger('close', { item: item });
 
@@ -99,7 +99,7 @@
 
     Bellows.prototype._item = function(item) {
         if (typeof item === 'number') {
-            item = this.element.find('.bellows__item').eq(item);
+            item = this.$element.find('.bellows__item').eq(item);
         }
 
         return item;
@@ -129,6 +129,8 @@
     };
 
     $.fn.bellows.Constructor = Bellows;
+
+    $('[data-bellows]').bellows();
 
     return $;
 })(Zepto);

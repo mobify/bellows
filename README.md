@@ -22,7 +22,6 @@ Initializes the bellows.
 Initialize with options.
 
     $('.bellows').bellows({
-      {
         singleNodeOpen: false,
         duration: 200,
         easing: 'swing',
@@ -30,7 +29,6 @@ Initialize with options.
         opened: function(e, ui) {},
         close: function(e, ui) {},
         closed: function(e, ui) {}
-      }
     });
 
 ### Storing bellows object for future use
@@ -69,7 +67,9 @@ or by index
 Execute this function every time the selected bellows item is starting to open.
 
     $(".bellows").bellows({
-        open: function() { console.log("Open"); }
+        open: function(e, ui) { 
+			// ui.item contains the item opening
+		}
     });
 
 
@@ -78,7 +78,9 @@ Execute this function every time the selected bellows item is starting to open.
 Execute this function every time the selected bellows item has finished opening.
 
     $(".bellows").bellows({
-        opened: function() { console.log("Opened"); }
+        opened: function(e, ui) { 
+			// ui.item contains the item that opened
+		}
     });
 
 ### Close
@@ -86,7 +88,9 @@ Execute this function every time the selected bellows item has finished opening.
 Execute this function every time an bellows item is starting to close.
     
     $(".bellows").bellows({
-        close: function() { console.log("Close"); }
+        close: function(e, ui) { 
+			// ui.item contains the item closing
+		}
     });
     
     
@@ -95,7 +99,9 @@ Execute this function every time an bellows item is starting to close.
 Execute this function every time an bellows item is finished closing.
     
     $(".bellows").bellows({
-        closed: function() { console.log("Closed"); }
+        closed: function(e, ui) { 
+			// ui.item contains the item that closed
+		}
     });
 
 
