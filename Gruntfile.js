@@ -31,7 +31,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true,
-                        src: ['src/**', '!*.scss'],
+                        src: ['src/**/*.js'],
                         dest: 'dist/',
                         filter: 'isFile'
                     }
