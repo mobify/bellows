@@ -12,7 +12,6 @@ module.exports = function(grunt) {
                     })(),
         releaseName: '<%= pkg.name %>-<%= pkg.version %>',
         releaseMessage: '<%= pkg.name %> release <%= pkg.version %>',
-        clean: ["dist/"],
         connect: {
             server: {
                 options: {
@@ -102,7 +101,7 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.registerTask('serve', ['connect', 'watch']);
-    grunt.registerTask('build', ['clean', 'copy', 'uglify', 'sass', 'autoprefixer', 'cssmin']);
+    grunt.registerTask('build', ['copy', 'uglify', 'sass', 'autoprefixer', 'cssmin']);
     grunt.registerTask('release', ['build', 'shell:tagRelease']);
     grunt.registerTask('default', 'build');
 
