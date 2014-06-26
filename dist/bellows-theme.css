@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/* Base Style */
+.bellows {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid #d6d6d6;
+  border-radius: 9px;
+  color: black; }
+
+.bellows__header {
+  position: relative;
+  z-index: 5;
+  height: 54px;
+  margin: -1px 0 0;
+  padding: 0 20px;
+  border: solid 1px #ededed;
+  border-width: 1px 0;
+  background: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f6f6f6));
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 100%);
+  background: linear-gradient(to bottom, white 0%, #f6f6f6 100%);
+  /* W3C */
+  line-height: 52px; }
+
+.bellows__header::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  z-index: 9;
+  display: block;
+  margin-top: -13px;
+  color: #999;
+  text-shadow: #fff 0 1px 0;
+  font-size: 26px;
+  line-height: 22px;
+  font-weight: bold; }
+
+.bellows__item.bellows--active > .bellows__header::after {
+  content: "−"; }
+
+.bellows__header a {
+  color: black; }
+
+.bellows__inner-content {
+  padding: 10px 20px;
+  background: #efefef; }
+
+.bellows__inner-content .bellows__inner-content {
+  background: white; }
