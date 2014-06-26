@@ -1,12 +1,13 @@
 (function($) {
-    var noop = function() {};
+    var noop = function() {
+    };
 
     function Bellows(element, options) {
         this.init(element, options);
     }
 
     Bellows.DEFAULTS = {
-        singleNodeOpen: false,
+        singleNodeOpen: true,
         duration: 200,
         easing: 'swing',
         open: noop,
@@ -56,7 +57,7 @@
             });
         }
 
-        this._trigger('open', {item: item});
+        this._trigger('open', { item: item });
 
         $content
             .velocity('slideDown',
@@ -66,7 +67,7 @@
                 complete: function() {
                     item.addClass('bellows--open');
                     $content.css('height', '');
-                    plugin._trigger('opened', {item: item});
+                    plugin._trigger('opened', { item: item });
                 }
             });
     };
@@ -83,7 +84,7 @@
             .removeClass('bellows--open')
             .find('.bellows__content-wrapper');
 
-        this._trigger('close', {item: item});
+        this._trigger('close', { item: item });
 
         $content.velocity('slideUp',
             {
@@ -91,7 +92,7 @@
                 easing: this.options.easing,
                 complete: function() {
                     $content.css('height', '');
-                    plugin._trigger('closed', {item: item});
+                    plugin._trigger('closed', { item: item });
                 }
             });
     };
