@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         releaseName: '<%= pkg.name %>-<%= pkg.version %>',
         releaseMessage: '<%= pkg.name %> release <%= pkg.version %>',
         clean: {
-            buildProducts: "build/"
+            buildProducts: "dist/"
         },
         connect: {
             server: {
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: true, flatten: true, src: ['src/**'], dest: 'build/', filter: 'isFile'}
+                    {expand: true, flatten: true, src: ['src/**'], dest: 'dist/', filter: 'isFile'}
                 ]
             }
         },
@@ -40,8 +40,8 @@ module.exports = function(grunt) {
                 banner: '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: 'src/bellows.js',
-                dest: 'build/bellows.min.js'
+                src: 'src/js/bellows.js',
+                dest: 'dist/bellows.min.js'
             }
         },
         autoprefixer: {
@@ -51,18 +51,18 @@ module.exports = function(grunt) {
             multiple_files: {
                 expand: true,
                 flatten: true,
-                src: 'src/*.css',
-                dest: 'build/'
+                src: 'src/style/*.css',
+                dest: 'dist/'
             }
         },
         cssmin: {
             core: {
-                src: 'build/bellows.css',
-                dest: 'build/bellows.min.css'
+                src: 'dist/bellows.css',
+                dest: 'dist/bellows.min.css'
             },
             style: {
-                src: 'build/bellows-style.css',
-                dest: 'build/bellows-style.min.css'
+                src: 'dist/bellows-style.css',
+                dest: 'dist/bellows-style.min.css'
             }
         },
         shell: {
@@ -70,26 +70,7 @@ module.exports = function(grunt) {
                 command: 'git tag -a <%= releaseName %> -m "<%= releaseMessage %>" &&' +
                   'git push origin <%= releaseName %>'
             }
-        },
-        zip: {
-            "build/bellows.zip": ["src/bellows.js", "src/bellows.css", 
-            "src/bellows-style.css"]
-        },
-        s3: {
-            key: '<%= localConfig.aws.key %>',
-            secret: '<%= localConfig.aws.secret %>',
-            bucket: '<%= localConfig.aws.bucket %>',
-            access: "public-read",
-            headers: { "Cache-Control": "max-age=1200" },
-            upload: [
-                { // build
-                    src: "build/*",
-                    dest: "modules/bellows/<%= pkg.version %>/",
-                    rel: "build"
-                }
-            ]
         }
-        // TODO: upload over a LATEST version and/or create a redirect?
     });
 
     // Load the task plugins
@@ -98,16 +79,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-css');
     grunt.loadNpmTasks('grunt-shell');
-    grunt.loadNpmTasks('grunt-zip');
-    grunt.loadNpmTasks('grunt-s3');
     grunt.loadNpmTasks('grunt-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-autoprefixer');
 
     // Default task(s).
     grunt.registerTask('serve', ['connect', 'watch']);
-    grunt.registerTask('build', ['copy', 'uglify', 'autoprefixer', 'cssmin', 'zip']);
-    grunt.registerTask('release', ['build', 'shell:tagRelease', 's3']);
+    grunt.registerTask('build', ['copy', 'uglify', 'autoprefixer', 'cssmin']);
+    grunt.registerTask('release', ['build', 'shell:tagRelease']);
     grunt.registerTask('default', 'build');
 
 };
