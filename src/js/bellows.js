@@ -130,5 +130,7 @@
 
     $.fn.bellows.Constructor = Bellows;
 
+    $('[data-bellows]').bellows();
+
     return $;
 })(Zepto);

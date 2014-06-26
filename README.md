@@ -36,8 +36,11 @@ Initialize with options.
 ### Storing bellows object for future use
 
     var $bellows = $(".bellows");
+    
+## Methods
 
-### open($item)
+
+### Open
 
 Open the selected bellows item by element reference
 
@@ -48,7 +51,7 @@ or by index
     $bellows.bellows('open', 1);
 
 
-### close($item)
+### Close
     
 Close the selected bellows item by element reference
 
@@ -61,7 +64,7 @@ or by index
 
 ## Event hooks
 
-### open: functionName
+### Open
 
 Execute this function every time the selected bellows item is starting to open.
 
@@ -70,7 +73,7 @@ Execute this function every time the selected bellows item is starting to open.
     });
 
 
-### opened: functionName
+### Opened
 
 Execute this function every time the selected bellows item has finished opening.
 
@@ -78,7 +81,7 @@ Execute this function every time the selected bellows item has finished opening.
         opened: function() { console.log("Opened"); }
     });
 
-### close: functionName
+### Close
 
 Execute this function every time an bellows item is starting to close.
     
@@ -87,7 +90,7 @@ Execute this function every time an bellows item is starting to close.
     });
     
     
-### closed: functionName
+### Closed
 
 Execute this function every time an bellows item is finished closing.
     
