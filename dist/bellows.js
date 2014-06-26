@@ -7,7 +7,7 @@
     }
 
     Bellows.DEFAULTS = {
-        singleNodeOpen: true,
+        singleItemOpen: false,
         duration: 200,
         easing: 'swing',
         open: noop,
@@ -51,7 +51,7 @@
         var plugin = this;
         var $content = item.find('.bellows__content-wrapper');
 
-        if (this.options.singleNodeOpen) {
+        if (this.options.singleItemOpen) {
             this.element.find('.bellows--open').each(function() {
                 plugin.close($(this));
             });
