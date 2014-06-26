@@ -22,7 +22,7 @@ Initializes the bellows.
 Initialize with options.
 
     $('.bellows').bellows({
-        singleNodeOpen: false,
+        singleItemOpen: false,
         duration: 200,
         easing: 'swing',
         open: function(e, ui) {},
@@ -49,7 +49,7 @@ You can then call methods just like a regular object. The preferred way to invok
 
 Open the selected bellows item by element reference
 
-    $bellows.bellows('open', $(".bellows__item"));
+    $bellows.bellows('open', $('.bellows__item'));
 
 or by index
 
@@ -60,7 +60,7 @@ or by index
     
 Close the selected bellows item by element reference
 
-    $bellows.bellows('close', $(".bellows__item"));
+    $bellows.bellows('close', $('.bellows__item'));
 
 or by index
 
@@ -69,48 +69,69 @@ or by index
 
 ## Options
 
-### SingleNodeOpen
+### singleItemOpen
 
 When set to 'true' will force only one item open at a time.
 
+    $('.bellows').bellows({
+        singleItemOpen: true
+    });
+    
+### duration
 
-### Open
+Sets the duration for the animation.
+
+    $('.bellows').bellows({
+        duration: 600
+    });
+    
+        
+### easing
+
+Sets the easing for the animation.
+
+    $('.bellows').bellows({
+        easing: 'ease-in-out'
+    });
+
+
+### open
 
 Execute this function every time the selected bellows item is starting to open.
 
-    $(".bellows").bellows({
+    $('.bellows').bellows({
         open: function(e, ui) { 
 			// ui.item contains the item opening
 		}
     });
 
 
-### Opened
+### opened
 
 Execute this function every time the selected bellows item has finished opening.
 
-    $(".bellows").bellows({
+    $('.bellows').bellows({
         opened: function(e, ui) { 
 			// ui.item contains the item that opened
 		}
     });
 
-### Close
+### close
 
 Execute this function every time an bellows item is starting to close.
     
-    $(".bellows").bellows({
+    $('.bellows').bellows({
         close: function(e, ui) { 
 			// ui.item contains the item closing
 		}
     });
     
     
-### Closed
+### closed
 
 Execute this function every time an bellows item is finished closing.
     
-    $(".bellows").bellows({
+    $('.bellows').bellows({
         closed: function(e, ui) { 
 			// ui.item contains the item that closed
 		}
