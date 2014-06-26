@@ -35,8 +35,15 @@ Initialize with options.
 
     var $bellows = $(".bellows");
     
-## Methods
+### Getting the bellows instance
 
+	var bellows = $('.bellows).data('bellows');
+	bellows.open(1);
+	
+You can then call methods just like a regular object. The preferred way to invoke methods on the instance is via the plugin API, as shown below.
+
+    
+## Methods
 
 ### Open
 
@@ -60,7 +67,12 @@ or by index
     $bellows.bellows('close', 1);
     
 
-## Event hooks
+## Options
+
+### SingleNodeOpen
+
+When set to 'true' will force only one item open at a time.
+
 
 ### Open
 
