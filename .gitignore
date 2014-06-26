@@ -1,3 +1,5 @@
 node_modules/
 localConfig.json
 build/
+
+/.sass-cache/

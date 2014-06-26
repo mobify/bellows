@@ -29,7 +29,13 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: true, flatten: true, src: ['src/**'], dest: 'dist/', filter: 'isFile'}
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['src/**', '!*.scss'],
+                        dest: 'dist/',
+                        filter: 'isFile'
+                    }
                 ]
             }
         },
@@ -44,13 +50,11 @@ module.exports = function(grunt) {
         },
         autoprefixer: {
             options: {
-              browsers: ['last 4 version', 'ie 8', 'ie 9', 'Android 2']
+              browsers: ['last 4 versions', 'ie 8', 'ie 9', 'Android 2.3']
             },
             multiple_files: {
-                expand: true,
                 flatten: true,
-                src: 'src/style/*.css',
-                dest: 'dist/'
+                src: 'dist/*.css'
             }
         },
         cssmin: {
@@ -59,8 +63,22 @@ module.exports = function(grunt) {
                 dest: 'dist/bellows.min.css'
             },
             style: {
-                src: 'dist/bellows-style.css',
-                dest: 'dist/bellows-style.min.css'
+                src: 'dist/bellows-theme.css',
+                dest: 'dist/bellows-theme.min.css'
+            }
+        },
+        sass: {
+            dist: {
+                options: {
+                    style: 'nested'
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'src/style',
+                    src: ['*.scss'],
+                    dest: 'dist',
+                    ext: '.css'
+                }]
             }
         },
         shell: {
@@ -80,10 +98,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
     // Default task(s).
     grunt.registerTask('serve', ['connect', 'watch']);
-    grunt.registerTask('build', ['clean', 'copy', 'uglify', 'autoprefixer', 'cssmin']);
+    grunt.registerTask('build', ['clean', 'copy', 'uglify', 'sass', 'autoprefixer', 'cssmin']);
     grunt.registerTask('release', ['build', 'shell:tagRelease']);
     grunt.registerTask('default', 'build');
 
