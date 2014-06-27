@@ -19,5 +19,8 @@
     "**/.*",
     "node_modules",
     "bower_components"
-  ]
+  ],
+  "dependencies": {
+    "velocity": "~0.2.1"
+  }
 }
