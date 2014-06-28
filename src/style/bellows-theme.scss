@@ -47,8 +47,20 @@
         font-weight: bold;
         text-align: center;
         
+        pointer-events: none;
+        
+        transition: transform 0.2s ease-in-out;
+        
         .bellows__item.bellows--open > & {
-            content: '−';
+            transform: rotate(45deg);
+        }
+
+        .bellows__item.bellows--opening & {
+            transform: rotate(45deg);
+        }
+
+        .bellows__item.bellows--closing & {
+            transform: rotate(0);
         }
     }
 

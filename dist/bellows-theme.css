@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .bellows {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -34,9 +33,22 @@
     font-size: 25px;
     line-height: 15px;
     font-weight: bold;
-    text-align: center; }
+    text-align: center;
+    pointer-events: none;
+    -webkit-transition: -webkit-transform 0.2s ease-in-out;
+            transition: transform 0.2s ease-in-out; }
     .bellows__item.bellows--open > .bellows__header::after {
-      content: '−'; }
+      -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+              transform: rotate(45deg); }
+    .bellows__item.bellows--opening .bellows__header::after {
+      -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+              transform: rotate(45deg); }
+    .bellows__item.bellows--closing .bellows__header::after {
+      -webkit-transform: rotate(0);
+          -ms-transform: rotate(0);
+              transform: rotate(0); }
   .bellows__item:last-child > .bellows__header {
     border-bottom: 0; }
   .bellows__header h3 {

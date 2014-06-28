@@ -131,17 +131,46 @@
             </div>
         </div>
 
+        <div class="counter"></div>
+
         <script src="../lib/zeptojs/dist/zepto.js"></script>
         <script src="../lib/velocity.jquery-shim.js"></script>
         <script src="../bower_components/velocity/jquery.velocity.min.js"></script>
 
         <script src="../dist/bellows.js"></script>
         <script>
+            var started;
+
             // Initiate Bellows
-            $('.bellows.default').bellows();
-            $('.bellows.bellowsception').bellows();
-            $('.bellows.bellowsception .bellows').bellows();
-            $('.bellows.single').bellows({'singleItemOpen': true});
+            $('.bellows.default, .bellows.bellowsception, .bellows .bellows').bellows({
+                'open': function() {
+                    started = Date.now();
+                },
+                'opened': function() {
+                    $('.counter').html((Date.now() - started) + 'ms');
+                },
+                'close': function() {
+                    started = Date.now();
+                },
+                'closed': function() {
+                    $('.counter').html((Date.now() - started) + 'ms');
+                }
+            });
+            $('.bellows.single').bellows({
+                'singleItemOpen': true,
+                'open': function() {
+                    started = Date.now();
+                },
+                'opened': function() {
+                    $('.counter').html((Date.now() - started) + 'ms');
+                },
+                'close': function() {
+                    started = Date.now();
+                },
+                'closed': function() {
+                    $('.counter').html((Date.now() - started) + 'ms');
+                }
+            });
 
             // Enable active states
             $(document).on('touchstart', function() {});

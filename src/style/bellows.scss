@@ -1,7 +1,3 @@
-.bellows__header {
-    cursor: pointer; // Forces iOS to allow taps on non-tappable elements
-}
-
 .bellows__item.bellows--open > .bellows__content-wrapper {
     height: auto;
     overflow: visible;

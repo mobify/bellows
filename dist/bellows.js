@@ -1,6 +1,8 @@
 (function($) {
     var noop = function() {};
     var openedClass = 'bellows--open';
+    var openingClass = 'bellows--opening';
+    var closingClass = 'bellows--closing';
 
     function Bellows(element, options) {
         this.init(element, options);
@@ -67,9 +69,13 @@
         $contentWrapper
             .velocity('slideDown',
             {
+                'begin': function() {
+                    item.addClass(openingClass);
+                },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
+                    item.removeClass(openingClass);
                     item.addClass(openedClass);
                     $contentWrapper.removeAttr('style');
                     item.parent('.bellows').css('height', '');
@@ -97,14 +103,16 @@
         $contentWrapper.velocity('slideUp',
             {
                 begin: function() {
+                    item.addClass(closingClass);
                     item.parent('.bellows').css('height', item.parent('.bellows').height());
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
                     $contentWrapper.removeAttr('style');
-                    plugin._trigger('closed', { item: item });
                     item.parent('.bellows').css('height', '');
+                    item.removeClass(closingClass);
+                    plugin._trigger('closed', { item: item });
                 }
             });
     };

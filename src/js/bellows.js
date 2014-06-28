@@ -1,6 +1,8 @@
 (function($) {
     var noop = function() {};
     var openedClass = 'bellows--open';
+    var openingClass = 'bellows--opening';
+    var closingClass = 'bellows--closing';
 
     function Bellows(element, options) {
         this.init(element, options);
@@ -49,7 +51,9 @@
         }
 
         var plugin = this;
-        var $content = item.find('> .bellows__content-wrapper');
+        var $contentWrapper = item.find('> .bellows__content-wrapper');
+        var $content = $contentWrapper.find('.bellows__content');
+        var contentHeight = $content.height()
 
         if (this.options.singleItemOpen) {
             this.$element.find('.' + openedClass).each(function() {
@@ -59,14 +63,22 @@
 
         this._trigger('open', { item: item });
 
-        $content
+        // Jump content down and then animate into the space
+        item.parent('.bellows').css('height', item.parent('.bellows').height() + contentHeight);
+
+        $contentWrapper
             .velocity('slideDown',
             {
+                'begin': function() {
+                    item.addClass(openingClass);
+                },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
+                    item.removeClass(openingClass);
                     item.addClass(openedClass);
-                    $content.css('height', '');
+                    $contentWrapper.removeAttr('style');
+                    item.parent('.bellows').css('height', '');
                     plugin._trigger('opened', { item: item });
                 }
             });
@@ -80,18 +92,26 @@
         }
 
         var plugin = this;
-        var $content = item
+        var $contentWrapper = item
             .removeClass(openedClass)
             .find('> .bellows__content-wrapper');
+        var $content = $contentWrapper.find('.bellows__content');
+        var contentHeight = $content.height();
 
         this._trigger('close', { item: item });
 
-        $content.velocity('slideUp',
+        $contentWrapper.velocity('slideUp',
             {
+                begin: function() {
+                    item.addClass(closingClass);
+                    item.parent('.bellows').css('height', item.parent('.bellows').height());
+                },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
-                    $content.css('height', '');
+                    $contentWrapper.removeAttr('style');
+                    item.parent('.bellows').css('height', '');
+                    item.removeClass(closingClass);
                     plugin._trigger('closed', { item: item });
                 }
             });
