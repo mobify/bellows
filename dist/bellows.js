@@ -1,8 +1,10 @@
 (function($) {
     var pluginName = 'bellows';
-    var noop = function() {};
+    var noop = function() {
+    };
 
     var itemClass = '.bellows__item';
+    var itemContentClass = '.bellows__content';
     var openedClass = 'bellows--open';
     var openingClass = 'bellows--opening';
     var closingClass = 'bellows--closing';
@@ -39,7 +41,9 @@
     Bellows.prototype._bindEvents = function() {
         var plugin = this;
 
-        this.$bellows.find(itemHeaderSelector).on('click.' + pluginName, function() {
+        this.$bellows.find(itemHeaderSelector).on('click.' + pluginName, function(e) {
+            e.preventDefault();
+
             plugin.toggle($(this).parent());
         });
     };
@@ -59,7 +63,7 @@
 
         var plugin = this;
         var $contentWrapper = item.find(itemContentWrapperSelector);
-        var $content = $contentWrapper.find('.bellows__content');
+        var $content = $contentWrapper.find(itemContentClass);
 
         if (this.options.singleItemOpen) {
             this.$bellows.find('.' + openedClass).each(function() {
@@ -70,7 +74,7 @@
         this._trigger('open', { item: item });
 
         // Jump content down and then animate into the space
-        this.$bellows.css('height', this.$bellows.height() + $content.height());
+        this._setHeight(this.$bellows.height() + $content.height());
 
         $contentWrapper.velocity('slideDown', {
             begin: function() {
@@ -82,8 +86,8 @@
                 item
                     .removeClass(openingClass)
                     .addClass(openedClass);
-                plugin.$bellows.css('height', '');
-                $contentWrapper.removeAttr('style');
+                plugin._resetItemStyle($contentWrapper);
+
                 plugin._trigger('opened', { item: item });
             }
         });
@@ -106,17 +110,26 @@
         $contentWrapper.velocity('slideUp', {
             begin: function() {
                 item.addClass(closingClass);
-                plugin.$bellows.css('height', plugin.$bellows.height());
+                plugin._setHeight(plugin.$bellows.height());
             },
             duration: this.options.duration,
             easing: this.options.easing,
             complete: function() {
-                $contentWrapper.removeAttr('style');
-                plugin.$bellows.css('height', '');
                 item.removeClass(closingClass);
+                plugin._resetItemStyle($contentWrapper);
+
                 plugin._trigger('closed', { item: item });
             }
         });
+    };
+
+    Bellows.prototype._resetItemStyle = function($contentWrapper) {
+        $contentWrapper.removeAttr('style');
+        this._setHeight();
+    };
+
+    Bellows.prototype._setHeight = function(height) {
+        this.$bellows.css('height', height || '');
     };
 
     Bellows.prototype._item = function(item) {

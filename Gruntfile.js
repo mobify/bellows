@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
     // Populate the config object
     var config = {};
-    grunt.file.expand(['tasks/config/*']).forEach(function(configPath) {
+    grunt.file.expand('tasks/config/*').forEach(function(configPath) {
         // Get the grunt-task name to put in the config which is based on the
         // name of the config file
         var configName = configPath.match(/\/([^\/]*)\.js/)[1];
