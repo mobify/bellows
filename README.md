@@ -2,9 +2,16 @@
 
 A mobile-first accordion UI module for progressive disclosure on the web.
 
-## Docs
+## Documentation
 
-You can find docs and examples here: http://mobify.github.io/bellows.
+You can find full documentation and examples here: http://mobify.github.io/bellows.
+
+## Requirements
+
+* [Zepto](http://zeptojs.com/)
+* [Velocity.js](http://velocityjs.org)
+* jQuery Shim for Velocity.js (included in the `lib` folder)
+* [Zappy](https://github.com/mobify/zappy)
 
 ## Usage
 
@@ -229,12 +236,12 @@ $('.bellows').bellows({
 
 ### Requirements
 * [node.js 0.10.x/npm](http://nodejs.org/download/)
-* [Zepto](http://zeptojs.com/)
-* [Zappy](https://github.com/mobify/zappy)
-* [Velocity.js](http://julian.com/research/velocity/)
+* [Grunt](http://gruntjs.com/)
+    * Install with `npm install -g grunt-cli`
+* [Bower](http://bower.io/)
+    * Install with `npm install -g bower`
 
 ### Steps
-1. `npm install -g grunt-cli`
 1. `npm install`
 1. `bower install`
 1. `grunt`
