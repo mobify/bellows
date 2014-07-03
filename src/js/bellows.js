@@ -41,7 +41,8 @@
     Bellows.prototype._bindEvents = function() {
         var plugin = this;
 
-        this.$bellows.find(itemHeaderSelector).on('click.' + pluginName, function(e) {
+        // We use tappy here to eliminate the 300ms delay on clicking elements
+        this.$bellows.find(itemHeaderSelector).bind('tap', function(e) {
             e.preventDefault();
 
             plugin.toggle($(this).parent());

@@ -171,43 +171,36 @@
         <div class="counter"></div>
 
         <script src="../lib/zeptojs/dist/zepto.js"></script>
+        <script src="../lib/tappy.js"></script>
         <script src="../lib/velocity.jquery-shim.js"></script>
         <script src="../bower_components/velocity/jquery.velocity.min.js"></script>
 
-        <script src="../dist/bellows.js"></script>
+        <script src="../dist/bellows.min.js"></script>
         <script>
             var started;
+            var $counter = $('.counter');
+            var setStarted = function() {
+                started = Date.now();
+            };
+
+            var updateCounter = function() {
+                $counter.html((Date.now() - started) + 'ms');
+            };
 
             // Initialize Bellows
-            $('.bellows.default, .bellows.bellowsception, .bellows .bellows').bellows({
-                'open': function() {
-                    started = Date.now();
-                },
-                'opened': function() {
-                    $('.counter').html((Date.now() - started) + 'ms');
-                },
-                'close': function() {
-                    started = Date.now();
-                },
-                'closed': function() {
-                    $('.counter').html((Date.now() - started) + 'ms');
-                }
+            $('.bellows:not(.single)').bellows({
+                open: setStarted,
+                opened: updateCounter,
+                close: setStarted,
+                closed: updateCounter
             });
 
             $('.bellows.single').bellows({
-                'singleItemOpen': true,
-                'open': function() {
-                    started = Date.now();
-                },
-                'opened': function() {
-                    $('.counter').html((Date.now() - started) + 'ms');
-                },
-                'close': function() {
-                    started = Date.now();
-                },
-                'closed': function() {
-                    $('.counter').html((Date.now() - started) + 'ms');
-                }
+                singleItemOpen: true,
+                open: setStarted,
+                opened: updateCounter,
+                close: setStarted,
+                closed: updateCounter
             });
 
             // Enable active states
