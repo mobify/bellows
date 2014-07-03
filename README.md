@@ -92,13 +92,13 @@ $('.bellows').bellows({
 ### Storing bellows object for future use
 
 ```js
-var $bellows = $(".bellows");
+var $bellows = $('.bellows');
 ```
 
 ### Getting the bellows instance
 
 ```js
-var bellows = $('.bellows).data('bellows');
+var bellows = $('.bellows').data('bellows');
 bellows.open(1);
 ```
 
