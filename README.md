@@ -8,6 +8,54 @@ You can find docs and examples here: http://mobify.github.io/bellows.
 
 ## Usage
 
+```html
+<!-- Include the CSS (if you're not using Sass) -->
+<link rel="stylesheet" href="bellows.min.css">
+
+<!-- Optionally include the Theme file -->
+<link rel="stylesheet" href="bellows-style.min.css">
+
+<!-- Include the markup -->
+<div class="bellows">
+    <!-- The Accordion Items -->
+    <div class="bellows__item">
+        <div class="bellows__header">
+            <!-- Item Header -->
+            <h3>Header</h3>
+        </div>
+        <div class="bellows__content">
+            <!-- Item Content -->
+            <p>Content</p>
+        </div>
+    </div>
+    <div class="bellows__item">
+        <div class="bellows__header">
+            <h3>Header</h3>
+        </div>
+        <div class="bellows__content">
+            <p>Content</p>
+        </div>
+    </div>
+    <div class="bellows__item">
+        <div class="bellows__header">
+            <h3>Header</h3>
+        </div>
+        <div class="bellows__content">
+            <p>Content</p>
+        </div>
+    </div>
+</div>
+```
+
+<!-- include Zepto.js -->
+<script src="zepto.min.js"></script>
+
+<!-- include bellows.js -->
+<script src="bellows.min.js"></script>
+
+<!-- construct the bellows -->
+<script>$('.bellows').bellows()</script>
+```
 
 ## Initializing the plugin
 
