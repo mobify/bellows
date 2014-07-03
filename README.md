@@ -237,9 +237,7 @@ $('.bellows').bellows({
 2. `npm install`
 3. `grunt`
 
-The dist directory will be populated with minified versions of the css and 
-javascript files and a .zip of the original source files (for distribution and
-use with whatever build system you might use).
+The `dist` directory will be populated with minified versions of the css and javascript files for distribution and use with whatever build system you might use. The `src` directory has our raw unminified Sass and Javascript files if you prefer to work with those.
 
 ## License
 
