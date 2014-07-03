@@ -1,14 +1,14 @@
 define([
     'zepto',
     'bellows'
-],function($) {
+], function($) {
     var Bellows;
     var element;
 
     describe('Bellows options', function() {
         beforeEach(function() {
             Bellows = $.fn.bellows.Constructor;
-            element = $('<div class="bellows"></div>');
+            element = $('<div class="bellows default"> <div class="bellows__item"> <div class="bellows__header"><h3>Header</h3></div> <div class="bellows__content"> <p>Content</p> </div> </div> <div class="bellows__item"> <div class="bellows__header"> <h3>Header</h3> </div> <div class="bellows__content"> <p>Content</p> </div> </div> </div>');
         });
 
         describe('creates default options when no options parameter not used', function() {
@@ -66,7 +66,9 @@ define([
             });
 
             it('correctly defines open event', function() {
-                var open = function() { console.log('I\'m open!') };
+                var open = function() {
+                    console.log('I\'m open!')
+                };
                 var bellows = new Bellows(element, { open: open });
 
                 assert.equal(bellows.options.open, open);
@@ -74,7 +76,9 @@ define([
             });
 
             it('correctly defines open event', function() {
-                var open = function() { console.log('Open!') };
+                var open = function() {
+                    console.log('Open!')
+                };
                 var bellows = new Bellows(element, { open: open });
 
                 assert.equal(bellows.options.open, open);
@@ -82,7 +86,9 @@ define([
             });
 
             it('correctly defines opened event', function() {
-                var opened = function() { console.log('Opened!') };
+                var opened = function() {
+                    console.log('Opened!')
+                };
                 var bellows = new Bellows(element, { opened: opened });
 
                 assert.equal(bellows.options.opened, opened);
@@ -90,7 +96,9 @@ define([
             });
 
             it('correctly defines close event', function() {
-                var close = function() { console.log('Close!') };
+                var close = function() {
+                    console.log('Close!')
+                };
                 var bellows = new Bellows(element, { close: close });
 
                 assert.equal(bellows.options.close, close);
@@ -98,7 +106,9 @@ define([
             });
 
             it('correctly defines closed event', function() {
-                var closed = function() { console.log('Closed!') };
+                var closed = function() {
+                    console.log('Closed!')
+                };
                 var bellows = new Bellows(element, { closed: closed });
 
                 assert.equal(bellows.options.closed, closed);

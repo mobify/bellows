@@ -1,7 +1,6 @@
 (function($) {
     var pluginName = 'bellows';
-    var noop = function() {
-    };
+    var noop = function() {};
 
     var itemClass = '.bellows__item';
     var itemContentClass = '.bellows__content';
@@ -32,6 +31,7 @@
 
         this.$bellows = $(element)
             .find(itemContentSelector)
+            // wrap content section of each item to facilitate padding
             .wrap('<div class="bellows__content-wrapper" />')
             .end();
 
@@ -123,6 +123,8 @@
         });
     };
 
+    // Remove the style attributes from item and
+    // bellows to allow the height to be auto
     Bellows.prototype._resetItemStyle = function($contentWrapper) {
         $contentWrapper.removeAttr('style');
         this._setHeight();
@@ -132,6 +134,7 @@
         this.$bellows.css('height', height || '');
     };
 
+    // Allow items to be found using an index
     Bellows.prototype._item = function(item) {
         if (typeof item === 'number') {
             item = this.$bellows.find(itemClass).eq(item);
@@ -157,7 +160,9 @@
             if (!bellows) {
                 $this.data(pluginName, (bellows = new Bellows(this, option)));
             }
-            if (typeof option === 'string') {
+
+            // invoke a public method on bellows, and skip private methods
+            if (typeof option === 'string' && option.indexOf('_') !== 0) {
                 bellows[option].apply(bellows, args.length > 1 ? args.slice(1) : null);
             }
         });
