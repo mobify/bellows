@@ -188,11 +188,11 @@ $('.bellows').bellows({
 Execute this function every time an bellows item is starting to close.
 
 ```js
-    $('.bellows').bellows({
-        close: function(e, ui) { 
-            // ui.item contains the item closing
-        }
-    });
+$('.bellows').bellows({
+    close: function(e, ui) { 
+        // ui.item contains the item closing
+    }
+});
 ```
 
 ### closed
@@ -200,15 +200,14 @@ Execute this function every time an bellows item is starting to close.
 Execute this function every time an bellows item is finished closing.
 
 ```js
-    $('.bellows').bellows({
-        closed: function(e, ui) { 
-            // ui.item contains the item that closed
-        }
-    });
+$('.bellows').bellows({
+    closed: function(e, ui) { 
+        // ui.item contains the item that closed
+    }
+});
 ```
 
 ## Browser Compatibility
-
 
 | Browser           | Version | Support                    |
 |-------------------|---------|----------------------------|
