@@ -15,3 +15,11 @@ html {
     background: red;
     padding: 10px;
 }
+
+p {
+    margin: 0;
+}
+
+p + p {
+    margin-bottom: 10px;
+}

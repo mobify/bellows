@@ -1,6 +1,5 @@
 .bellows {
     box-sizing: border-box;
-
     overflow: hidden;
     
     border-radius: 5px;
@@ -51,15 +50,15 @@
         
         transition: transform 0.2s ease-in-out;
         
-        .bellows__item.bellows--open > & {
+        .bellows__item.bellows--is-open > & {
             transform: rotate(45deg);
         }
 
-        .bellows__item.bellows--opening & {
+        .bellows__item.bellows--is-opening & {
             transform: rotate(45deg);
         }
 
-        .bellows__item.bellows--closing & {
+        .bellows__item.bellows--is-closing & {
             transform: rotate(0);
         }
     }
@@ -78,14 +77,6 @@
     border: 1px solid #ecf0f1;
     
     box-shadow: inset 0 5px 5px rgba(black, 0.05);
-    
-    p {
-        margin: 0;
-        
-        + p {
-            margin-top: 10px;
-        }
-    }
     
     .bellows {
         margin-top: 20px;
