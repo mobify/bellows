@@ -1,6 +1,8 @@
 define([
     'text!fixtures/bellows.html',
     'zepto',
+    'velocity-shim',
+    'velocity',
     'bellows'
 ], function(fixture, $) {
     var element;
@@ -41,6 +43,18 @@ define([
                 element.bellows();
 
                 assert.lengthOf(element.find('.bellows__content-wrapper'), 2);
+            });
+        });
+
+        describe('invoking bellows methods using the plugin interface', function() {
+            it('opens a bellows item using the open method', function() {
+                element.bellows({
+                    opened: function() {
+                        assert.isTrue(element.find('.bellows__item').first().hasClass('bellows--is-open'));
+                    }
+                });
+
+                element.bellows('open', 1);
             });
         });
     });
