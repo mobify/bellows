@@ -35,21 +35,33 @@ module.exports = function(grunt) {
             }
         })(),
         releaseName: '<%= pkg.name %>-<%= pkg.version %>',
-        releaseMessage: '<%= pkg.name %> release <%= pkg.version %>',
+        releaseMessage: '<%= pkg.name %> release <%= pkg.version %>'
     }, config));
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-css');
-    grunt.loadNpmTasks('grunt-shell');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-autoprefixer');
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    // load npm tasks
+    var npmTasks = [
+        'grunt-contrib-uglify',
+        'grunt-contrib-watch',
+        'grunt-contrib-connect',
+        'grunt-contrib-connect',
+        'grunt-css',
+        'grunt-shell',
+        'grunt-contrib-clean',
+        'grunt-contrib-copy',
+        'grunt-autoprefixer',
+        'grunt-contrib-sass',
+        'grunt-mocha-phantomjs'
+    ];
+
+    npmTasks.forEach(function(taskName) {
+        if(!grunt.task._tasks[taskName]) {
+            grunt.loadNpmTasks(taskName);
+        }
+    });
 
     grunt.registerTask('serve', ['connect', 'watch']);
     grunt.registerTask('build', ['copy', 'uglify', 'sass', 'autoprefixer', 'cssmin']);
     grunt.registerTask('release', ['build', 'shell:tagRelease']);
+    grunt.registerTask('test', ['build', 'connect:test', 'mocha_phantomjs']);
     grunt.registerTask('default', 'build');
 };

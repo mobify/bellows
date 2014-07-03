@@ -16,7 +16,10 @@
         "grunt-contrib-jshint": "0.10.0",
         "jshint": "2.5.0",
         "grunt-jscs-checker": "0.4.1",
-        "mobify-code-style": "0.0.3"
+        "mobify-code-style": "0.0.3",
+        "grunt-mocha-phantomjs": "~0.3.2",
+        "mocha": "~1.14.0",
+        "chai": "~1.9.0"
     },
     "license": "MIT"
 }
