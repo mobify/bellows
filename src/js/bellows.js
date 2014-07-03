@@ -4,9 +4,9 @@
 
     var itemClass = '.bellows__item';
     var itemContentClass = '.bellows__content';
-    var openedClass = 'bellows--open';
-    var openingClass = 'bellows--opening';
-    var closingClass = 'bellows--closing';
+    var openedClass = 'bellows--is-open';
+    var openingClass = 'bellows--is-opening';
+    var closingClass = 'bellows--is-closing';
 
     var itemHeaderSelector = '> .bellows__item > .bellows__header';
     var itemContentWrapperSelector = '> .bellows__content-wrapper';
