@@ -8,9 +8,11 @@
     var openingClass = 'bellows--opening';
     var closingClass = 'bellows--closing';
 
-    var itemHeaderSelector = '> .bellows__item > .bellows__header';
-    var itemContentWrapperSelector = '> .bellows__content-wrapper';
-    var itemContentSelector = '> .bellows__item > .bellows__content';
+    var selectors = {
+        itemHeader: '> .bellows__item > .bellows__header',
+        itemContentWrapper: '> .bellows__content-wrapper',
+        itemContent: '> .bellows__item > .bellows__content'
+    };
 
     function Bellows(element, options) {
         this.init(element, options);
@@ -31,7 +33,7 @@
         this.options = $.extend({}, Bellows.DEFAULTS, options);
 
         this.$bellows = $(element)
-            .find(itemContentSelector)
+            .find(selectors.itemContent)
             // wrap content section of each item to facilitate padding
             .wrap('<div class="bellows__content-wrapper" />')
             .end();
@@ -44,7 +46,7 @@
 
         // We use tappy here to eliminate the 300ms delay on clicking elements
         this.$bellows
-            .find(itemHeaderSelector)
+            .find(selectors.itemHeader)
             .bind(this.options.event, function(e) {
                 e.preventDefault();
 
@@ -66,7 +68,7 @@
         }
 
         var plugin = this;
-        var $contentWrapper = item.find(itemContentWrapperSelector);
+        var $contentWrapper = item.find(selectors.itemContentWrapper);
         var $content = $contentWrapper.find(itemContentClass);
 
         if (this.options.singleItemOpen) {
@@ -108,7 +110,7 @@
         var plugin = this;
         var $contentWrapper = item
             .removeClass(openedClass)
-            .find(itemContentWrapperSelector);
+            .find(selectors.itemContentWrapper);
 
         this._trigger('close', { item: item });
 
