@@ -10,14 +10,9 @@ module.exports = function(grunt) {
         grunt.loadTasks(task);
     });
 
-    var configPaths = [
-        'node_modules/adaptivejs/tasks/config/*',
-        'tasks/config/*'
-    ];
-
     // Populate the config object
     var config = {};
-    grunt.file.expand(configPaths).forEach(function(configPath) {
+    grunt.file.expand(['tasks/config/*']).forEach(function(configPath) {
         // Get the grunt-task name to put in the config which is based on the
         // name of the config file
         var configName = configPath.match(/\/([^\/]*)\.js/)[1];
@@ -27,10 +22,10 @@ module.exports = function(grunt) {
 
     grunt.initConfig(_.extend({
         pkg: grunt.file.readJSON('package.json'),
-        localConfig: (function(){
+        localConfig: (function() {
             try {
                 return grunt.file.readJSON('localConfig.json')
-            } catch(e) {
+            } catch (e) {
                 return {};
             }
         })(),
@@ -54,14 +49,14 @@ module.exports = function(grunt) {
     ];
 
     npmTasks.forEach(function(taskName) {
-        if(!grunt.task._tasks[taskName]) {
+        if (!grunt.task._tasks[taskName]) {
             grunt.loadNpmTasks(taskName);
         }
     });
 
     grunt.registerTask('serve', ['connect', 'watch']);
     grunt.registerTask('build', ['copy', 'uglify', 'sass', 'autoprefixer', 'cssmin']);
-    grunt.registerTask('release', ['build', 'shell:tagRelease']);
+    grunt.registerTask('release', ['test', 'shell:tagRelease']);
     grunt.registerTask('test', ['build', 'connect:test', 'mocha_phantomjs']);
     grunt.registerTask('default', 'build');
 };

@@ -1,9 +1,10 @@
 require.config({
     baseUrl: '../../',
     paths: {
+        'zepto': 'lib/zeptojs/dist/zepto.min',
         'chai': 'node_modules/chai/chai',
         'mocha': 'node_modules/mocha/mocha',
-        'package': '../package.json'
+        'bellows': 'dist/bellows.min'
     },
     'shim': {
         'mocha': {
@@ -11,6 +12,13 @@ require.config({
                 this.mocha.setup('bdd');
                 return this.mocha;
             }
+        },
+        'zepto': {
+            exports: '$'
+        },
+        'bellows': {
+            exports: 'Bellows',
+            deps: ['zepto']
         }
     }
 });

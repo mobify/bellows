@@ -1,9 +1,15 @@
 (function($) {
-    var noop = function() {
-    };
+    var pluginName = 'bellows';
+    var noop = function() {};
+
+    var itemClass = '.bellows__item';
     var openedClass = 'bellows--open';
     var openingClass = 'bellows--opening';
     var closingClass = 'bellows--closing';
+
+    var itemHeaderSelector = '> .bellows__item > .bellows__header';
+    var itemContentWrapperSelector = '> .bellows__content-wrapper';
+    var itemContentSelector = '> .bellows__item > .bellows__content';
 
     function Bellows(element, options) {
         this.init(element, options);
@@ -23,7 +29,7 @@
         this.options = $.extend({}, Bellows.DEFAULTS, options);
 
         this.$bellows = $(element)
-            .find('> .bellows__item > .bellows__content')
+            .find(itemContentSelector)
             .wrap('<div class="bellows__content-wrapper" />')
             .end();
 
@@ -33,7 +39,7 @@
     Bellows.prototype._bindEvents = function() {
         var plugin = this;
 
-        this.$bellows.find('> .bellows__item > .bellows__header').on('click', function() {
+        this.$bellows.find(itemHeaderSelector).on('click.' + pluginName, function() {
             plugin.toggle($(this).parent());
         });
     };
@@ -52,7 +58,7 @@
         }
 
         var plugin = this;
-        var $contentWrapper = item.find('> .bellows__content-wrapper');
+        var $contentWrapper = item.find(itemContentWrapperSelector);
         var $content = $contentWrapper.find('.bellows__content');
 
         if (this.options.singleItemOpen) {
@@ -73,10 +79,11 @@
             duration: this.options.duration,
             easing: this.options.easing,
             complete: function() {
-                item.removeClass(openingClass);
-                item.addClass(openedClass);
-                $contentWrapper.removeAttr('style');
+                item
+                    .removeClass(openingClass)
+                    .addClass(openedClass);
                 plugin.$bellows.css('height', '');
+                $contentWrapper.removeAttr('style');
                 plugin._trigger('opened', { item: item });
             }
         });
@@ -92,7 +99,7 @@
         var plugin = this;
         var $contentWrapper = item
             .removeClass(openedClass)
-            .find('> .bellows__content-wrapper');
+            .find(itemContentWrapperSelector);
 
         this._trigger('close', { item: item });
 
@@ -114,14 +121,14 @@
 
     Bellows.prototype._item = function(item) {
         if (typeof item === 'number') {
-            item = this.$bellows.find('.bellows__item').eq(item);
+            item = this.$bellows.find(itemClass).eq(item);
         }
 
         return item;
     };
 
     Bellows.prototype._trigger = function(eventName, data) {
-        eventName in this.options && this.options[eventName].call(this, $.Event('bellows:' + eventName, { bubbles: false }), data);
+        eventName in this.options && this.options[eventName].call(this, $.Event(pluginName + ':' + eventName, { bubbles: false }), data);
     };
 
     // BELLOWS PLUGIN
@@ -132,10 +139,10 @@
 
         return this.each(function() {
             var $this = $(this);
-            var bellows = $this.data('bellows');
+            var bellows = $this.data(pluginName);
 
             if (!bellows) {
-                $this.data('bellows', (bellows = new Bellows(this, option)));
+                $this.data(pluginName, (bellows = new Bellows(this, option)));
             }
             if (typeof option === 'string') {
                 bellows[option].apply(bellows, args.length > 1 ? args.slice(1) : null);
