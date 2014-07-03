@@ -45,7 +45,6 @@ You can find docs and examples here: http://mobify.github.io/bellows.
         </div>
     </div>
 </div>
-```
 
 <!-- include Zepto.js -->
 <script src="zepto.min.js"></script>
