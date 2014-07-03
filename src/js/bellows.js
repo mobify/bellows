@@ -18,6 +18,7 @@
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
+        event: 'tap',
         duration: 200,
         easing: 'swing',
         open: noop,
@@ -42,11 +43,13 @@
         var plugin = this;
 
         // We use tappy here to eliminate the 300ms delay on clicking elements
-        this.$bellows.find(itemHeaderSelector).bind('tap', function(e) {
-            e.preventDefault();
+        this.$bellows
+            .find(itemHeaderSelector)
+            .bind(this.options.event, function(e) {
+                e.preventDefault();
 
-            plugin.toggle($(this).parent());
-        });
+                plugin.toggle($(this).parent());
+            });
     };
 
     Bellows.prototype.toggle = function(item) {
@@ -77,21 +80,22 @@
         // Jump content down and then animate into the space
         this._setHeight(this.$bellows.height() + $content.height());
 
-        $contentWrapper.velocity('slideDown', {
-            begin: function() {
-                item.addClass(openingClass);
-            },
-            duration: this.options.duration,
-            easing: this.options.easing,
-            complete: function() {
-                item
-                    .removeClass(openingClass)
-                    .addClass(openedClass);
-                plugin._resetItemStyle($contentWrapper);
+        $contentWrapper
+            .velocity('slideDown', {
+                begin: function() {
+                    item.addClass(openingClass);
+                },
+                duration: this.options.duration,
+                easing: this.options.easing,
+                complete: function() {
+                    item
+                        .removeClass(openingClass)
+                        .addClass(openedClass);
+                    plugin._resetItemStyle($contentWrapper);
 
-                plugin._trigger('opened', { item: item });
-            }
-        });
+                    plugin._trigger('opened', { item: item });
+                }
+            });
     };
 
     Bellows.prototype.close = function(item) {
@@ -108,20 +112,21 @@
 
         this._trigger('close', { item: item });
 
-        $contentWrapper.velocity('slideUp', {
-            begin: function() {
-                item.addClass(closingClass);
-                plugin._setHeight(plugin.$bellows.height());
-            },
-            duration: this.options.duration,
-            easing: this.options.easing,
-            complete: function() {
-                item.removeClass(closingClass);
-                plugin._resetItemStyle($contentWrapper);
+        $contentWrapper
+            .velocity('slideUp', {
+                begin: function() {
+                    item.addClass(closingClass);
+                    plugin._setHeight(plugin.$bellows.height());
+                },
+                duration: this.options.duration,
+                easing: this.options.easing,
+                complete: function() {
+                    item.removeClass(closingClass);
+                    plugin._resetItemStyle($contentWrapper);
 
-                plugin._trigger('closed', { item: item });
-            }
-        });
+                    plugin._trigger('closed', { item: item });
+                }
+            });
     };
 
     // Remove the style attributes from item and
