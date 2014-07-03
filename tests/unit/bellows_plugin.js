@@ -47,14 +47,30 @@ define([
         });
 
         describe('invoking bellows methods using the plugin interface', function() {
-            it('opens a bellows item using the open method', function() {
+            it('opens a bellows item using the open method', function(done) {
                 element.bellows({
-                    opened: function() {
-                        assert.isTrue(element.find('.bellows__item').first().hasClass('bellows--is-open'));
+                    opened: function(e, ui) {
+                        assert.isTrue(ui.item.hasClass('bellows--is-open'));
+                        done();
                     }
                 });
 
-                element.bellows('open', 1);
+                element.bellows('open', 0);
+            });
+
+            it('closes a bellows item using the close method', function(done) {
+                element.bellows({
+                    opened: function() {
+                        element.bellows('close', 0);
+                    },
+                    closed: function(e, ui) {
+                        assert.isFalse(ui.item.hasClass('bellows--is-open'));
+                        done();
+                    }
+                });
+
+                element.bellows('open', 0);
+
             });
         });
     });
