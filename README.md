@@ -230,6 +230,7 @@ $('.bellows').bellows({
 ### Requirements
 * [node.js 0.10.x/npm](http://nodejs.org/download/)
 * [Zepto](http://zeptojs.com/)
+* [Zappy](https://github.com/mobify/zappy)
 * [Velocity.js](http://julian.com/research/velocity/)
 
 ### Steps
