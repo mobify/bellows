@@ -54,11 +54,11 @@
             transform: rotate(45deg);
         }
 
-        .bellows__item.bellows--is-opening & {
+        .bellows__item.bellows--is-opening > & {
             transform: rotate(45deg);
         }
 
-        .bellows__item.bellows--is-closing & {
+        .bellows__item.bellows--is-closing > & {
             transform: rotate(0);
         }
     }

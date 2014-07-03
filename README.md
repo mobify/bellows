@@ -151,7 +151,14 @@ $('.bellows').bellows({
 
 ### easing
 
-Sets the easing for the animation.
+Sets the easing for the animation. Bellows takes all of the same easing properties that [Velocity.js](http://julian.com/research/velocity) accepts.
+
+> * [jQuery UI's easings](http://easings.net/) and CSS3's easings ("ease", "ease-in", "ease-out", and "ease-in-out"), which are pre-packaged into Velocity. A bonus "spring" easing (sampled in the CSS Support pane) is also included. 
+* CSS3's bezier curves: Pass in a four-item array of bezier points. (Refer to [Cubic-Bezier.com](http://cubic-bezier.com/) for crafing custom bezier curves.) 
+* Spring physics: Pass a two-item array in the form of [ tension, friction ]. A higher tension (default: 600) increases total speed and bounciness. A lower friction (default: 20) increases ending vibration speed. 
+* Step easing: Pass a one-item array in the form of [ steps ]. The animation will jump toward its end values using the specified number of steps. 
+
+For more information, check out [Velocity's docs on easing](http://julian.com/research/velocity/#easing).
 
 ```js
 $('.bellows').bellows({
@@ -227,12 +234,11 @@ $('.bellows').bellows({
 
 ### Steps
 1. `npm install -g grunt-cli`
-2. `npm install`
-3. `grunt`
+1. `npm install`
+1. `bower install`
+1. `grunt`
 
-The dist directory will be populated with minified versions of the css and 
-javascript files and a .zip of the original source files (for distribution and
-use with whatever build system you might use).
+The `dist` directory will be populated with minified versions of the css and javascript files for distribution and use with whatever build system you might use. The `src` directory has our raw unminified Sass and Javascript files if you prefer to work with those.
 
 ## License
 

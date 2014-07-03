@@ -41,11 +41,11 @@
       -webkit-transform: rotate(45deg);
           -ms-transform: rotate(45deg);
               transform: rotate(45deg); }
-    .bellows__item.bellows--is-opening .bellows__header::after {
+    .bellows__item.bellows--is-opening > .bellows__header::after {
       -webkit-transform: rotate(45deg);
           -ms-transform: rotate(45deg);
               transform: rotate(45deg); }
-    .bellows__item.bellows--is-closing .bellows__header::after {
+    .bellows__item.bellows--is-closing > .bellows__header::after {
       -webkit-transform: rotate(0);
           -ms-transform: rotate(0);
               transform: rotate(0); }
