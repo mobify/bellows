@@ -22,13 +22,6 @@ module.exports = function(grunt) {
 
     grunt.initConfig(_.extend({
         pkg: grunt.file.readJSON('package.json'),
-        localConfig: (function() {
-            try {
-                return grunt.file.readJSON('localConfig.json')
-            } catch (e) {
-                return {};
-            }
-        })(),
         releaseName: '<%= pkg.name %>-<%= pkg.version %>',
         releaseMessage: '<%= pkg.name %> release <%= pkg.version %>'
     }, config));
