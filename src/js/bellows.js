@@ -181,4 +181,4 @@
     $('[data-bellows]').bellows();
 
     return $;
-})(Zepto);
+})(window.jQuery || window.Zepto);

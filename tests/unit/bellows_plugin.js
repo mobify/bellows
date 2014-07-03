@@ -2,7 +2,7 @@ define([
     'text!fixtures/bellows.html',
     'zepto',
     'bellows'
-], function($) {
+], function(fixture, $) {
     var element;
 
     describe('Bellows plugin', function() {
