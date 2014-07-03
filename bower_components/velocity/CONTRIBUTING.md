@@ -1,1 +1,0 @@
-Please read the FAQ before posting an issue: https://github.com/julianshapiro/velocity/issues/47.
