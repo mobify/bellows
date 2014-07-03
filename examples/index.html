@@ -16,7 +16,7 @@
 
         <h2>Default Bellows</h2>
 
-        <div class="bellows default">
+        <div class="bellows">
             <div class="bellows__item bellows--is-open">
                 <div class="bellows__header">
                     <h3>Header</h3>
@@ -53,7 +53,7 @@
 
         <h2>Auto-initialized Bellows using data attribute</h2>
 
-        <div class="bellows" data-bellows>
+        <div class="bellows auto" data-bellows>
             <div class="bellows__item bellows--is-open">
                 <div class="bellows__header">
                     <h3>Header</h3>
@@ -168,8 +168,6 @@
             </div>
         </div>
 
-        <div class="counter"></div>
-
         <script src="../lib/zeptojs/dist/zepto.js"></script>
         <script src="../bower_components/tappy/tappy.js"></script>
         <script src="../lib/velocity.jquery-shim.js"></script>
@@ -177,30 +175,11 @@
 
         <script src="../dist/bellows.min.js"></script>
         <script>
-            var started;
-            var $counter = $('.counter');
-            var setStarted = function() {
-                started = Date.now();
-            };
-
-            var updateCounter = function() {
-                $counter.html((Date.now() - started) + 'ms');
-            };
-
             // Initialize Bellows
-            $('.bellows:not(.single)').bellows({
-                open: setStarted,
-                opened: updateCounter,
-                close: setStarted,
-                closed: updateCounter
-            });
+            $('.bellows:not(.single):not(.auto)').bellows();
 
             $('.bellows.single').bellows({
-                singleItemOpen: true,
-                open: setStarted,
-                opened: updateCounter,
-                close: setStarted,
-                closed: updateCounter
+                singleItemOpen: true
             });
 
             // Enable active states
