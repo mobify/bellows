@@ -8,10 +8,10 @@ require(['config'], function() {
         function(require, chai, mocha) {
 
             var tests = [
-                '../../tests/unit/bellows_constructor.js',
-                '../../tests/unit/bellows_plugin.js',
-                '../../tests/unit/bellows_options.js',
-                '../../tests/unit/bellows_events.js'
+                '../../tests/unit/constructor.js',
+                '../../tests/unit/plugin.js',
+                '../../tests/unit/options.js',
+                '../../tests/unit/events.js'
             ];
 
             require(tests, function() {
