@@ -24,7 +24,8 @@ require.config({
             exports: '$'
         },
         'velocity': {
-            exports: '$'
+            exports: '$',
+            deps: ['velocity-shim']
         },
         'bellows': {
             exports: 'Bellows',
