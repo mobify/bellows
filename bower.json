@@ -5,7 +5,7 @@
   "authors": [
     "Mobify <jobs@mobify.com>"
   ],
-  "description": "A mobile first accordion UI module",
+  "description": "A mobile first accordion UI plugin",
   "main": "dist/bellows.min.js",
   "keywords": [
     "bellows",
