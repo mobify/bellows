@@ -4,7 +4,7 @@ require.config({
         'text': 'bower_components/requirejs-text/text',
         'fixtures': 'tests/fixtures',
         'zepto': 'lib/zeptojs/dist/zepto.min',
-        'velocity-shim': 'notthere/lib/velocity-shim',
+        'velocity-shim': 'lib/velocity-shim',
         'velocity': 'bower_components/velocity/jquery.velocity',
         'chai': 'node_modules/chai/chai',
         'mocha': 'node_modules/mocha/mocha',
