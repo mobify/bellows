@@ -4,6 +4,7 @@ require.config({
         'text': 'bower_components/requirejs-text/text',
         'fixtures': 'tests/fixtures',
         'zepto': 'lib/zeptojs/dist/zepto.min',
+        'zappy': 'bower_components/tappy/tappy',
         'velocity-shim': 'lib/velocity-shim',
         'velocity': 'bower_components/velocity/jquery.velocity',
         'chai': 'node_modules/chai/chai',
@@ -20,6 +21,9 @@ require.config({
         'zepto': {
             exports: '$'
         },
+        'zappy': {
+            exports: '$'
+        },
         'velocity-shim': {
             exports: '$'
         },
@@ -29,7 +33,7 @@ require.config({
         },
         'bellows': {
             exports: 'Bellows',
-            deps: ['zepto']
+            deps: ['zappy', 'velocity']
         }
     }
 });
