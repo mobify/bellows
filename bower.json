@@ -5,7 +5,7 @@
   "authors": [
     "Mobify <jobs@mobify.com>"
   ],
-  "description": "A mobile first accordion UI module",
+  "description": "A mobile first accordion UI plugin",
   "main": "dist/bellows.min.js",
   "keywords": [
     "bellows",
@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "velocity": "~0.2.1",
-    "tappy": "https://github.com/mobify/tappy.git#master",
+    "tappy": "https://github.com/mobify/zappy.git#master",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.14"
   }

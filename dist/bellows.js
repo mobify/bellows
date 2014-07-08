@@ -30,7 +30,7 @@
     };
 
     Bellows.prototype.init = function(element, options) {
-        this.options = $.extend({}, Bellows.DEFAULTS, options);
+        this.options = $.extend(true, {}, Bellows.DEFAULTS, options);
 
         this.$bellows = $(element)
             .find(selectors.itemContent)
