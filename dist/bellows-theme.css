@@ -16,33 +16,35 @@
   .bellows__header:active {
     background: #2980b9; }
   .bellows__header::after {
-    content: '+';
+    content: '';
     position: absolute;
     top: 50%;
     right: 15px;
     z-index: 2;
     display: block;
-    width: 22px;
-    height: 22px;
-    margin-top: -11px;
-    background: rgba(44, 62, 80, 0.15);
-    border-radius: 100%;
+    width: 16px;
+    height: 16px;
+    margin-top: -10px;
+    -webkit-box-shadow: inset -5px 5px 0 1px white;
+            box-shadow: inset -5px 5px 0 1px white;
     color: white;
     font-size: 25px;
     line-height: 15px;
     font-weight: bold;
     text-align: center;
     pointer-events: none;
-    -webkit-transition: -webkit-transform 0.1s ease-in-out;
-            transition: transform 0.1s ease-in-out; }
+    -webkit-transform: rotate(135deg);
+        -ms-transform: rotate(135deg);
+            transform: rotate(135deg);
+    -webkit-transition: -webkit-box-shadow 0.1s ease-in-out;
+            transition: box-shadow 0.1s ease-in-out; }
     .bellows__item.bellows--is-open > .bellows__header::after, .bellows__item.bellows--is-opening > .bellows__header::after {
-      -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-              transform: rotate(45deg); }
+      margin-top: -5px;
+      -webkit-box-shadow: inset 5px -5px 0 1px white;
+              box-shadow: inset 5px -5px 0 1px white; }
     .bellows__item.bellows--is-closing > .bellows__header::after {
-      -webkit-transform: rotate(0);
-          -ms-transform: rotate(0);
-              transform: rotate(0); }
+      -webkit-box-shadow: inset -5px 5px 0 1px white;
+              box-shadow: inset -5px 5px 0 1px white; }
   .bellows__item:last-child > .bellows__header {
     border-bottom: 0; }
   .bellows__header h1,
