@@ -50,7 +50,7 @@
             .bind(this.options.event, function(e) {
                 e.preventDefault();
 
-                plugin.toggle($(this).parent());
+                !plugin.animating && plugin.toggle($(this).parent());
             });
     };
 
@@ -86,15 +86,17 @@
             .velocity('slideDown', {
                 begin: function() {
                     item.addClass(openingClass);
+                    plugin.animating = true;
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
+                    plugin.animating = false;
                     item
                         .removeClass(openingClass)
                         .addClass(openedClass);
-                    plugin._resetItemStyle($contentWrapper);
 
+                    plugin._resetItemStyle($contentWrapper);
                     plugin._trigger('opened', { item: item });
                 }
             });
@@ -119,10 +121,12 @@
                 begin: function() {
                     item.addClass(closingClass);
                     plugin._setHeight(plugin.$bellows.height());
+                    plugin.animating = true;
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
+                    plugin.animating = false;
                     item.removeClass(closingClass);
                     plugin._resetItemStyle($contentWrapper);
 
