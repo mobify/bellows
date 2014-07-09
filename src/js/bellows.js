@@ -88,6 +88,7 @@
                     $item.addClass(openingClass);
                     plugin.animating = true;
                 },
+                display: 'block',
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
@@ -123,6 +124,7 @@
                     plugin._setHeight(plugin.$bellows.height());
                     plugin.animating = true;
                 },
+                display: 'none',
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {

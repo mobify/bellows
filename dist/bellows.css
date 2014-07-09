@@ -1,10 +1,5 @@
 .bellows__item.bellows--is-open > .bellows__content-wrapper {
-  height: auto;
-  overflow: visible; }
+  display: block; }
 
 .bellows__content-wrapper {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  height: 0;
-  overflow: hidden; }
+  display: none; }

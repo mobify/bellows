@@ -1,10 +1,7 @@
 .bellows__item.bellows--is-open > .bellows__content-wrapper {
-    height: auto;
-    overflow: visible;
+    display: block;
 }
 
 .bellows__content-wrapper {
-    box-sizing: border-box; // Necessary for animations to work
-    height: 0;
-    overflow: hidden;
+    display: none;
 }
