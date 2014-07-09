@@ -22,11 +22,11 @@
     right: 20px;
     z-index: 2;
     display: block;
-    width: 16px;
-    height: 16px;
-    margin-top: -10px;
-    -webkit-box-shadow: inset -5px 5px 0 1px white;
-            box-shadow: inset -5px 5px 0 1px white;
+    width: 12px;
+    height: 12px;
+    margin-top: -8px;
+    -webkit-box-shadow: inset -3px 3px 0 1px white;
+            box-shadow: inset -3px 3px 0 1px white;
     color: white;
     font-size: 25px;
     line-height: 15px;
@@ -39,12 +39,12 @@
     -webkit-transition: -webkit-box-shadow 0.1s ease-in-out;
             transition: box-shadow 0.1s ease-in-out; }
     .bellows__item.bellows--is-open > .bellows__header::after, .bellows__item.bellows--is-opening > .bellows__header::after {
-      margin-top: -5px;
-      -webkit-box-shadow: inset 5px -5px 0 1px white;
-              box-shadow: inset 5px -5px 0 1px white; }
+      margin-top: -3px;
+      -webkit-box-shadow: inset 3px -3px 0 1px white;
+              box-shadow: inset 3px -3px 0 1px white; }
     .bellows__item.bellows--is-closing > .bellows__header::after {
-      -webkit-box-shadow: inset -5px 5px 0 1px white;
-              box-shadow: inset -5px 5px 0 1px white; }
+      -webkit-box-shadow: inset -3px 3px 0 1px white;
+              box-shadow: inset -3px 3px 0 1px white; }
   .bellows__item:last-child > .bellows__header {
     border-bottom: 0; }
   .bellows__header h1,

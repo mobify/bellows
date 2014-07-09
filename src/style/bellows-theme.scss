@@ -23,7 +23,7 @@ $active-header-background: #2980b9;
     &:active {
         background: $active-header-background;
     }
-    
+
     &::after {
         content: '';
         
@@ -33,11 +33,11 @@ $active-header-background: #2980b9;
         z-index: 2;
         
         display: block;
-        width: 16px;
-        height: 16px;
-        margin-top: -10px;
+        width: 12px;
+        height: 12px;
+        margin-top: -8px;
         
-        box-shadow: inset -5px 5px 0 1px white;
+        box-shadow: inset -3px 3px 0 1px white;
 
         color: white;
         font-size: 25px;
@@ -53,12 +53,12 @@ $active-header-background: #2980b9;
                 
         .bellows__item.bellows--is-open > &,
         .bellows__item.bellows--is-opening > & {
-            margin-top: -5px;
-            box-shadow: inset 5px -5px 0 1px white;
+            margin-top: -3px;
+            box-shadow: inset 3px -3px 0 1px white;
         }
 
         .bellows__item.bellows--is-closing > & {
-            box-shadow: inset -5px 5px 0 1px white;
+            box-shadow: inset -3px 3px 0 1px white;
         }
     }
 
