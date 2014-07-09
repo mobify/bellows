@@ -60,15 +60,15 @@
         this[item.hasClass(openedClass) ? 'close' : 'open'](item);
     };
 
-    Bellows.prototype.open = function(item) {
-        item = this._item(item);
+    Bellows.prototype.open = function($item) {
+        $item = this._item($item);
 
-        if (item.hasClass(openedClass)) {
+        if ($item.hasClass(openedClass)) {
             return;
         }
 
         var plugin = this;
-        var $contentWrapper = item.find(selectors.itemContentWrapper);
+        var $contentWrapper = $item.find(selectors.itemContentWrapper);
         var $content = $contentWrapper.find(itemContentClass);
 
         if (this.options.singleItemOpen) {
@@ -77,7 +77,7 @@
             });
         }
 
-        this._trigger('open', { item: item });
+        this._trigger('open', { item: $item });
 
         // Jump content down and then animate into the space
         this._setHeight(this.$bellows.height() + $content.height());
@@ -85,41 +85,41 @@
         $contentWrapper
             .velocity('slideDown', {
                 begin: function() {
-                    item.addClass(openingClass);
+                    $item.addClass(openingClass);
                     plugin.animating = true;
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
                     plugin.animating = false;
-                    item
+                    $item
                         .removeClass(openingClass)
                         .addClass(openedClass);
-
                     plugin._resetItemStyle($contentWrapper);
-                    plugin._trigger('opened', { item: item });
+
+                    plugin._trigger('opened', { item: $item });
                 }
             });
     };
 
-    Bellows.prototype.close = function(item) {
-        item = this._item(item);
+    Bellows.prototype.close = function($item) {
+        $item = this._item($item);
 
-        if (!item.hasClass(openedClass)) {
+        if (!$item.hasClass(openedClass)) {
             return;
         }
 
         var plugin = this;
-        var $contentWrapper = item
+        var $contentWrapper = $item
             .removeClass(openedClass)
             .find(selectors.itemContentWrapper);
 
-        this._trigger('close', { item: item });
+        this._trigger('close', { item: $item });
 
         $contentWrapper
             .velocity('slideUp', {
                 begin: function() {
-                    item.addClass(closingClass);
+                    $item.addClass(closingClass);
                     plugin._setHeight(plugin.$bellows.height());
                     plugin.animating = true;
                 },
@@ -127,10 +127,10 @@
                 easing: this.options.easing,
                 complete: function() {
                     plugin.animating = false;
-                    item.removeClass(closingClass);
+                    $item.removeClass(closingClass);
                     plugin._resetItemStyle($contentWrapper);
 
-                    plugin._trigger('closed', { item: item });
+                    plugin._trigger('closed', { item: $item });
                 }
             });
     };
@@ -138,8 +138,12 @@
     // Remove the style attributes from item and
     // bellows to allow the height to be auto
     Bellows.prototype._resetItemStyle = function($contentWrapper) {
-        $contentWrapper.removeAttr('style');
-        this._setHeight();
+        var plugin = this;
+
+        setTimeout(function() {
+            $contentWrapper.removeAttr('style');
+            plugin._setHeight();
+        }, 50);
     };
 
     Bellows.prototype._setHeight = function(height) {
