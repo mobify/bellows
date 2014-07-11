@@ -79,16 +79,15 @@
 
         this._trigger('open', { item: $item });
 
-        // Jump content down and then animate into the space
-        this._setHeight(this.$bellows.height() + $content.height());
-
         $contentWrapper
             .velocity('slideDown', {
                 begin: function() {
+                    plugin._setHeight(
+                        parseFloat($.Velocity.CSS.getPropertyValue(plugin.$bellows[0], 'height')) + parseFloat($.Velocity.CSS.getPropertyValue($contentWrapper[0], 'height'))
+                    );
                     $item.addClass(openingClass);
                     plugin.animating = true;
                 },
-                display: 'block',
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
@@ -120,11 +119,12 @@
         $contentWrapper
             .velocity('slideUp', {
                 begin: function() {
+                    plugin._setHeight(
+                        parseFloat($.Velocity.CSS.getPropertyValue(plugin.$bellows[0], 'height')) + parseFloat($.Velocity.CSS.getPropertyValue($contentWrapper[0], 'height'))
+                    );
                     $item.addClass(closingClass);
-                    plugin._setHeight(plugin.$bellows.height());
                     plugin.animating = true;
                 },
-                display: 'none',
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
@@ -142,10 +142,8 @@
     Bellows.prototype._resetItemStyle = function($contentWrapper) {
         var plugin = this;
 
-        setTimeout(function() {
-            $contentWrapper.removeAttr('style');
-            plugin._setHeight();
-        }, 50);
+        $contentWrapper.height('');
+        plugin._setHeight();
     };
 
     Bellows.prototype._setHeight = function(height) {
