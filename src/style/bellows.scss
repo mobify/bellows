@@ -1,4 +1,5 @@
-.bellows__item.bellows--is-open > .bellows__content-wrapper {
+.bellows__item.bellows--is-open > .bellows__content-wrapper,
+.bellows__item.bellows--is-closing > .bellows__content-wrapper {
     display: block;
 }
 
