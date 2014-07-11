@@ -110,9 +110,7 @@
         }
 
         var plugin = this;
-        var $contentWrapper = $item
-            .removeClass(openedClass)
-            .find(selectors.itemContentWrapper);
+        var $contentWrapper = $item.find(selectors.itemContentWrapper);
 
         this._trigger('close', { item: $item });
 
@@ -120,7 +118,7 @@
             .velocity('slideUp', {
                 begin: function() {
                     plugin._setHeight(
-                        parseFloat($.Velocity.CSS.getPropertyValue(plugin.$bellows[0], 'height')) + parseFloat($.Velocity.CSS.getPropertyValue($contentWrapper[0], 'height'))
+                        $.Velocity.CSS.getPropertyValue(plugin.$bellows[0], 'height')
                     );
                     $item.addClass(closingClass);
                     plugin.animating = true;
@@ -129,7 +127,9 @@
                 easing: this.options.easing,
                 complete: function() {
                     plugin.animating = false;
-                    $item.removeClass(closingClass);
+                    $item
+                        .removeClass(closingClass)
+                        .removeClass(openedClass);
                     plugin._resetItemStyle($contentWrapper);
 
                     plugin._trigger('closed', { item: $item });
@@ -142,7 +142,7 @@
     Bellows.prototype._resetItemStyle = function($contentWrapper) {
         var plugin = this;
 
-        $contentWrapper.height('');
+        $contentWrapper.removeAttr('style');
         plugin._setHeight();
     };
 
