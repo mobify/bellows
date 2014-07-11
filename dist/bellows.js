@@ -120,16 +120,16 @@
                     plugin._setHeight(
                         $.Velocity.CSS.getPropertyValue(plugin.$bellows[0], 'height')
                     );
-                    $item.addClass(closingClass);
+                    $item
+                        .removeClass(openedClass)
+                        .addClass(closingClass);
                     plugin.animating = true;
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
                     plugin.animating = false;
-                    $item
-                        .removeClass(closingClass)
-                        .removeClass(openedClass);
+                    $item.removeClass(closingClass);
                     plugin._resetItemStyle($contentWrapper);
 
                     plugin._trigger('closed', { item: $item });
