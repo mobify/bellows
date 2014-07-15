@@ -15,6 +15,8 @@ You can find full documentation and examples here: http://mobify.github.io/bello
 
 ## Usage
 
+At a bare minimum, your markup structure should follow the above structure. You should have at least one `bellows__item`. Content within `bellows__header` and `bellows__content` can be whatever you want. You may also style either of those however you need. Our default theme will give you some standard styling for those sections but, if you want to theme Bellows yourself, we recommend not including the theme file and starting from scratch.
+
 ```html
 <!-- Include the CSS -->
 <link rel="stylesheet" href="bellows.min.css">
@@ -64,7 +66,13 @@ You can find full documentation and examples here: http://mobify.github.io/bello
 <script>$('.bellows').bellows()</script>
 ```
 
-At a bare minimum, your markup structure should follow the above structure. You should have at least one `bellows__item` as well.
+### Velocity Shim
+
+We use a shim for Velocity to polyfill any missing jQuery items so we can continue to use Zepto. If Velocity.js ever stops requiring jQuery, we will be able to stop using this shim.
+
+### jQuery Supports
+
+Bellows supports jQuery but is not actively developed for it. You should be able to use Bellows directly with jQuery 2.0 and simply drop the Velocity.js shim in those cases. While we don't actively support jQuery for Bellows, we welcome any and all issues and PRs to help us make it work.
 
 ## Initializing the plugin
 
@@ -89,6 +97,93 @@ $('.bellows').bellows({
     opened: function(e, ui) {},
     close: function(e, ui) {},
     closed: function(e, ui) {}
+});
+```
+
+#### Options
+
+##### singleItemOpen
+
+When set to 'true' will force only one item open at a time.
+
+```js
+$('.bellows').bellows({
+    singleItemOpen: true
+});
+```
+
+##### duration
+
+Sets the duration for the animation.
+
+```js
+$('.bellows').bellows({
+    duration: 600
+});
+```
+
+##### easing
+
+Sets the easing for the animation. Bellows takes all of the same easing properties that [Velocity.js](http://julian.com/research/velocity) accepts.
+
+> * [jQuery UI's easings](http://easings.net/) and CSS3's easings ("ease", "ease-in", "ease-out", and "ease-in-out"), which are pre-packaged into Velocity. A bonus "spring" easing (sampled in the CSS Support pane) is also included. 
+* CSS3's bezier curves: Pass in a four-item array of bezier points. (Refer to [Cubic-Bezier.com](http://cubic-bezier.com/) for crafing custom bezier curves.) 
+* Spring physics: Pass a two-item array in the form of [ tension, friction ]. A higher tension (default: 600) increases total speed and bounciness. A lower friction (default: 20) increases ending vibration speed. 
+* Step easing: Pass a one-item array in the form of [ steps ]. The animation will jump toward its end values using the specified number of steps. 
+
+For more information, check out [Velocity's docs on easing](http://julian.com/research/velocity/#easing).
+
+```js
+$('.bellows').bellows({
+    easing: 'ease-in-out'
+});
+```
+
+##### open
+
+Execute this function every time the selected bellows item is starting to open.
+
+```js
+$('.bellows').bellows({
+    open: function(e, ui) { 
+        // ui.item contains the item opening
+    }
+});
+```
+
+##### opened
+
+Execute this function every time the selected bellows item has finished opening.
+
+```js
+$('.bellows').bellows({
+    opened: function(e, ui) { 
+        // ui.item contains the item that opened
+    }
+});
+```
+
+##### close
+
+Execute this function every time an bellows item is starting to close.
+
+```js
+$('.bellows').bellows({
+    close: function(e, ui) { 
+        // ui.item contains the item closing
+    }
+});
+```
+
+##### closed
+
+Execute this function every time an bellows item is finished closing.
+
+```js
+$('.bellows').bellows({
+    closed: function(e, ui) { 
+        // ui.item contains the item that closed
+    }
 });
 ```
 
@@ -135,93 +230,6 @@ or by index
 
 ```js
 $bellows.bellows('close', 1);
-```
-
-## Options
-
-### singleItemOpen
-
-When set to 'true' will force only one item open at a time.
-
-```js
-$('.bellows').bellows({
-    singleItemOpen: true
-});
-```
-
-### duration
-
-Sets the duration for the animation.
-
-```js
-$('.bellows').bellows({
-    duration: 600
-});
-```
-
-### easing
-
-Sets the easing for the animation. Bellows takes all of the same easing properties that [Velocity.js](http://julian.com/research/velocity) accepts.
-
-> * [jQuery UI's easings](http://easings.net/) and CSS3's easings ("ease", "ease-in", "ease-out", and "ease-in-out"), which are pre-packaged into Velocity. A bonus "spring" easing (sampled in the CSS Support pane) is also included. 
-* CSS3's bezier curves: Pass in a four-item array of bezier points. (Refer to [Cubic-Bezier.com](http://cubic-bezier.com/) for crafing custom bezier curves.) 
-* Spring physics: Pass a two-item array in the form of [ tension, friction ]. A higher tension (default: 600) increases total speed and bounciness. A lower friction (default: 20) increases ending vibration speed. 
-* Step easing: Pass a one-item array in the form of [ steps ]. The animation will jump toward its end values using the specified number of steps. 
-
-For more information, check out [Velocity's docs on easing](http://julian.com/research/velocity/#easing).
-
-```js
-$('.bellows').bellows({
-    easing: 'ease-in-out'
-});
-```
-
-### open
-
-Execute this function every time the selected bellows item is starting to open.
-
-```js
-$('.bellows').bellows({
-    open: function(e, ui) { 
-		// ui.item contains the item opening
-	}
-});
-```
-
-### opened
-
-Execute this function every time the selected bellows item has finished opening.
-
-```js
-$('.bellows').bellows({
-    opened: function(e, ui) { 
-        // ui.item contains the item that opened
-    }
-});
-```
-
-### close
-
-Execute this function every time an bellows item is starting to close.
-
-```js
-$('.bellows').bellows({
-    close: function(e, ui) { 
-        // ui.item contains the item closing
-    }
-});
-```
-
-### closed
-
-Execute this function every time an bellows item is finished closing.
-
-```js
-$('.bellows').bellows({
-    closed: function(e, ui) { 
-        // ui.item contains the item that closed
-    }
-});
 ```
 
 ## Browser Compatibility
