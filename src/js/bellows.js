@@ -2,8 +2,8 @@
     var pluginName = 'bellows';
     var noop = function() {};
 
-    var itemClass = '.bellows__item';
-    var itemContentClass = '.bellows__content';
+    var itemClass = 'bellows__item';
+    var itemContentClass = 'bellows__content';
     var openedClass = 'bellows--is-open';
     var openingClass = 'bellows--is-opening';
     var closingClass = 'bellows--is-closing';
@@ -69,7 +69,7 @@
 
         var plugin = this;
         var $contentWrapper = $item.find(selectors.itemContentWrapper);
-        var $content = $contentWrapper.find(itemContentClass);
+        var $content = $contentWrapper.find('.' + itemContentClass);
 
         if (this.options.singleItemOpen) {
             this.$bellows.find('.' + openedClass).each(function() {
@@ -153,7 +153,7 @@
     // Allow items to be found using an index
     Bellows.prototype._item = function(item) {
         if (typeof item === 'number') {
-            item = this.$bellows.find(itemClass).eq(item);
+            item = this.$bellows.find('.' + itemClass).eq(item);
         }
 
         return item;
