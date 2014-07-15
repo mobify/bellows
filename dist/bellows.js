@@ -2,8 +2,8 @@
     var pluginName = 'bellows';
     var noop = function() {};
 
-    var itemClass = '.bellows__item';
-    var itemContentClass = '.bellows__content';
+    var itemClass = 'bellows__item';
+    var itemContentClass = 'bellows__content';
     var openedClass = 'bellows--is-open';
     var openingClass = 'bellows--is-opening';
     var closingClass = 'bellows--is-closing';
@@ -15,7 +15,7 @@
     };
 
     function Bellows(element, options) {
-        this.init(element, options);
+        this._init(element, options);
     }
 
     Bellows.DEFAULTS = {
@@ -23,13 +23,14 @@
         event: 'tap',
         duration: 200,
         easing: 'swing',
+        toggle: noop,
         open: noop,
         opened: noop,
         close: noop,
         closed: noop
     };
 
-    Bellows.prototype.init = function(element, options) {
+    Bellows.prototype._init = function(element, options) {
         this.options = $.extend(true, {}, Bellows.DEFAULTS, options);
 
         this.$bellows = $(element)
@@ -57,6 +58,8 @@
     Bellows.prototype.toggle = function(item) {
         item = this._item(item);
 
+        this._trigger('toggle', {item: item});
+
         this[item.hasClass(openedClass) ? 'close' : 'open'](item);
     };
 
@@ -69,7 +72,7 @@
 
         var plugin = this;
         var $contentWrapper = $item.find(selectors.itemContentWrapper);
-        var $content = $contentWrapper.find(itemContentClass);
+        var $content = $contentWrapper.find('.' + itemContentClass);
 
         if (this.options.singleItemOpen) {
             this.$bellows.find('.' + openedClass).each(function() {
@@ -153,7 +156,7 @@
     // Allow items to be found using an index
     Bellows.prototype._item = function(item) {
         if (typeof item === 'number') {
-            item = this.$bellows.find(itemClass).eq(item);
+            item = this.$bellows.find('.' + itemClass).eq(item);
         }
 
         return item;

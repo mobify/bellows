@@ -15,7 +15,7 @@
     };
 
     function Bellows(element, options) {
-        this.init(element, options);
+        this._init(element, options);
     }
 
     Bellows.DEFAULTS = {
@@ -23,13 +23,14 @@
         event: 'tap',
         duration: 200,
         easing: 'swing',
+        toggle: noop,
         open: noop,
         opened: noop,
         close: noop,
         closed: noop
     };
 
-    Bellows.prototype.init = function(element, options) {
+    Bellows.prototype._init = function(element, options) {
         this.options = $.extend(true, {}, Bellows.DEFAULTS, options);
 
         this.$bellows = $(element)
@@ -56,6 +57,8 @@
 
     Bellows.prototype.toggle = function(item) {
         item = this._item(item);
+
+        this._trigger('toggle', {item: item});
 
         this[item.hasClass(openedClass) ? 'close' : 'open'](item);
     };
