@@ -23,7 +23,6 @@
         event: 'tap',
         duration: 200,
         easing: 'swing',
-        toggle: noop,
         open: noop,
         opened: noop,
         close: noop,
@@ -57,8 +56,6 @@
 
     Bellows.prototype.toggle = function(item) {
         item = this._item(item);
-
-        this._trigger('toggle', {item: item});
 
         this[item.hasClass(openedClass) ? 'close' : 'open'](item);
     };
