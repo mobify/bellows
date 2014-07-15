@@ -16,7 +16,7 @@ You can find full documentation and examples here: http://mobify.github.io/bello
 ## Usage
 
 ```html
-<!-- Include the CSS (if you're not using Sass) -->
+<!-- Include the CSS -->
 <link rel="stylesheet" href="bellows.min.css">
 
 <!-- Optionally include the Theme file -->
@@ -27,12 +27,10 @@ You can find full documentation and examples here: http://mobify.github.io/bello
     <!-- The Accordion Items -->
     <div class="bellows__item">
         <div class="bellows__header">
-            <!-- Item Header -->
-            <h3>Header</h3>
+            <!-- Item Header - Content can be whatever you want -->
         </div>
         <div class="bellows__content">
-            <!-- Item Content -->
-            <p>Content</p>
+            <!-- Item Content - Content can be whatever you want -->
         </div>
     </div>
     <div class="bellows__item">
@@ -53,15 +51,20 @@ You can find full documentation and examples here: http://mobify.github.io/bello
     </div>
 </div>
 
-<!-- include Zepto.js -->
+<!-- Include dependencies -->
 <script src="zepto.min.js"></script>
+<script src="jquery.velocity.min.js"></script>
+<script src="velocity-shim.js"></script>
+<script src="tappy.min.js"></script>
 
-<!-- include bellows.js -->
+<!-- Include bellows.js -->
 <script src="bellows.min.js"></script>
 
-<!-- construct the bellows -->
+<!-- Construct Bellows -->
 <script>$('.bellows').bellows()</script>
 ```
+
+At a bare minimum, your markup structure should follow the above structure. You should have at least one `bellows__item` as well.
 
 ## Initializing the plugin
 
