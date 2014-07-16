@@ -70,7 +70,7 @@ At a bare minimum, your markup structure should follow the above structure. You 
 
 We use a shim for Velocity to polyfill any missing jQuery items so we can continue to use Zepto. If Velocity.js ever stops requiring jQuery, we will be able to stop using this shim.
 
-### jQuery Supports
+### jQuery Support
 
 Bellows supports jQuery but is not actively developed for it. You should be able to use Bellows directly with jQuery 2.0 and simply drop the Velocity.js shim in those cases. While we don't actively support jQuery for Bellows, we welcome any and all issues and PRs to help us make it work.
 
@@ -104,7 +104,9 @@ $('.bellows').bellows({
 
 ##### singleItemOpen
 
-When set to 'true' will force only one item open at a time.
+default: `false`
+
+When set to `true` will force only one item open at a time.
 
 ```js
 $('.bellows').bellows({
@@ -113,6 +115,8 @@ $('.bellows').bellows({
 ```
 
 ##### duration
+
+default: `200`
 
 Sets the duration for the animation.
 
@@ -123,6 +127,8 @@ $('.bellows').bellows({
 ```
 
 ##### easing
+
+default: `swing`
 
 Sets the easing for the animation. Bellows takes all of the same easing properties that [Velocity.js](http://julian.com/research/velocity) accepts.
 
@@ -141,7 +147,14 @@ $('.bellows').bellows({
 
 ##### open
 
-Execute this function every time the selected bellows item is starting to open.
+default: `function(e, ui) {}`
+
+Triggered every time the selected bellows item is starting to open.
+
+**Parameters**
+
+| **e** | An Event object passed to the callback |
+| **ui** | An object containing any associated data for use inside the callback | 
 
 ```js
 $('.bellows').bellows({
@@ -153,7 +166,7 @@ $('.bellows').bellows({
 
 ##### opened
 
-Execute this function every time the selected bellows item has finished opening.
+Triggered every time the selected bellows item has finished opening.
 
 ```js
 $('.bellows').bellows({
@@ -165,7 +178,7 @@ $('.bellows').bellows({
 
 ##### close
 
-Execute this function every time an bellows item is starting to close.
+Triggered every time an bellows item is starting to close.
 
 ```js
 $('.bellows').bellows({
@@ -177,7 +190,7 @@ $('.bellows').bellows({
 
 ##### closed
 
-Execute this function every time an bellows item is finished closing.
+Triggered every time an bellows item is finished closing.
 
 ```js
 $('.bellows').bellows({
