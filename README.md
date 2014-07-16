@@ -153,6 +153,8 @@ Triggered every time the selected bellows item is starting to open.
 
 **Parameters**
 
+| Parameter name | Description |
+|----------------|-------------|
 | **e** | An Event object passed to the callback |
 | **ui** | An object containing any associated data for use inside the callback | 
 
@@ -166,7 +168,16 @@ $('.bellows').bellows({
 
 ##### opened
 
+default: `function(e, ui) {}`
+
 Triggered every time the selected bellows item has finished opening.
+
+**Parameters**
+
+| Parameter name | Description |
+|----------------|-------------|
+| **e** | An Event object passed to the callback |
+| **ui** | An object containing any associated data for use inside the callback | 
 
 ```js
 $('.bellows').bellows({
@@ -178,7 +189,14 @@ $('.bellows').bellows({
 
 ##### close
 
+default: `function(e, ui) {}`
+
 Triggered every time an bellows item is starting to close.
+
+| Parameter name | Description |
+|----------------|-------------|
+| **e** | An Event object passed to the callback |
+| **ui** | An object containing any associated data for use inside the callback | 
 
 ```js
 $('.bellows').bellows({
@@ -190,7 +208,14 @@ $('.bellows').bellows({
 
 ##### closed
 
+default: `function(e, ui) {}`
+
 Triggered every time an bellows item is finished closing.
+
+| Parameter name | Description |
+|----------------|-------------|
+| **e** | An Event object passed to the callback |
+| **ui** | An object containing any associated data for use inside the callback | 
 
 ```js
 $('.bellows').bellows({
@@ -205,15 +230,6 @@ $('.bellows').bellows({
 ```js
 var $bellows = $('.bellows');
 ```
-
-### Getting the bellows instance
-
-```js
-var bellows = $('.bellows').data('bellows');
-bellows.open(1);
-```
-
-You can then call methods just like a regular object. The preferred way to invoke methods on the instance is via the plugin API, as shown below.
 
 ## Methods
 
