@@ -32,11 +32,16 @@
     Bellows.prototype._init = function(element, options) {
         this.options = $.extend(true, {}, Bellows.DEFAULTS, options);
 
-        this.$bellows = $(element)
+        this.$bellows = $(element);
+
+        this.$bellows
             .find(selectors.itemContent)
             // wrap content section of each item to facilitate padding
             .wrap('<div class="bellows__content-wrapper" />')
-            .end();
+            // add aria-hidden attribute to all hidden content wrappers
+            .parents('.bellows__item:not(.bellows--is-open)')
+            .find('.bellows__content-wrapper')
+            .attr('aria-hidden', true);
 
         this._bindEvents();
     };
@@ -50,14 +55,14 @@
             .bind(this.options.event, function(e) {
                 e.preventDefault();
 
-                !plugin.animating && plugin.toggle($(this).parent());
+                plugin.toggle($(this).parent());
             });
     };
 
-    Bellows.prototype.toggle = function(item) {
-        item = this._item(item);
+    Bellows.prototype.toggle = function($item) {
+        $item = this._item($item);
 
-        this[item.hasClass(openedClass) ? 'close' : 'open'](item);
+        this[this._isItemOpen($item) ? 'close' : 'open']($item);
     };
 
     Bellows.prototype.open = function($item) {
@@ -69,7 +74,6 @@
 
         var plugin = this;
         var $contentWrapper = $item.find(selectors.itemContentWrapper);
-        var $content = $contentWrapper.find('.' + itemContentClass);
 
         if (this.options.singleItemOpen) {
             this.$bellows.find('.' + openedClass).each(function() {
@@ -82,9 +86,7 @@
         $contentWrapper
             .velocity('slideDown', {
                 begin: function() {
-                    plugin._setHeight(
-                        plugin._getHeight(plugin.$bellows) + plugin._getHeight($contentWrapper)
-                    );
+                    plugin._setHeight(plugin._getHeight(plugin.$bellows) + plugin._getHeight($contentWrapper));
                     $item.addClass(openingClass);
                     plugin.animating = true;
                 },
@@ -95,7 +97,8 @@
 
                     $item
                         .removeClass(openingClass)
-                        .addClass(openedClass);
+                        .addClass(openedClass)
+                        .attr('aria-hidden', true);
                     plugin._resetItemStyle($contentWrapper);
 
                     plugin._trigger('opened', { item: $item });
@@ -130,7 +133,9 @@
                 complete: function() {
                     plugin.animating = false;
 
-                    $item.removeClass(closingClass);
+                    $item
+                        .removeClass(closingClass)
+                        .removeAttr('aria-hidden');
                     plugin._resetItemStyle($contentWrapper);
 
                     plugin._trigger('closed', { item: $item });
@@ -138,13 +143,20 @@
             });
     };
 
+    Bellows.prototype._isItemOpen = function($item) {
+        return $item.find(selectors.itemContentWrapper).height() > 0;
+    };
+
     // Remove the style attributes from item and
     // bellows to allow the height to be auto
     Bellows.prototype._resetItemStyle = function($contentWrapper) {
         var plugin = this;
 
-        $contentWrapper.removeAttr('style');
         plugin._setHeight();
+
+        setTimeout(function() {
+            $contentWrapper.removeAttr('style');
+        }, 250);
     };
 
     Bellows.prototype._getHeight = function($element) {
