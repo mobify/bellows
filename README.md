@@ -13,6 +13,12 @@ You can find full documentation and examples here: http://mobify.github.io/bello
 * jQuery Shim for Velocity.js (included in the `lib` folder)
 * [Zappy](https://github.com/mobify/zappy)
 
+## Installation
+
+Bellows can be installed using bower:
+
+```bower install bellows```
+
 ## Usage
 
 At a bare minimum, your markup structure should follow the above structure. You should have at least one `bellows__item`. Content within `bellows__header` and `bellows__content` can be whatever you want. You may also style either of those however you need. Our default theme will give you some standard styling for those sections but, if you want to theme Bellows yourself, we recommend not including the theme file and starting from scratch.
