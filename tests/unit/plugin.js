@@ -44,6 +44,12 @@ define([
             });
         });
 
+        describe('invoking bellows methods before plugin is initialized', function() {
+            it('throws when not initialized', function() {
+                assert.throws(function() { element.bellows('open'); });
+            });
+        });
+
         describe('invoking bellows methods using the plugin interface', function() {
             it('opens a bellows item using the open method', function(done) {
                 element.bellows({
@@ -68,7 +74,18 @@ define([
                 });
 
                 element.bellows('open', 0);
+            });
 
+            it('throws for method calls that don\'t exist', function() {
+                assert.throws(function() { element.bellows().bellows('noMethod'); });
+            });
+
+            it('throws when attempting to invoke private methods', function() {
+                assert.throws(function() { element.bellows().bellows('_init'); });
+            });
+
+            it('throws when attempting to invoke methods that aren\'t functions', function() {
+                assert.throws(function() { element.bellows().bellows('singleItemOpen'); });
             });
         });
     });

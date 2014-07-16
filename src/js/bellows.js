@@ -83,7 +83,7 @@
             .velocity('slideDown', {
                 begin: function() {
                     plugin._setHeight(
-                        parseFloat($.Velocity.CSS.getPropertyValue(plugin.$bellows[0], 'height')) + parseFloat($.Velocity.CSS.getPropertyValue($contentWrapper[0], 'height'))
+                        plugin._getHeight(plugin.$bellows) + plugin._getHeight($contentWrapper)
                     );
                     $item.addClass(openingClass);
                     plugin.animating = true;
@@ -92,6 +92,7 @@
                 easing: this.options.easing,
                 complete: function() {
                     plugin.animating = false;
+
                     $item
                         .removeClass(openingClass)
                         .addClass(openedClass);
@@ -117,18 +118,18 @@
         $contentWrapper
             .velocity('slideUp', {
                 begin: function() {
-                    plugin._setHeight(
-                        $.Velocity.CSS.getPropertyValue(plugin.$bellows[0], 'height')
-                    );
+                    plugin._setHeight(plugin._getHeight(plugin.$bellows));
                     $item
                         .removeClass(openedClass)
                         .addClass(closingClass);
+
                     plugin.animating = true;
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
                     plugin.animating = false;
+
                     $item.removeClass(closingClass);
                     plugin._resetItemStyle($contentWrapper);
 
@@ -144,6 +145,10 @@
 
         $contentWrapper.removeAttr('style');
         plugin._setHeight();
+    };
+
+    Bellows.prototype._getHeight = function($element) {
+        return parseFloat($.Velocity.CSS.getPropertyValue($element[0], 'height'));
     };
 
     Bellows.prototype._setHeight = function(height) {
@@ -172,13 +177,21 @@
         return this.each(function() {
             var $this = $(this);
             var bellows = $this.data(pluginName);
+            var isMethodCall = typeof option === 'string';
 
             if (!bellows) {
+                if (isMethodCall) {
+                    throw 'cannot call methods on bellows prior to initialization; attempted to call method "' + option + '"';
+                }
                 $this.data(pluginName, (bellows = new Bellows(this, option)));
             }
 
             // invoke a public method on bellows, and skip private methods
-            if (typeof option === 'string' && option.indexOf('_') !== 0) {
+            if (isMethodCall) {
+                if (option.charAt(0) === '_' || typeof bellows[option] !== 'function') {
+                    throw 'no such method "' + option + '" for bellows';
+                }
+
                 bellows[option].apply(bellows, args.length > 1 ? args.slice(1) : null);
             }
         });
