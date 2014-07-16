@@ -17,7 +17,9 @@ You can find full documentation and examples here: http://mobify.github.io/bello
 
 Bellows can be installed using bower:
 
-```bower install bellows```
+```
+bower install bellows
+```
 
 ## Usage
 
