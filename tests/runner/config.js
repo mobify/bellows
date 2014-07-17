@@ -22,13 +22,15 @@ require.config({
             exports: '$'
         },
         'zappy': {
+            deps: ['zepto'],
             exports: '$'
         },
         'velocity-shim': {
+            deps: ['zepto'],
             exports: '$'
         },
         'velocity': {
-            deps: ['velocity-shim'],
+            deps: ['zepto', 'velocity-shim'],
             exports: '$'
         },
         'bellows': {
