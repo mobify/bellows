@@ -28,12 +28,12 @@ require.config({
             exports: '$'
         },
         'velocity': {
-            exports: '$',
-            deps: ['velocity-shim']
+            deps: ['velocity-shim'],
+            exports: '$'
         },
         'bellows': {
-            exports: 'Bellows',
-            deps: ['zappy', 'velocity']
+            deps: ['zappy', 'velocity'],
+            exports: 'Bellows'
         }
     }
 });
