@@ -154,9 +154,11 @@
 
         plugin._setHeight();
 
-//        setTimeout(function() {
-//            $contentWrapper.removeAttr('style');
-//        }, 250);
+        // hack to remove style after height has been toggled. Ensures that height is reset to auto
+        // TODO: remove this once Velocity issue #183 is resolved
+        setTimeout(function() {
+            $contentWrapper.removeAttr('style');
+        }, 250);
     };
 
     Bellows.prototype._getHeight = function($element) {
