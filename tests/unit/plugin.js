@@ -2,6 +2,7 @@ define([
     'text!fixtures/bellows.html',
     'zepto',
     'velocity',
+    'zappy',
     'bellows'
 ], function(fixture, $) {
     var element;
