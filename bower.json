@@ -21,7 +21,7 @@
     "bower_components"
   ],
   "dependencies": {
-    "velocity": "~0.5.3",
+    "velocity": "0.4.0",
     "tappy": "https://github.com/mobify/zappy.git#master",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.14"

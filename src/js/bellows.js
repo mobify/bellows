@@ -154,9 +154,9 @@
 
         plugin._setHeight();
 
-        setTimeout(function() {
-            $contentWrapper.removeAttr('style');
-        }, 250);
+//        setTimeout(function() {
+//            $contentWrapper.removeAttr('style');
+//        }, 250);
     };
 
     Bellows.prototype._getHeight = function($element) {
