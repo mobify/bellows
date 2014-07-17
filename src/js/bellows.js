@@ -1,17 +1,16 @@
 (function($) {
-    var pluginName = 'bellows';
+    var PLUGIN_NAME = 'bellows';
     var noop = function() {};
 
-    var itemClass = 'bellows__item';
-    var itemContentClass = 'bellows__content';
-    var openedClass = 'bellows--is-open';
-    var openingClass = 'bellows--is-opening';
-    var closingClass = 'bellows--is-closing';
+    var ITEM_CLASS = 'bellows__item';
+    var OPENED_CLASS = 'bellows--is-open';
+    var OPENING_CLASS = 'bellows--is-opening';
+    var CLOSING_CLASS = 'bellows--is-closing';
 
     var selectors = {
-        itemHeader: '> .bellows__item > .bellows__header',
-        itemContentWrapper: '> .bellows__content-wrapper',
-        itemContent: '> .bellows__item > .bellows__content'
+        ITEM_HEADER: '> .bellows__item > .bellows__header',
+        ITEM_CONTENT_WRAPPER: '> .bellows__content-wrapper',
+        ITEM_CONTENT: '> .bellows__item > .bellows__content'
     };
 
     function Bellows(element, options) {
@@ -35,7 +34,7 @@
         this.$bellows = $(element);
 
         this.$bellows
-            .find(selectors.itemContent)
+            .find(selectors.ITEM_CONTENT)
             // wrap content section of each item to facilitate padding
             .wrap('<div class="bellows__content-wrapper" />')
             // add aria-hidden attribute to all hidden content wrappers
@@ -51,7 +50,7 @@
 
         // We use tappy here to eliminate the 300ms delay on clicking elements
         this.$bellows
-            .find(selectors.itemHeader)
+            .find(selectors.ITEM_HEADER)
             .bind(this.options.event, function(e) {
                 e.preventDefault();
 
@@ -62,21 +61,21 @@
     Bellows.prototype.toggle = function($item) {
         $item = this._item($item);
 
-        this[this._isItemOpen($item) ? 'close' : 'open']($item);
+        this[$item.hasClass(OPENED_CLASS) ? 'close' : 'open']($item);
     };
 
     Bellows.prototype.open = function($item) {
         $item = this._item($item);
 
-        if ($item.hasClass(openedClass)) {
+        if ($item.hasClass(OPENED_CLASS)) {
             return;
         }
 
         var plugin = this;
-        var $contentWrapper = $item.find(selectors.itemContentWrapper);
+        var $contentWrapper = $item.find(selectors.ITEM_CONTENT_WRAPPER);
 
         if (this.options.singleItemOpen) {
-            this.$bellows.find('.' + openedClass).each(function() {
+            this.$bellows.find('.' + OPENED_CLASS).each(function() {
                 plugin.close($(this));
             });
         }
@@ -87,18 +86,16 @@
             .velocity('slideDown', {
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows) + plugin._getHeight($contentWrapper));
-                    $item.addClass(openingClass);
-                    plugin.animating = true;
+                    $item.addClass(OPENING_CLASS);
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
-                    plugin.animating = false;
-
                     $item
-                        .removeClass(openingClass)
-                        .addClass(openedClass)
+                        .removeClass(OPENING_CLASS)
+                        .addClass(OPENED_CLASS)
                         .attr('aria-hidden', true);
+
                     plugin._resetItemStyle($contentWrapper);
 
                     plugin._trigger('opened', { item: $item });
@@ -109,12 +106,12 @@
     Bellows.prototype.close = function($item) {
         $item = this._item($item);
 
-        if (!$item.hasClass(openedClass)) {
+        if (!$item.hasClass(OPENED_CLASS)) {
             return;
         }
 
         var plugin = this;
-        var $contentWrapper = $item.find(selectors.itemContentWrapper);
+        var $contentWrapper = $item.find(selectors.ITEM_CONTENT_WRAPPER);
 
         this._trigger('close', { item: $item });
 
@@ -123,28 +120,21 @@
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows));
                     $item
-                        .removeClass(openedClass)
-                        .addClass(closingClass);
-
-                    plugin.animating = true;
+                        .removeClass(OPENED_CLASS)
+                        .addClass(CLOSING_CLASS);
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
-                    plugin.animating = false;
-
                     $item
-                        .removeClass(closingClass)
+                        .removeClass(CLOSING_CLASS)
                         .removeAttr('aria-hidden');
+
                     plugin._resetItemStyle($contentWrapper);
 
                     plugin._trigger('closed', { item: $item });
                 }
             });
-    };
-
-    Bellows.prototype._isItemOpen = function($item) {
-        return $item.find(selectors.itemContentWrapper).height() > 0;
     };
 
     // Remove the style attributes from item and
@@ -172,14 +162,14 @@
     // Allow items to be found using an index
     Bellows.prototype._item = function(item) {
         if (typeof item === 'number') {
-            item = this.$bellows.find('.' + itemClass).eq(item);
+            item = this.$bellows.find('.' + ITEM_CLASS).eq(item);
         }
 
         return item;
     };
 
     Bellows.prototype._trigger = function(eventName, data) {
-        eventName in this.options && this.options[eventName].call(this, $.Event(pluginName + ':' + eventName, { bubbles: false }), data);
+        eventName in this.options && this.options[eventName].call(this, $.Event(PLUGIN_NAME + ':' + eventName, { bubbles: false }), data);
     };
 
     // BELLOWS PLUGIN
@@ -190,14 +180,14 @@
 
         return this.each(function() {
             var $this = $(this);
-            var bellows = $this.data(pluginName);
+            var bellows = $this.data(PLUGIN_NAME);
             var isMethodCall = typeof option === 'string';
 
             if (!bellows) {
                 if (isMethodCall) {
                     throw 'cannot call methods on bellows prior to initialization; attempted to call method "' + option + '"';
                 }
-                $this.data(pluginName, (bellows = new Bellows(this, option)));
+                $this.data(PLUGIN_NAME, (bellows = new Bellows(this, option)));
             }
 
             // invoke a public method on bellows, and skip private methods
