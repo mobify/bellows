@@ -13,6 +13,15 @@ You can find full documentation and examples here: http://mobify.github.io/bello
 * jQuery Shim for Velocity.js (included in the `lib` folder)
 * [Zappy](https://github.com/mobify/zappy)
 
+### Velocity Shim
+
+We use a shim for Velocity to polyfill any missing jQuery items so we can continue to use Zepto. If Velocity.js ever stops requiring jQuery, we will be able to stop using this shim.
+
+### jQuery Support
+
+Bellows supports jQuery but is not actively developed for it. You should be able to use Bellows directly with jQuery 2.0 and simply drop the Velocity.js shim in those cases. While we don't actively support jQuery for Bellows, we welcome any and all issues and PRs to help us make it work.
+
+
 ## Installation
 
 Bellows can be installed using bower:
@@ -73,14 +82,6 @@ At a bare minimum, your markup structure should follow the above structure. You 
 <!-- Construct Bellows -->
 <script>$('.bellows').bellows()</script>
 ```
-
-### Velocity Shim
-
-We use a shim for Velocity to polyfill any missing jQuery items so we can continue to use Zepto. If Velocity.js ever stops requiring jQuery, we will be able to stop using this shim.
-
-### jQuery Support
-
-Bellows supports jQuery but is not actively developed for it. You should be able to use Bellows directly with jQuery 2.0 and simply drop the Velocity.js shim in those cases. While we don't actively support jQuery for Bellows, we welcome any and all issues and PRs to help us make it work.
 
 ## Initializing the plugin
 
