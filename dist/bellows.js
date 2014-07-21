@@ -1,6 +1,6 @@
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
-        define(['selectorLibrary'], factory);
+        define(['selectorEngine'], factory);
     } else {
         factory(window.Zepto || window.jQuery);
     }
