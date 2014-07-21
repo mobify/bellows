@@ -3,7 +3,7 @@ require.config({
     paths: {
         'text': 'bower_components/requirejs-text/text',
         'fixtures': 'tests/fixtures',
-        'zepto': 'lib/zeptojs/dist/zepto.min',
+        'selectorLibrary': 'lib/zeptojs/dist/zepto.min',
         'zappy': 'bower_components/tappy/tappy',
         'velocity-shim': 'lib/velocity-shim',
         'velocity': 'bower_components/velocity/jquery.velocity',
@@ -18,24 +18,20 @@ require.config({
                 return this.mocha;
             }
         },
-        'zepto': {
+        'selectorLibrary': {
             exports: '$'
         },
         'zappy': {
-            deps: ['zepto'],
+            deps: ['selectorLibrary'],
             exports: '$'
         },
         'velocity-shim': {
-            deps: ['zepto'],
+            deps: ['selectorLibrary'],
             exports: '$'
         },
         'velocity': {
-            deps: ['zepto', 'velocity-shim'],
+            deps: ['selectorLibrary', 'velocity-shim'],
             exports: '$'
-        },
-        'bellows': {
-            deps: ['zappy', 'velocity'],
-            exports: 'Bellows'
         }
     }
 });

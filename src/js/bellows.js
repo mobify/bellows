@@ -1,4 +1,10 @@
-(function($) {
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(['selectorLibrary'], factory);
+    } else {
+        factory(window.Zepto || window.jQuery);
+    }
+}(function($) {
     var PLUGIN_NAME = 'bellows';
     var noop = function() {};
 
@@ -192,4 +198,4 @@
     $('[data-bellows]').bellows();
 
     return $;
-})(window.jQuery || window.Zepto);
+}));
