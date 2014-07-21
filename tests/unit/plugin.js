@@ -1,6 +1,6 @@
 define([
     'text!fixtures/bellows.html',
-    'zepto',
+    'selectorLibrary',
     'velocity',
     'zappy',
     'bellows'
