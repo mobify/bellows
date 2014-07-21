@@ -102,7 +102,7 @@
                         .addClass(OPENED_CLASS)
                         .attr('aria-hidden', true);
 
-                    plugin._resetItemStyle($contentWrapper);
+                    plugin._setHeight();
 
                     plugin._trigger('opened', { item: $item });
                 }
@@ -136,25 +136,11 @@
                         .removeClass(CLOSING_CLASS)
                         .removeAttr('aria-hidden');
 
-                    plugin._resetItemStyle($contentWrapper);
+                    plugin._setHeight();
 
                     plugin._trigger('closed', { item: $item });
                 }
             });
-    };
-
-    // Remove the style attributes from item and
-    // bellows to allow the height to be auto
-    Bellows.prototype._resetItemStyle = function($contentWrapper) {
-        var plugin = this;
-
-        plugin._setHeight();
-
-        // hack to remove style after height has been toggled. Ensures that height is reset to auto
-        // TODO: remove this once Velocity issue #183 is resolved
-        setTimeout(function() {
-            $contentWrapper.removeAttr('style');
-        }, 250);
     };
 
     Bellows.prototype._getHeight = function($element) {
