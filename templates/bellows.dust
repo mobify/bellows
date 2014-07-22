@@ -2,8 +2,12 @@
     <div class="bellows">
         {#items}
             <div class="bellows__item {?isOpen}bellows--is-open{/isOpen}">
-                <div class="bellows__header"><h3>{header}</h3></div>
-                <div class="bellows__content"><p>{content}</p></div>
+                <div class="bellows__header">
+                    {header}
+                </div>
+                <div class="bellows__content">
+                    {content}
+                </div>
             </div>
         {/items}
     </div>

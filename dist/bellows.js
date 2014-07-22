@@ -1,7 +1,17 @@
+/*
+    Bellows.js v2.0.0
+ */
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
+        /*
+            In AMD environments, you will need to define an alias
+            to your selector engine. i.e. either zepto or jQuery
+         */
         define(['selectorEngine'], factory);
     } else {
+        /*
+            Browser globals
+         */
         factory(window.Zepto || window.jQuery);
     }
 }(function($) {
@@ -22,6 +32,8 @@
     function Bellows(element, options) {
         this._init(element, options);
     }
+
+    Bellows.VERSION = '2.0.0';
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
@@ -62,6 +74,38 @@
 
                 plugin.toggle($(this).parent());
             });
+    };
+
+    /*
+     Gets an element's height using Velocity's built-in property cache.
+     Used for getting heights before animations, for animating into an
+     element's space.
+     */
+    Bellows.prototype._getHeight = function($element) {
+        return parseFloat($.Velocity.CSS.getPropertyValue($element[0], 'height'));
+    };
+
+    /*
+     Sets the height of bellows so we animate into
+     the space rather than re-flowing the entire document
+     */
+    Bellows.prototype._setHeight = function(height) {
+        this.$bellows.css('height', height || '');
+    };
+
+    /*
+     Allow items to be found using an index
+     */
+    Bellows.prototype._item = function(item) {
+        if (typeof item === 'number') {
+            item = this.$bellows.find('.' + ITEM_CLASS).eq(item);
+        }
+
+        return item;
+    };
+
+    Bellows.prototype._trigger = function(eventName, data) {
+        eventName in this.options && this.options[eventName].call(this, $.Event(PLUGIN_NAME + ':' + eventName, { bubbles: false }), data);
     };
 
     Bellows.prototype.toggle = function($item) {
@@ -143,30 +187,9 @@
             });
     };
 
-    Bellows.prototype._getHeight = function($element) {
-        return parseFloat($.Velocity.CSS.getPropertyValue($element[0], 'height'));
-    };
-
-    Bellows.prototype._setHeight = function(height) {
-        this.$bellows.css('height', height || '');
-    };
-
-    // Allow items to be found using an index
-    Bellows.prototype._item = function(item) {
-        if (typeof item === 'number') {
-            item = this.$bellows.find('.' + ITEM_CLASS).eq(item);
-        }
-
-        return item;
-    };
-
-    Bellows.prototype._trigger = function(eventName, data) {
-        eventName in this.options && this.options[eventName].call(this, $.Event(PLUGIN_NAME + ':' + eventName, { bubbles: false }), data);
-    };
-
-    // BELLOWS PLUGIN
-    // =========================
-
+    /*
+        Bellows plugin definition
+     */
     $.fn.bellows = function(option) {
         var args = Array.prototype.slice.call(arguments);
 
