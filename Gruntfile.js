@@ -46,7 +46,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('serve', ['connect:server', 'watch']);
+    grunt.registerTask('serve', ['build-dist', 'connect:server', 'watch']);
     grunt.registerTask('build-dist', ['copy', 'uglify', 'sass', 'autoprefixer', 'cssmin']);
     grunt.registerTask('release', ['test', 'shell:tagRelease']);
     grunt.registerTask('test', ['build-dist', 'connect:test', 'mocha_phantomjs']);
