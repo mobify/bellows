@@ -16,9 +16,7 @@
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components"
+    "./!(src|dist|lib|templates)"
   ],
   "dependencies": {
     "velocity": "0.9.0",
