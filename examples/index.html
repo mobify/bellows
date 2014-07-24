@@ -3,12 +3,9 @@
     <head>
         <title>Examples of Bellows in action</title>
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-        <!-- Bellows Styles -->
-        <link rel="stylesheet" href="../dist/bellows.css">
-        <link rel="stylesheet" href="../dist/bellows-theme.css">
 
         <!-- Example Page Styles -->
-        <link rel="stylesheet" href="examples.css">
+        <link rel="stylesheet" href="assets/css/examples.css">
     </head>
 
     <body>
@@ -22,17 +19,8 @@
         <li><a href="animation.html">Different animation timings</a></li>
     </ul>
 
-    <script src="../lib/zeptojs/dist/zepto.js"></script>
-    <script src="../bower_components/tappy/tappy.js"></script>
-    <script src="../lib/velocity-shim.js"></script>
-    <script src="../bower_components/velocity/jquery.velocity.min.js"></script>
+    <script data-main="assets/js/main" src="../bower_components/requirejs/require.js"></script>
 
-    <script src="../dist/bellows.min.js"></script>
-    <script>
-        // Enable active states
-        $(document).on('touchstart', function() {
-        });
-    </script>
     </body>
 </html>
 

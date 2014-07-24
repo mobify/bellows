@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="../dist/bellows-theme.css">
 
         <!-- Example Page Styles -->
-        <link rel="stylesheet" href="examples.css">
+        <link rel="stylesheet" href="assets/css/examples.css">
     </head>
 
     <body>
@@ -16,7 +16,7 @@
 
         <h2>Default Bellows</h2>
 
-        <div class="bellows">
+        <div class="bellows default">
             <div class="bellows__item bellows--is-open">
                 <div class="bellows__header">
                     <h3>Header</h3>
@@ -55,19 +55,7 @@
 
         <p>Lorem honeyed locusts sit amet, none so wise, sed do eiusmod never resting ut labore et dolore magna aliqua. Manhood death before disgrace warrior, feed it to the goats spare me your false courtesy commodo consequat. Mace aute irure dolor in reprehenderit poison is a woman's weapon lord of light tower dwarf. The last of the dragons royal, godswood garron sister betrothed officia deserunt mollit anim id est snow.</p>
 
-        <script src="../lib/zeptojs/dist/zepto.js"></script>
-        <script src="../bower_components/tappy/tappy.js"></script>
-        <script src="../lib/velocity-shim.js"></script>
-        <script src="../bower_components/velocity/jquery.velocity.js"></script>
-
-        <script src="../dist/bellows.js"></script>
-        <script>
-            // Initialize Bellows
-            $('.bellows').bellows();
-
-            // Enable active states
-            $(document).on('touchstart', function() {});
-        </script>
+        <script data-main="assets/js/main" src="../bower_components/requirejs/require.js"></script>
     </body>
     </html>
 

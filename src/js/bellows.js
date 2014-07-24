@@ -5,9 +5,15 @@
     if (typeof define === 'function' && define.amd) {
         /*
             In AMD environments, you will need to define an alias
-            to your selector engine. i.e. either zepto or jQuery
+            to your selector engine. i.e. either zepto or jQuery.
+            Additionally, you will need to alias velocity and
+            zappy.
          */
-        define(['selectorEngine'], factory);
+        define([
+            'selectorEngine',
+            'velocity',
+            'zappy'
+        ], factory);
     } else {
         /*
             Browser globals
@@ -198,6 +204,8 @@
             var bellows = $this.data(PLUGIN_NAME);
             var isMethodCall = typeof option === 'string';
 
+            // If bellows isn't initialized, we lazy-load initialize it. If it's
+            // already initialized, we can safely ignore the call.
             if (!bellows) {
                 if (isMethodCall) {
                     throw 'cannot call methods on bellows prior to initialization; attempted to call method "' + option + '"';
