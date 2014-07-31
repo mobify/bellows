@@ -1,6 +1,6 @@
 require(['config'], function() {
     require([
-        'selectorEngine',
+        '$',
         'bellows'
     ],
     function($) {

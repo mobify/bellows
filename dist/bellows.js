@@ -10,7 +10,8 @@
             zappy.
          */
         define([
-            'selectorEngine',
+            '$',
+            'velocity-shim',
             'velocity',
             'zappy'
         ], factory);

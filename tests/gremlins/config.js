@@ -12,18 +12,6 @@ require.config({
     'shim': {
         'selectorEngine': {
             exports: '$'
-        },
-        'zappy': {
-            deps: ['selectorEngine'],
-            exports: '$'
-        },
-        'velocity-shim': {
-            deps: ['selectorEngine'],
-            exports: '$'
-        },
-        'velocity': {
-            deps: ['selectorEngine', 'velocity-shim'],
-            exports: '$'
         }
     }
 });
