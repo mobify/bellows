@@ -19,7 +19,7 @@
     "./!(src|dist|lib|templates)"
   ],
   "dependencies": {
-    "velocity": "0.9.0",
+    "velocity": "0.11.2",
     "tappy": "https://github.com/mobify/zappy.git#master",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.14"
