@@ -56,6 +56,8 @@
     Bellows.prototype._init = function(element, options) {
         this.options = $.extend(true, {}, Bellows.DEFAULTS, options);
 
+        $.Velocity.debug = 1;
+
         this.$bellows = $(element);
 
         this.$bellows
