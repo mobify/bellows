@@ -10,12 +10,10 @@ You can find full documentation and examples here: http://mobify.github.io/bello
 
 * [Zepto](http://zeptojs.com/)
 * [Velocity.js](http://velocityjs.org)
-* jQuery Shim for Velocity.js (included in the `lib` folder)
-* [Zappy](https://github.com/mobify/zappy)
 
 ### Velocity Shim
 
-We use a shim for Velocity to polyfill any missing jQuery items so we can continue to use Zepto. If Velocity.js ever stops requiring jQuery, we will be able to stop using this shim.
+If you are using Zepto you will need to include the velocity shim **before** velocity. If Velocity.js ever stops requiring jQuery, we will be able to stop using this shim.
 
 ### jQuery Support
 
@@ -73,8 +71,6 @@ At a bare minimum, your markup structure should follow the above structure. You 
 <!-- Include dependencies -->
 <script src="zepto.min.js"></script>
 <script src="jquery.velocity.min.js"></script>
-<script src="velocity-shim.js"></script>
-<script src="tappy.min.js"></script>
 
 <!-- Include bellows.js -->
 <script src="bellows.min.js"></script>

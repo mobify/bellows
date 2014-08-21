@@ -3,10 +3,8 @@ require.config({
     paths: {
         'text': 'bower_components/requirejs-text/text',
         'gremlins': 'bower_components/gremlins.js/gremlins.min',
-        'selectorEngine': 'lib/zeptojs/dist/zepto.min',
-        'zappy': 'bower_components/tappy/tappy',
-        'velocity-shim': 'lib/velocity-shim',
-        'velocity': 'bower_components/velocity/jquery.velocity',
+        '$': 'lib/zeptojs/dist/zepto.min',
+        'velocity': 'bower_components/velocity/velocity',
         'bellows': 'dist/bellows'
     },
     'shim': {

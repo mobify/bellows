@@ -6,14 +6,10 @@
         /*
             In AMD environments, you will need to define an alias
             to your selector engine. i.e. either zepto or jQuery.
-            Additionally, you will need to alias velocity and
-            zappy.
          */
         define([
             '$',
-            'velocity',
-            'jquery-velocity',
-            'zappy'
+            'velocity'
         ], factory);
     } else {
         /*
@@ -44,7 +40,7 @@
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
-        event: 'tap',
+        event: 'click',
         duration: 200,
         easing: 'swing',
         open: noop,
@@ -55,8 +51,6 @@
 
     Bellows.prototype._init = function(element, options) {
         this.options = $.extend(true, {}, Bellows.DEFAULTS, options);
-
-        $.Velocity.debug = 1;
 
         this.$bellows = $(element);
 
