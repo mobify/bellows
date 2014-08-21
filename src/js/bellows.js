@@ -11,8 +11,8 @@
          */
         define([
             '$',
-            'velocity-shim',
             'velocity',
+            'jquery-velocity',
             'zappy'
         ], factory);
     } else {
