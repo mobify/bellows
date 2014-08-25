@@ -135,8 +135,8 @@
 
         this._trigger('open', { item: $item });
 
-        $contentWrapper
-            .velocity('slideDown', {
+        $.Velocity
+            .animate($contentWrapper, 'slideDown', {
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows) + plugin._getHeight($contentWrapper));
                     $item.addClass(OPENING_CLASS);
@@ -168,8 +168,8 @@
 
         this._trigger('close', { item: $item });
 
-        $contentWrapper
-            .velocity('slideUp', {
+        $.Velocity
+            .animate($contentWrapper, 'slideUp', {
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows));
                     $item
