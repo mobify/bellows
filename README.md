@@ -24,6 +24,13 @@ Bellows can be installed using bower:
 bower install bellows
 ```
 
+Usage with Require.js
+
+To use with require.js, after installing through bower you merely have to reference bellows in your require config file.
+
+```config.js
+```
+
 ## Usage
 
 At a bare minimum, your markup structure should follow the above structure. You should have at least one `bellows__item`. Content within `bellows__header` and `bellows__content` can be whatever you want. You may also style either of those however you need. Our default theme will give you some standard styling for those sections but, if you want to theme Bellows yourself, we recommend not including the theme file and starting from scratch.
