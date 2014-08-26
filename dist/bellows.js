@@ -129,9 +129,7 @@
         var $contentWrapper = $item.find(selectors.ITEM_CONTENT_WRAPPER);
 
         if (this.options.singleItemOpen) {
-            this.$bellows.find('.' + OPENED_CLASS).each(function() {
-                plugin.close($(this));
-            });
+            this.closeAll();
         }
 
         this._trigger('open', { item: $item });
@@ -189,6 +187,14 @@
                     plugin._trigger('closed', { item: $item });
                 }
             });
+    };
+
+    Bellows.prototype.closeAll = function() {
+        var plugin = this;
+
+        this.$bellows.find('.' + OPENED_CLASS).each(function() {
+            plugin.close($(this));
+        });
     };
 
     /*
