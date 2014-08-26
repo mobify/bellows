@@ -1,200 +1,298 @@
 # Mobify Bellows
 
-A responsive, mobile-first accordion UI module for progressive disclosure on the web.
+A mobile-first accordion UI module for progressive disclosure on the web.
 
-## Docs
+## Documentation
 
-You can find docs and examples here: http://mobify.github.io/bellows.
+You can find full documentation and examples here: http://mobify.github.io/bellows.
 
-Checkout the `gh-pages` branch to make changes to the docs.
+## Requirements
+
+* [Zepto](http://zeptojs.com/)
+* [Velocity.js](http://velocityjs.org)
+
+### Velocity Shim
+
+If you are using Zepto you will need to include the velocity shim **before** velocity. If Velocity.js ever stops requiring jQuery, we will be able to stop using this shim.
+
+### jQuery Support
+
+Bellows supports jQuery but is not actively developed for it. You should be able to use Bellows directly with jQuery 2.0 and simply drop the Velocity.js shim in those cases. While we don't actively support jQuery for Bellows, we welcome any and all issues and PRs to help us make it work.
+
+
+## Installation
+
+Bellows can be installed using bower:
+
+```
+bower install bellows
+```
 
 ## Usage
 
-    <!-- include bellows.css -->
-    <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.0/bellows.min.css">
-    <link rel="stylesheet" href="http://cdn.mobify.com/modules/bellows/0.3.0/bellows-style.min.css">
+At a bare minimum, your markup structure should follow the above structure. You should have at least one `bellows__item`. Content within `bellows__header` and `bellows__content` can be whatever you want. You may also style either of those however you need. Our default theme will give you some standard styling for those sections but, if you want to theme Bellows yourself, we recommend not including the theme file and starting from scratch.
 
-    <!-- the markup -->
-    <ul class="m-bellows">
-      <!-- the items -->
-      <li class="m-item">
-        <h3 class="m-header">
-          <!-- header title -->
-          <a>Tab1</a>
-        </h3>
-        <div class="m-content">
-          <div class="m-inner-content">
-            <!-- content for item -->
-            <h2>Content 1</h2>
-            <h2>Lorem Ipsum</h2>
-          </div>
-        </div>
-      </li>
-      <li class="m-item">
-        <h3 class="m-header">
-          <a>Tab2</a>
-        </h3>
-        <div class="m-content">
-          <div class="m-inner-content">
-            <h2>Content 2</h2>
-            <p>Lorem Ipsum</p>
-          </div>
-        </div>
-      </li>
-      <li class="m-item">
-        <h3 class="m-header">
-          <a>Tab3</a>
-        </h3>
-        <div class="m-content">
-          <div class="m-inner-content">
-            <h2>Content 3</h2>
-            <p>Lorem Ipsum</p>
-          </div>
-        </div>
-      </li>
-    </ul>
+```html
+<!-- Include the CSS -->
+<link rel="stylesheet" href="bellows.min.css">
 
-    <!-- include zepto.js or jquery.js -->
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <!-- include bellows.js -->
-    <script src="http://cdn.mobify.com/modules/bellows/0.3.0/bellows.js"></script>
-    <!-- construct the bellows -->
-    <script>$('.m-bellows').bellows();
-    </script>
+<!-- Optionally include the Theme file -->
+<link rel="stylesheet" href="bellows-style.min.css">
 
-## Methods
+<!-- Include the markup -->
+<div class="bellows">
+    <!-- The Accordion Items -->
+    <div class="bellows__item">
+        <div class="bellows__header">
+            <!-- Item Header - Content can be whatever you want -->
+        </div>
+        <div class="bellows__content">
+            <!-- Item Content - Content can be whatever you want -->
+        </div>
+    </div>
+    <div class="bellows__item">
+        <div class="bellows__header">
+            <h3>Header</h3>
+        </div>
+        <div class="bellows__content">
+            <p>Content</p>
+        </div>
+    </div>
+    <div class="bellows__item">
+        <div class="bellows__header">
+            <h3>Header</h3>
+        </div>
+        <div class="bellows__content">
+            <p>Content</p>
+        </div>
+    </div>
+</div>
+
+<!-- Include dependencies -->
+<script src="zepto.min.js"></script>
+<script src="jquery.velocity.min.js"></script>
+
+<!-- Include bellows.js -->
+<script src="bellows.min.js"></script>
+
+<!-- Construct Bellows -->
+<script>$('.bellows').bellows()</script>
+```
+
+## Initializing the plugin
 
 ### bellows()
 
 Initializes the bellows.
 
-    $('.m-bellows').bellows();
+```js
+$('.bellows').bellows();
+```
 
 ### bellows(options)
 
 Initialize with options.
 
-    $('.m-bellows').bellows({
-      {
-        ...
-        options (refer below)
-        ...
-      }
-    });
+```js
+$('.bellows').bellows({
+    singleItemOpen: false,
+    duration: 200,
+    easing: 'swing',
+    open: function(e, ui) {},
+    opened: function(e, ui) {},
+    close: function(e, ui) {},
+    closed: function(e, ui) {}
+});
+```
+
+#### Options
+
+##### singleItemOpen
+
+default: `false`
+
+When set to `true` will force only one item open at a time.
+
+```js
+$('.bellows').bellows({
+    singleItemOpen: true
+});
+```
+
+##### duration
+
+default: `200`
+
+Sets the duration for the animation.
+
+```js
+$('.bellows').bellows({
+    duration: 600
+});
+```
+
+##### easing
+
+default: `swing`
+
+Sets the easing for the animation. Bellows takes all of the same easing properties that [Velocity.js](http://julian.com/research/velocity) accepts.
+
+> * [jQuery UI's easings](http://easings.net/) and CSS3's easings ("ease", "ease-in", "ease-out", and "ease-in-out"), which are pre-packaged into Velocity. A bonus "spring" easing (sampled in the CSS Support pane) is also included. 
+* CSS3's bezier curves: Pass in a four-item array of bezier points. (Refer to [Cubic-Bezier.com](http://cubic-bezier.com/) for crafing custom bezier curves.) 
+* Spring physics: Pass a two-item array in the form of [ tension, friction ]. A higher tension (default: 600) increases total speed and bounciness. A lower friction (default: 20) increases ending vibration speed. 
+* Step easing: Pass a one-item array in the form of [ steps ]. The animation will jump toward its end values using the specified number of steps. 
+
+For more information, check out [Velocity's docs on easing](http://julian.com/research/velocity/#easing).
+
+```js
+$('.bellows').bellows({
+    easing: 'ease-in-out'
+});
+```
+
+##### open
+
+default: `function(e, ui) {}`
+
+Triggered every time the selected bellows item is starting to open.
+
+**Parameters**
+
+| Parameter name | Description |
+|----------------|-------------|
+| **e** | An Event object passed to the callback |
+| **ui** | An object containing any associated data for use inside the callback | 
+
+```js
+$('.bellows').bellows({
+    open: function(e, ui) { 
+        // ui.item contains the item opening
+    }
+});
+```
+
+##### opened
+
+default: `function(e, ui) {}`
+
+Triggered every time the selected bellows item has finished opening.
+
+**Parameters**
+
+| Parameter name | Description |
+|----------------|-------------|
+| **e** | An Event object passed to the callback |
+| **ui** | An object containing any associated data for use inside the callback | 
+
+```js
+$('.bellows').bellows({
+    opened: function(e, ui) { 
+        // ui.item contains the item that opened
+    }
+});
+```
+
+##### close
+
+default: `function(e, ui) {}`
+
+Triggered every time an bellows item is starting to close.
+
+| Parameter name | Description |
+|----------------|-------------|
+| **e** | An Event object passed to the callback |
+| **ui** | An object containing any associated data for use inside the callback | 
+
+```js
+$('.bellows').bellows({
+    close: function(e, ui) { 
+        // ui.item contains the item closing
+    }
+});
+```
+
+##### closed
+
+default: `function(e, ui) {}`
+
+Triggered every time an bellows item is finished closing.
+
+| Parameter name | Description |
+|----------------|-------------|
+| **e** | An Event object passed to the callback |
+| **ui** | An object containing any associated data for use inside the callback | 
+
+```js
+$('.bellows').bellows({
+    closed: function(e, ui) { 
+        // ui.item contains the item that closed
+    }
+});
+```
 
 ### Storing bellows object for future use
 
-    var $bellows = $(".m-bellows"); // A Zepto element array is returned
-    var bellows = $bellows[0].bellows; // We access the appropriate bellows from the above array
+```js
+var $bellows = $('.bellows');
+```
 
-### unbind()
+## Methods
 
-Removes any tap, mouse, and other event handlers from the bellows.
+### Open
 
-    bellows.unbind();
+Open the selected bellows item by element reference
 
-### bind()
+```js
+$bellows.bellows('open', $('.bellows__item'));
+```
 
-Restores the tap, mouse, and other event handlers for the bellows.
+or by index
 
-    bellows.bind();
+```js
+$bellows.bellows('open', 1);
+```
 
-### destroy()
-
-Unbinds the events from the bellows, and removes it from the DOM.
-
-    bellows.destroy(); // destroys the DOM element and the jQuery bindings
-    bellows = null; // destroys the Mobify bellows object as well
-
-### open($item)
-
-Open the selected bellows item
-
-    bellows.open($(".m-item").eq(2));
-
-### close($item)
+### Close
     
-Close the selected bellows item
+Close the selected bellows item by element reference
 
-    bellows.close($("#some-item"));
+```js
+$bellows.bellows('close', $('.bellows__item'));
+```
 
-### recalculateItemHeight($item)
+or by index
 
-Recalculate the heights of bellows item elements. This is used when the heights of the content have changed after creation of the bellows.
-
-    bellows.recalculateItemHeight($(".m-item"));
-
-## Class names
-
-Set the class names for the different elements, if deviating from the defaults.
-  
-    $(".m-bellows").bellows({
-      closedClass: 'm-closed',
-      openedClass: 'm-opened',
-      activeClass: 'm-active',
-      contentClass: 'm-content',
-      innerContentClass: 'm-inner-content',
-      headerClass: 'm-header',
-      itemClass: 'm-item'
-    });
-
-## Event hooks
-
-### onTransitionDone: functionName
-
-Execute this function every time the selected bellows item is opened or closed.
-
-    $(".m-bellows").bellows({
-        onTransitionDone: function() { console.log("Animation done"); }
-    });
-
-### onOpened: functionName
-
-Execute this function every time the selected bellows item is opened.
-
-    $(".m-bellows").bellows({
-        onOpened: function() { console.log("Opened"); }
-    });
-
-### onClosed: functionName
-
-Execute this function every time an bellows item is closed
-    
-    $(".m-bellows").bellows({
-        onClosed: function() { console.log("Closed"); }
-    });
+```js
+$bellows.bellows('close', 1);
+```
 
 ## Browser Compatibility
 
-
 | Browser           | Version | Support                    |
 |-------------------|---------|----------------------------|
-| Safari            | 4.0+    | Supported.                 |
-| Firefox           | 3.5-3.6 | Degraded. No transitions.  |
-| Firefox           | 4.0+    | Supported                  |
-| Chrome            | 9.0+    | Supported                  |
-| Opera             | 12.0+   | Supported.                 |
-| Internet Explorer | 6-7.0   | Not Supported              |
-| Internet Explorer | 8.0     | Degraded. No transitions.  |
-| Internet Explorer | 9.0     | Degraded. No transitions.  |
-| Internet Explorer | 10.0    | Supported                  |
-| Mobile Safari     | 3.1.x   | Degraded. No transitions   |
-| Mobile Safari     | 4.0+    | Supported                  |
-| Android Browser   | 2.1+    | Supported                  |
-| Chrome (Android)  | 1.0+    | Supported                  |
-| Firefox (Android) | 1.0+    | Supported                  |
-| Windows Phone     | 7.5     | Degraded. No transitions.  |
+| Mobile Safari     | 4.0.x   | Degraded. No transitions.  |
+| Mobile Safari     | 5.0+    | Supported.                 |
+| Android Browser   | 4.0+    | Supported.                 |
+| Android Browser   | 2.3.x   | Degraded. No transitions.  |
+| Chrome (Android)  | 1.0+    | Supported.                 |
 
-## Building
+
+## Building a distribution
+
 ### Requirements
-* [node.js 0.8.x/npm](http://nodejs.org/download/)
+* [node.js 0.10.x/npm](http://nodejs.org/download/)
+* [Grunt](http://gruntjs.com/)
+    * Install with `npm install -g grunt-cli`
+* [Bower](http://bower.io/)
+    * Install with `npm install -g bower`
 
 ### Steps
-1. `npm install -g grunt-cli`
-2. `npm install`
-3. `grunt`
+1. `npm install`
+1. `bower install`
+1. `grunt build-dist`
 
-The build directory will be populated with minified versions of the css and 
-javascript files and a .zip of the original source files (for distribution and
-use with whatever build system you might use).
+The `dist` directory will be populated with minified versions of the css and javascript files for distribution and use with whatever build system you might use. The `src` directory has our raw unminified Sass and Javascript files if you prefer to work with those.
 
+## License
+
+_MIT License. Bellows is Copyright © 2014 Mobify. It is free software and may be redistributed under the terms specified in the LICENSE file._
