@@ -19,7 +19,7 @@
     "./!(src|dist|lib|templates)"
   ],
   "dependencies": {
-    "velocity": "0.11.9",
+    "velocity": "0.11.7",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.14"
   }
