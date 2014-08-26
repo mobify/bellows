@@ -2,22 +2,18 @@
 
 A mobile-first accordion UI module for progressive disclosure on the web.
 
-## Documentation
-
-You can find full documentation and examples here: http://mobify.github.io/bellows.
-
 ## Requirements
 
 * [Zepto](http://zeptojs.com/)
 * [Velocity.js](http://velocityjs.org)
 
-### Velocity Shim
+### Velocity
 
-If you are using Zepto you will need to include the velocity shim **before** velocity. If Velocity.js ever stops requiring jQuery, we will be able to stop using this shim.
+If you are using Zepto, you need to load `bower_components/velocity/velocity.js` (this file comes with a jQuery shim bundled directly in it). If you are using jQuery, you need to load `bower_components/velocity/jquery.velocity.js`.
 
 ### jQuery Support
 
-Bellows supports jQuery but is not actively developed for it. You should be able to use Bellows directly with jQuery 2.0 and simply drop the Velocity.js shim in those cases. While we don't actively support jQuery for Bellows, we welcome any and all issues and PRs to help us make it work.
+Bellows supports jQuery but is not actively developed for it. You should be able to use Bellows directly with jQuery 2.0. While we don't actively support jQuery for Bellows, we welcome any and all issues and PRs to help us make it work.
 
 
 ## Installation
