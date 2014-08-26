@@ -32,7 +32,8 @@ To use with require.js, after installing through bower you merely have to refere
 
 {
     'paths': {
-        'bellows': 'bower_components/bellows/dist/bellows.min'
+        'bellows': 'bower_components/bellows/dist/bellows.min',
+        'velocity': 'bower_components/velocity/velocity'
     }
 }
 
