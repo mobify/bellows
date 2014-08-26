@@ -15,9 +15,10 @@
         /*
             Browser globals
          */
-        factory(window.Zepto || window.jQuery);
+        var framework = window.Zepto || window.jQuery;
+        factory(framework, framework.Velocity);
     }
-}(function($) {
+}(function($, Velocity) {
     var PLUGIN_NAME = 'bellows';
     var noop = function() {};
 
@@ -85,7 +86,7 @@
      element's space.
      */
     Bellows.prototype._getHeight = function($element) {
-        return parseFloat($.Velocity.CSS.getPropertyValue($element[0], 'height'));
+        return parseFloat(Velocity.CSS.getPropertyValue($element[0], 'height'));
     };
 
     /*
@@ -135,7 +136,7 @@
 
         this._trigger('open', { item: $item });
 
-        $.Velocity
+        Velocity
             .animate($contentWrapper, 'slideDown', {
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows) + plugin._getHeight($contentWrapper));
@@ -168,7 +169,7 @@
 
         this._trigger('close', { item: $item });
 
-        $.Velocity
+        Velocity
             .animate($contentWrapper, 'slideUp', {
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows));
