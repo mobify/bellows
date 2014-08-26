@@ -24,12 +24,31 @@ Bellows can be installed using bower:
 bower install bellows
 ```
 
-Usage with Require.js
+## Usage with Require.js
 
-To use with require.js, after installing through bower you merely have to reference bellows in your require config file.
+To use with require.js, after installing through bower you merely have to reference bellows in your require config file:
 
 ```config.js
+
+{
+    'paths': {
+        'bellows': 'bower_components/bellows/dist/bellows.min'
+    }
+}
+
 ```
+
+And then require bellows in as needed:
+
+```
+define(
+    ['zepto', 'bellows'],
+    function($) {
+        $('.bellows').bellows();
+    }
+);
+```
+
 
 ## Usage
 
