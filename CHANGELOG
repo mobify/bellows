@@ -1,0 +1,2 @@
+2.0.1
+  - Fix for issue #34 - aria-hidden attributes behavior is reversed

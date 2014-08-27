@@ -77,6 +77,31 @@ define([
                 element.bellows('open', 0);
             });
 
+            it('removes aria-hidden attribute when open', function(done) {
+                element.bellows({
+                    opened: function(e, ui) {
+                        assert.isFalse(!!ui.item.find('.bellows__content-wrapper').attr('aria-hidden'));
+                        done();
+                    }
+                });
+
+                element.bellows('open', 0);
+            });
+
+            it('adds aria-hidden attribute when closed', function(done) {
+                element.bellows({
+                    opened: function() {
+                        element.bellows('close', 0);
+                    },
+                    closed: function(e, ui) {
+                        assert.isTrue(!!ui.item.find('.bellows__content-wrapper').attr('aria-hidden'));
+                        done();
+                    }
+                });
+
+                element.bellows('open', 0);
+            });
+
             it('throws for method calls that don\'t exist', function() {
                 assert.throws(function() { element.bellows().bellows('noMethod'); });
             });

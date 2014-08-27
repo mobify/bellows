@@ -61,7 +61,7 @@
             .wrap('<div class="bellows__content-wrapper" />')
             // add aria-hidden attribute to all hidden content wrappers
             .parents('.bellows__item:not(.bellows--is-open)')
-            .find('.bellows__content-wrapper')
+            .find(selectors.ITEM_CONTENT_WRAPPER)
             .attr('aria-hidden', true);
 
         this._bindEvents();
@@ -146,7 +146,8 @@
                     $item
                         .removeClass(OPENING_CLASS)
                         .addClass(OPENED_CLASS)
-                        .attr('aria-hidden', true);
+                        .find(selectors.ITEM_CONTENT_WRAPPER)
+                        .removeAttr('aria-hidden');
 
                     plugin._setHeight();
 
@@ -180,7 +181,8 @@
                 complete: function() {
                     $item
                         .removeClass(CLOSING_CLASS)
-                        .removeAttr('aria-hidden');
+                        .find(selectors.ITEM_CONTENT_WRAPPER)
+                        .attr('aria-hidden', true);
 
                     plugin._setHeight();
 
