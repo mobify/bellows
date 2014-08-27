@@ -2,6 +2,10 @@
 
 A mobile-first accordion UI module for progressive disclosure on the web.
 
+## Demo
+
+You can find a simple demo on [the Documentation page](http://mobify.github.io/bellows). More demos can be found inside the `examples` folder in the repo.
+
 ## Requirements
 
 * [Zepto](http://zeptojs.com/)
