@@ -2,6 +2,8 @@
 
 A mobile-first accordion UI module for progressive disclosure on the web.
 
+![Bellows in action](https://raw.githubusercontent.com/mobify/bellows/master/examples/assets/i/bellows.gif "Bellows in action")
+
 ## Demo
 
 You can find a simple demo on [the Documentation page](http://mobify.github.io/bellows). More demos can be found inside the `examples` folder in the repo.
