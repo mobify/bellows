@@ -2,6 +2,8 @@
 
 A mobile-first accordion UI module for progressive disclosure on the web.
 
+[![Bower version](https://badge.fury.io/bo/bellows.svg)](http://badge.fury.io/bo/bellows)
+
 ![Bellows in action](https://raw.githubusercontent.com/mobify/bellows/master/examples/assets/i/bellows.gif "Bellows in action")
 
 ## Demo
