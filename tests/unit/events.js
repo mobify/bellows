@@ -8,7 +8,7 @@ define([
 
     describe('Bellows events', function() {
         beforeEach(function() {
-            element = $(fixture);
+            element = $(fixture).appendTo('#container');
         });
 
         it('fires the open event when the header is clicked', function(done) {
