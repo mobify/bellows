@@ -1,6 +1,6 @@
 {
   "name": "bellows",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "homepage": "https://github.com/mobify/bellows",
   "authors": [
     "Mobify <jobs@mobify.com>"
@@ -19,7 +19,7 @@
     "./!(src|dist|lib|templates)"
   ],
   "dependencies": {
-    "velocity": "0.11.7",
+    "velocity": "1.0.0",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.14"
   }
