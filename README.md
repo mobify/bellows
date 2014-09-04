@@ -299,6 +299,20 @@ or by index
 $bellows.bellows('close', 1);
 ```
 
+### Add
+
+Adds new items to bellows, and correctly wraps their content elements. Optional third parameter allows you to replace all existing elements with the ones specified.
+
+```js
+$bellows.bellows('add', items);
+```
+
+or replacing existing elements
+
+```js
+$bellows.bellows('add', items, true);
+```
+
 ## Browser Compatibility
 
 | Browser           | Version | Support                    |
