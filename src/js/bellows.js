@@ -83,7 +83,6 @@
         this.$bellows
             .on(this.options.event, function(e) {
                 var $target = $(e.target);
-                console.log($target);
                 var $closestBellows = $target.closest('.bellows');
 
                 e.preventDefault();
