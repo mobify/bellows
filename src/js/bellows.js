@@ -23,7 +23,7 @@
     var noop = function() {
     };
 
-    var classes = {
+    var cssClasses = {
         ITEM: 'bellows__item',
         OPENED: 'bellows--is-open',
         OPENING: 'bellows--is-opening',
@@ -115,7 +115,7 @@
      */
     Bellows.prototype._item = function(item) {
         if (typeof item === 'number') {
-            item = this.$bellows.find('.' + classes.ITEM).eq(item);
+            item = this.$bellows.find('.' + cssClasses.ITEM).eq(item);
         }
 
         return item;
@@ -131,13 +131,13 @@
     Bellows.prototype.toggle = function($item) {
         $item = this._item($item);
 
-        this[$item.hasClass(classes.OPENED) ? 'close' : 'open']($item);
+        this[$item.hasClass(cssClasses.OPENED) ? 'close' : 'open']($item);
     };
 
     Bellows.prototype.open = function($item) {
         $item = this._item($item);
 
-        if ($item.hasClass(classes.OPENED)) {
+        if ($item.hasClass(cssClasses.OPENED)) {
             return;
         }
 
@@ -154,14 +154,14 @@
             .animate($contentWrapper, 'slideDown', {
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows) + plugin._getHeight($contentWrapper));
-                    $item.addClass(classes.OPENING);
+                    $item.addClass(cssClasses.OPENING);
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
                     $item
-                        .removeClass(classes.OPENING)
-                        .addClass(classes.OPENED)
+                        .removeClass(cssClasses.OPENING)
+                        .addClass(cssClasses.OPENED)
                         .find(selectors.ITEM_CONTENT_WRAPPER)
                         .removeAttr('aria-hidden');
 
@@ -175,7 +175,7 @@
     Bellows.prototype.close = function($item) {
         $item = this._item($item);
 
-        if (!$item.hasClass(classes.OPENED)) {
+        if (!$item.hasClass(cssClasses.OPENED)) {
             return;
         }
 
@@ -189,14 +189,14 @@
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows));
                     $item
-                        .removeClass(classes.OPENED)
-                        .addClass(classes.CLOSING);
+                        .removeClass(cssClasses.OPENED)
+                        .addClass(cssClasses.CLOSING);
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
                     $item
-                        .removeClass(classes.CLOSING)
+                        .removeClass(cssClasses.CLOSING)
                         .find(selectors.ITEM_CONTENT_WRAPPER)
                         .attr('aria-hidden', true);
 
@@ -210,7 +210,7 @@
     Bellows.prototype.closeAll = function() {
         var plugin = this;
 
-        this.$bellows.find('.' + classes.OPENED).each(function() {
+        this.$bellows.find('.' + cssClasses.OPENED).each(function() {
             plugin.close($(this));
         });
     };
