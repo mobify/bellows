@@ -1,11 +1,11 @@
 /*
-    Bellows.js v2.0.0
+ Bellows.js v2.0.2
  */
-(function (factory) {
+(function(factory) {
     if (typeof define === 'function' && define.amd) {
         /*
-            In AMD environments, you will need to define an alias
-            to your selector engine. i.e. either zepto or jQuery.
+         In AMD environments, you will need to define an alias
+         to your selector engine. i.e. either zepto or jQuery.
          */
         define([
             '$',
@@ -13,19 +13,22 @@
         ], factory);
     } else {
         /*
-            Browser globals
+         Browser globals
          */
         var framework = window.Zepto || window.jQuery;
         factory(framework, framework.Velocity);
     }
 }(function($, Velocity) {
     var PLUGIN_NAME = 'bellows';
-    var noop = function() {};
+    var noop = function() {
+    };
 
-    var ITEM_CLASS = 'bellows__item';
-    var OPENED_CLASS = 'bellows--is-open';
-    var OPENING_CLASS = 'bellows--is-opening';
-    var CLOSING_CLASS = 'bellows--is-closing';
+    var classes = {
+        ITEM: 'bellows__item',
+        OPENED: 'bellows--is-open',
+        OPENING: 'bellows--is-opening',
+        CLOSING: 'bellows--is-closing'
+    };
 
     var selectors = {
         ITEM_HEADER: '> .bellows__item > .bellows__header',
@@ -37,7 +40,7 @@
         this._init(element, options);
     }
 
-    Bellows.VERSION = '2.0.0';
+    Bellows.VERSION = '2.0.2';
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
@@ -70,13 +73,23 @@
     Bellows.prototype._bindEvents = function() {
         var plugin = this;
 
-        // We use tappy here to eliminate the 300ms delay on clicking elements
+        /*
+         Ghetto Event Delegation™
+
+         Zepto doesn't support descendant selectors in event delegation,
+         so we compare against the closest bellows to ensure we are invoking
+         the event from a direct child, not a bellows child from a nested bellows.
+         */
         this.$bellows
-            .find(selectors.ITEM_HEADER)
-            .bind(this.options.event, function(e) {
+            .on(this.options.event, function(e) {
+                var $target = $(e.target);
+                var $closestBellows = $target.closest('.bellows');
+
                 e.preventDefault();
 
-                plugin.toggle($(this).parent());
+                if ($closestBellows[0] === plugin.$bellows[0]) {
+                    plugin.toggle($target.closest('.bellows__item'));
+                }
             });
     };
 
@@ -102,12 +115,15 @@
      */
     Bellows.prototype._item = function(item) {
         if (typeof item === 'number') {
-            item = this.$bellows.find('.' + ITEM_CLASS).eq(item);
+            item = this.$bellows.find('.' + classes.ITEM).eq(item);
         }
 
         return item;
     };
 
+    /*
+     Allows triggering of events, with the option to pass arbitrary data to the event handler.
+     */
     Bellows.prototype._trigger = function(eventName, data) {
         eventName in this.options && this.options[eventName].call(this, $.Event(PLUGIN_NAME + ':' + eventName, { bubbles: false }), data);
     };
@@ -115,13 +131,13 @@
     Bellows.prototype.toggle = function($item) {
         $item = this._item($item);
 
-        this[$item.hasClass(OPENED_CLASS) ? 'close' : 'open']($item);
+        this[$item.hasClass(classes.OPENED) ? 'close' : 'open']($item);
     };
 
     Bellows.prototype.open = function($item) {
         $item = this._item($item);
 
-        if ($item.hasClass(OPENED_CLASS)) {
+        if ($item.hasClass(classes.OPENED)) {
             return;
         }
 
@@ -138,14 +154,14 @@
             .animate($contentWrapper, 'slideDown', {
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows) + plugin._getHeight($contentWrapper));
-                    $item.addClass(OPENING_CLASS);
+                    $item.addClass(classes.OPENING);
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
                     $item
-                        .removeClass(OPENING_CLASS)
-                        .addClass(OPENED_CLASS)
+                        .removeClass(classes.OPENING)
+                        .addClass(classes.OPENED)
                         .find(selectors.ITEM_CONTENT_WRAPPER)
                         .removeAttr('aria-hidden');
 
@@ -159,7 +175,7 @@
     Bellows.prototype.close = function($item) {
         $item = this._item($item);
 
-        if (!$item.hasClass(OPENED_CLASS)) {
+        if (!$item.hasClass(classes.OPENED)) {
             return;
         }
 
@@ -173,14 +189,14 @@
                 begin: function() {
                     plugin._setHeight(plugin._getHeight(plugin.$bellows));
                     $item
-                        .removeClass(OPENED_CLASS)
-                        .addClass(CLOSING_CLASS);
+                        .removeClass(classes.OPENED)
+                        .addClass(classes.CLOSING);
                 },
                 duration: this.options.duration,
                 easing: this.options.easing,
                 complete: function() {
                     $item
-                        .removeClass(CLOSING_CLASS)
+                        .removeClass(classes.CLOSING)
                         .find(selectors.ITEM_CONTENT_WRAPPER)
                         .attr('aria-hidden', true);
 
@@ -194,13 +210,13 @@
     Bellows.prototype.closeAll = function() {
         var plugin = this;
 
-        this.$bellows.find('.' + OPENED_CLASS).each(function() {
+        this.$bellows.find('.' + classes.OPENED).each(function() {
             plugin.close($(this));
         });
     };
 
     /*
-        Bellows plugin definition
+     Bellows plugin definition
      */
     $.fn.bellows = function(option) {
         var args = Array.prototype.slice.call(arguments);
