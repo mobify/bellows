@@ -25,6 +25,7 @@
 
     var cssClasses = {
         ITEM: 'bellows__item',
+        HEADER: 'bellows__header',
         OPENED: 'bellows--is-open',
         OPENING: 'bellows--is-opening',
         CLOSING: 'bellows--is-closing'
@@ -58,14 +59,7 @@
 
         this.$bellows = $(element);
 
-        this.$bellows
-            .find(selectors.ITEM_CONTENT)
-            // wrap content section of each item to facilitate padding
-            .wrap('<div class="bellows__content-wrapper" />')
-            // add aria-hidden attribute to all hidden content wrappers
-            .parents('.bellows__item:not(.bellows--is-open)')
-            .find(selectors.ITEM_CONTENT_WRAPPER)
-            .attr('aria-hidden', true);
+        this._wrapContent(this.$bellows);
 
         this._bindEvents();
     };
@@ -87,7 +81,8 @@
 
                 e.preventDefault();
 
-                if ($closestBellows[0] === plugin.$bellows[0]) {
+                // We need to verify not only that we're inside the direct bellows of the item, but also if the item is a header/child of a header
+                if ($closestBellows[0] === plugin.$bellows[0] && ($target.hasClass(cssClasses.HEADER) || !!$target.closest('.bellows__header').length)) {
                     plugin.toggle($target.closest('.bellows__item'));
                 }
             });
@@ -119,6 +114,17 @@
         }
 
         return item;
+    };
+
+    Bellows.prototype._wrapContent = function($items) {
+        $items
+            .find(selectors.ITEM_CONTENT)
+            // wrap content section of each item to facilitate padding
+            .wrap('<div class="bellows__content-wrapper" />')
+                // add aria-hidden attribute to all hidden content wrappers
+                .parents('.bellows__item:not(.bellows--is-open)')
+                .find(selectors.ITEM_CONTENT_WRAPPER)
+                .attr('aria-hidden', true);
     };
 
     /*
@@ -213,6 +219,16 @@
         this.$bellows.find('.' + cssClasses.OPENED).each(function() {
             plugin.close($(this));
         });
+    };
+
+    Bellows.prototype.add = function(items, replace) {
+        var $container = $('<div />');
+        $(items).appendTo($container);
+
+        replace && this.$bellows.empty();
+
+        this._wrapContent($container);
+        this.$bellows.append($container.children());
     };
 
     /*
