@@ -8,7 +8,7 @@
     }
 }(this, function ($) {
 
-    // Default bellows initialization (/examples/default.html)
+    // Default bellows initialization (/examples/index.html)
     function init() {
         $('.bellows.default').bellows();
 
