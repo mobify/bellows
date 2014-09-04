@@ -1,2 +1,8 @@
+2.0.2
+  - Velocity upgrade to 1.0.0
+  - Added linter to ensure correct code standards
+  - Implemented event delegation instead of direct bellows item binding
+  - Refactored CSS class constants into object
+  - Added some comments for clarity
 2.0.1
   - Fix for issue #34 - aria-hidden attributes behavior is reversed
