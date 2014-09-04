@@ -2,6 +2,7 @@
   - Velocity upgrade to 1.0.0
   - Added linter to ensure correct code standards
   - Implemented event delegation instead of direct bellows item binding
+  - Added new `add` method to dynamically add/replace bellows items
   - Refactored CSS class constants into object
   - Added some comments for clarity
 2.0.1
