@@ -8,7 +8,7 @@ require.config({
         'bellows': 'dist/bellows'
     },
     'shim': {
-        'selectorEngine': {
+        '$': {
             exports: '$'
         }
     }

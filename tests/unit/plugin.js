@@ -1,14 +1,20 @@
 define([
     'text!fixtures/bellows.html',
+    'text!fixtures/items.html',
+    'text!fixtures/item.html',
     '$',
     'velocity',
     'bellows'
-], function(fixture, $) {
+], function(fixture, items, item, $) {
     var element;
 
     describe('Bellows plugin', function() {
         beforeEach(function() {
-            element = $(fixture);
+            element = $(fixture).appendTo('#container');
+        });
+
+        afterEach(function() {
+            element = null;
         });
 
         describe('binding to Zepto\'s fn', function() {
@@ -100,6 +106,27 @@ define([
                 });
 
                 element.bellows('open', 0);
+            });
+
+            it('enables handlers for dynamically added items', function(done) {
+                element.bellows({
+                    open: function() {
+                        done();
+                    }
+                });
+
+                element
+                    .bellows('add', items)
+                    .find('.bellows__header:eq(3)')
+                    .trigger('click');
+            });
+
+            it('replaces items when adding with replace', function() {
+                element.bellows();
+
+                element.bellows('add', item, true);
+
+                assert.equal(element.find('.bellows__item').length, 1);
             });
 
             it('throws for method calls that don\'t exist', function() {
