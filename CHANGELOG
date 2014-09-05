@@ -6,6 +6,8 @@
   - Refactored CSS class constants into object
   - Added some comments for clarity
 2.0.2
-  - Velocity upgrade to 1.0.0
+  - Velocity had a 1.0 release. This brings Bellows into line with the latest version of Velocity.
 2.0.1
   - Fix for issue #34 - aria-hidden attributes behavior is reversed
+2.0.0
+  - Complete rewrite of Bellows. Everything is new. Everything is better.
