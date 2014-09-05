@@ -1,10 +1,11 @@
-2.0.2
-  - Velocity upgrade to 1.0.0
-  - Added linter to ensure correct code standards
+2.0.3
   - Implemented event delegation instead of direct bellows item binding
+  - Allow inclusion of navigable anchors inside header items
+  - Added linter to ensure correct code standards
   - Added new `add` method to dynamically add/replace bellows items
   - Refactored CSS class constants into object
   - Added some comments for clarity
-  - Allow inclusion of navigable anchors inside header items
+2.0.2
+  - Velocity upgrade to 1.0.0
 2.0.1
   - Fix for issue #34 - aria-hidden attributes behavior is reversed
