@@ -26,6 +26,8 @@
             singleItemOpen: true
         });
 
+        $('.bellows.inner-link').bellows();
+
         // Enable active states
         $(document).on('touchstart', function() {});
     }

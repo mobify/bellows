@@ -14,3 +14,37 @@ html {
 p + p {
     margin-bottom: 10px;
 }
+
+.inner-link h3 {
+    display: inline-block;
+}
+
+.header-link {
+    display: inline-block;
+    padding: 4px;
+    margin-left: 5px;
+
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
+
+    font-size: 12px;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+    vertical-align: middle;
+
+    opacity: 0;
+    pointer-events: none;
+
+    -webkit-transition: opacity 0.1s linear;
+    transition: opacity 0.1s linear;
+}
+
+.header-link:active {
+    background: rbga(0,0,0,0.2);
+}
+
+.bellows__item.bellows--is-open .header-link {
+    opacity: 1;
+    pointer-events: auto;
+}
