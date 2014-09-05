@@ -1,6 +1,3 @@
-/*
- Bellows.js v2.0.2
- */
 (function(factory) {
     if (typeof define === 'function' && define.amd) {
         /*
@@ -41,7 +38,7 @@
         this._init(element, options);
     }
 
-    Bellows.VERSION = '2.0.2';
+    Bellows.VERSION = '2.0.3';
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
