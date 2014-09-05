@@ -76,10 +76,15 @@
                 var $target = $(e.target);
                 var $closestBellows = $target.closest('.bellows');
 
-                e.preventDefault();
+                // We don't want to continue if we're clicking on an anchor
+                if ($target.is('a') || !!$target.parents('a').length) {
+                    return;
+                }
 
                 // We need to verify not only that we're inside the direct bellows of the item, but also if the item is a header/child of a header
                 if ($closestBellows[0] === plugin.$bellows[0] && ($target.hasClass(cssClasses.HEADER) || !!$target.closest('.bellows__header').length)) {
+                    e.preventDefault();
+
                     plugin.toggle($target.closest('.bellows__item'));
                 }
             });
