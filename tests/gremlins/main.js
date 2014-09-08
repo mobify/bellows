@@ -1,11 +1,10 @@
 require(['config'], function() {
     require([
         'gremlins',
-        'selectorEngine',
+        '$',
         'bellows'
     ],
     function(gremlins, $) {
-        // Default bellows initialization (/examples/default.html)
         $('.bellows.default').bellows();
 
         // Enable active states

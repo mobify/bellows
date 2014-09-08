@@ -7,8 +7,32 @@ define([
     var element;
 
     describe('Bellows events', function() {
+        var stringify = JSON.stringify;
+
+        before(function() {
+            JSON.stringify = function(obj) {
+                var seen = [];
+
+                return stringify(obj, function(key, val) {
+                    if (typeof val === "object") {
+                        if (seen.indexOf(val) >= 0) { return; }
+                        seen.push(val);
+                    }
+                    return val;
+                });
+            };
+        });
+
+        after(function() {
+            JSON.stringify = stringify;
+        });
+
         beforeEach(function() {
-            element = $(fixture);
+            element = $(fixture).appendTo('#container');
+        });
+
+        afterEach(function() {
+            element = null;
         });
 
         it('fires the open event when the header is clicked', function(done) {

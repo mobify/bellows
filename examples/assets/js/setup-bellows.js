@@ -8,7 +8,7 @@
     }
 }(this, function ($) {
 
-    // Default bellows initialization (/examples/default.html)
+    // Default bellows initialization (/examples/index.html)
     function init() {
         $('.bellows.default').bellows();
 
@@ -25,6 +25,8 @@
         $('.bellows.single').bellows({
             singleItemOpen: true
         });
+
+        $('.bellows.inner-link').bellows();
 
         // Enable active states
         $(document).on('touchstart', function() {});

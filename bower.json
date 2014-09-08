@@ -1,6 +1,6 @@
 {
   "name": "bellows",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "homepage": "https://github.com/mobify/bellows",
   "authors": [
     "Mobify <jobs@mobify.com>"
@@ -20,8 +20,9 @@
   ],
   "dependencies": {
     "plugin": "0.1.1",
-    "velocity": "0.11.7",
+    "velocity": "1.0.0",
     "requirejs-text": "~2.0.12",
-    "requirejs": "~2.1.14"
+    "requirejs": "~2.1.14",
+    "gremlins.js": "~0.1.0"
   }
 }

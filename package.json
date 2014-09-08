@@ -1,6 +1,6 @@
 {
   "name": "bellows",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "A mobile first accordion UI plugin",
   "devDependencies": {
     "grunt": "~0.4.x",
@@ -14,6 +14,7 @@
     "grunt-autoprefixer": "~0.8.0",
     "grunt-contrib-sass": "~0.7.3",
     "grunt-contrib-jshint": "0.10.0",
+    "grunt-version": "^0.3.0",
     "jshint": "2.5.0",
     "grunt-jscs-checker": "0.4.1",
     "mobify-code-style": "0.0.3",

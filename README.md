@@ -2,6 +2,12 @@
 
 A mobile-first accordion UI module for progressive disclosure on the web.
 
+[![Bower version](https://badge.fury.io/bo/bellows.svg)](http://badge.fury.io/bo/bellows)
+[![Dependency Status](https://www.versioneye.com/user/projects/53ff9b7deab62a5003000009/badge.svg?style=flat)](https://www.versioneye.com/user/projects/53ff9b7deab62a5003000009)
+[![Build Status](https://circleci.com/gh/mobify/bellows/tree/master.svg?style=shield&circle-token=8c096b513a1f04ef1b977178c4f3358c2a42a132)](https://circleci.com/gh/mobify/bellows)
+
+![Bellows in action](https://raw.githubusercontent.com/mobify/bellows/master/examples/assets/i/bellows.gif "Bellows in action")
+
 ## Demo
 
 You can find a simple demo on [the Documentation page](http://mobify.github.io/bellows). More demos can be found inside the `examples` folder in the repo.
@@ -291,6 +297,20 @@ or by index
 
 ```js
 $bellows.bellows('close', 1);
+```
+
+### Add
+
+Adds new items to bellows, and correctly wraps their content elements. Optional third parameter allows you to replace all existing elements with the ones specified.
+
+```js
+$bellows.bellows('add', items);
+```
+
+or replacing existing elements
+
+```js
+$bellows.bellows('add', items, true);
 ```
 
 ## Browser Compatibility
