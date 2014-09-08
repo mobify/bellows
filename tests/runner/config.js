@@ -7,6 +7,7 @@ require.config({
         'velocity': 'bower_components/velocity/velocity',
         'chai': 'node_modules/chai/chai',
         'mocha': 'node_modules/mocha/mocha',
+        'plugin': 'dist/plugin',
         'bellows': 'dist/bellows'
     },
     'shim': {

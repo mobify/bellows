@@ -5,6 +5,7 @@ require.config({
         'text': 'bower_components/requirejs-text/text',
         '$': 'lib/zeptojs/dist/zepto',
         'velocity': 'bower_components/velocity/velocity',
+        'plugin': 'dist/plugin',
         'bellows': 'dist/bellows',
         'setup-bellows': 'examples/assets/js/setup-bellows'
     },
