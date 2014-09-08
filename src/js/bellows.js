@@ -32,7 +32,7 @@
     };
 
     function Bellows(element, options) {
-        Bellows._super.call(this, element, options);
+        Bellows._super.call(this, element, options, Bellows.DEFAULTS);
     }
 
     Bellows.VERSION = '2.0.0';
@@ -49,9 +49,7 @@
     };
 
     $.plugin('bellows', Bellows, {
-        _init: function(element, options) {
-            this.options = $.extend(true, {}, Bellows.DEFAULTS, options);
-
+        _init: function(element) {
             this.$bellows = $(element);
 
             this.$bellows

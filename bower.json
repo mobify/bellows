@@ -19,6 +19,7 @@
     "./!(src|dist|lib|templates)"
   ],
   "dependencies": {
+    "plugin": "0.1.1",
     "velocity": "0.11.7",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.14"

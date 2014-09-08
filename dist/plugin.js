@@ -15,8 +15,9 @@
         factory(framework);
     }
 }(function($) {
-    function Plugin(element, options) {
-        this._init(element, options);
+    function Plugin(element, options, defaultOptions) {
+        this.options = $.extend(true, {}, defaultOptions, options);
+        this._init(element);
     }
 
     Plugin.prototype._trigger = function(eventName, data) {
