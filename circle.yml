@@ -4,7 +4,6 @@ machine:
 
 test:
     pre:
-        - npm install
         - bower install
     override:
         - grunt test 
