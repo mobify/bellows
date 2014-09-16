@@ -50,7 +50,7 @@
 
     $.plugin('bellows', Bellows, {
 
-        _init: function(element, options) {
+        _init: function(element) {
             this.$bellows = $(element);
 
             this._wrapContent(this.$bellows);
