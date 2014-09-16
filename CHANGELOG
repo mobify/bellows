@@ -1,3 +1,5 @@
+3.0.0
+  - Refactored to use new plugin factory
 2.0.3
   - Implemented event delegation instead of direct bellows item binding
   - Allow inclusion of navigable anchors inside header items
