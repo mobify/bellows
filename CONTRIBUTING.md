@@ -1,5 +1,4 @@
 ## Contributing
-===============
 
 We love pull requests, and other people helping maintain our code. If you want to contribute, please follow these guidelines.
 
@@ -21,7 +20,7 @@ Ensure the tests pass:
 grunt test
 ```
 	
-Make your changes, and tests for your changes, then run the tests again:
+Make your changes, add tests for your changes, then run the tests again:
 
 ```
 grunt test
