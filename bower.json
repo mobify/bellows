@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "plugin": "2.0.0",
-    "velocity": "1.0.0",
+    "velocity": "1.1.0",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.14",
     "gremlins.js": "~0.1.0"

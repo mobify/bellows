@@ -1,18 +1,11 @@
 (function(factory) {
     if (typeof define === 'function' && define.amd) {
-        /*
-         In AMD environments, you will need to define an alias
-         to your selector engine. i.e. either zepto or jQuery.
-         */
         define([
             '$',
             'velocity',
             'plugin'
         ], factory);
     } else {
-        /*
-         Browser globals
-         */
         var framework = window.Zepto || window.jQuery;
         factory(framework, framework.Velocity, window.Plugin);
     }
