@@ -1,22 +1,15 @@
 (function(factory) {
     if (typeof define === 'function' && define.amd) {
-        /*
-         In AMD environments, you will need to define an alias
-         to your selector engine. i.e. either zepto or jQuery.
-         */
         define([
             '$',
             'velocity',
             'plugin'
         ], factory);
     } else {
-        /*
-         Browser globals
-         */
         var framework = window.Zepto || window.jQuery;
-        factory(framework, framework.Velocity);
+        factory(framework, framework.Velocity, window.Plugin);
     }
-}(function($, Velocity) {
+}(function($, Velocity, Plugin) {
     var cssClasses = {
         ITEM: 'bellows__item',
         HEADER: 'bellows__header',
@@ -32,10 +25,10 @@
     };
 
     function Bellows(element, options) {
-        Bellows._super.call(this, element, options, Bellows.DEFAULTS);
+        Bellows.__super__.call(this, element, options, Bellows.DEFAULTS);
     }
 
-    Bellows.VERSION = '3.0.0';
+    Bellows.VERSION = '4.0.0';
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
@@ -48,7 +41,7 @@
         closed: $.noop
     };
 
-    $.plugin('bellows', Bellows, {
+    Plugin.create('bellows', Bellows, {
 
         _init: function(element) {
             this.$bellows = $(element);
@@ -61,12 +54,12 @@
         _bindEvents: function() {
             var plugin = this;
 
-            /*
-             Ghetto Event Delegation™
+            /**
+             * Ghetto Event Delegation™
 
-             Zepto doesn't support descendant selectors in event delegation,
-             so we compare against the closest bellows to ensure we are invoking
-             the event from a direct child, not a bellows child from a nested bellows.
+               Zepto doesn't support descendant selectors in event delegation,
+               so we compare against the closest bellows to ensure we are invoking
+               the event from a direct child, not a bellows child from a nested bellows.
              */
             this.$bellows
                 .on(this.options.event, function(e) {
