@@ -1,3 +1,5 @@
+4.0.1
+  - Updated bellows to use new mobify-velocity fork
 4.0.0
   - Fixed breaking issue with plugin factory
 3.0.0

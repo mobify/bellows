@@ -1,6 +1,10 @@
 {
   "name": "bellows",
-  "version": "4.0.0",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/mobify/bellows.git"
+  },
+  "version": "4.0.1",
   "description": "A mobile first accordion UI plugin",
   "devDependencies": {
     "grunt": "~0.4.x",
