@@ -26,6 +26,18 @@ Make your changes, add tests for your changes, then run the tests again:
 grunt test
 ```
 
+### Building a release
+
+Releases are built into the `dist` directory. To build a release, do the following:
+
+Increment the version number in the package.json file according to the [semver](http://semver.org/) specification.
+
+Run the following `grunt` task to build the dist:
+
+```
+grunt build-dist
+```
+
 Push to your fork, and open a [pull request](https://github.com/mobify/bellows/compare). Please ensure you describe your changes in your pull request, as they have a higher liklihood of being merged. 
 
 
