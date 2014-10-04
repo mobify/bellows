@@ -15,7 +15,8 @@
         HEADER: 'bellows__header',
         OPENED: 'bellows--is-open',
         OPENING: 'bellows--is-opening',
-        CLOSING: 'bellows--is-closing'
+        CLOSING: 'bellows--is-closing',
+        DISABLED: 'bellows--is-disabled'
     };
 
     var selectors = {
@@ -28,7 +29,7 @@
         Bellows.__super__.call(this, element, options, Bellows.DEFAULTS);
     }
 
-    Bellows.VERSION = '4.0.1';
+    Bellows.VERSION = '4.1.1';
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
@@ -128,7 +129,7 @@
         open: function($item) {
             $item = this._item($item);
 
-            if ($item.hasClass(cssClasses.OPENED)) {
+            if ($item.hasClass(cssClasses.OPENED) || $item.hasClass(cssClasses.DISABLED)) {
                 return;
             }
 

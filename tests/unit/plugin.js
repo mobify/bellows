@@ -2,10 +2,11 @@ define([
     'text!fixtures/bellows.html',
     'text!fixtures/items.html',
     'text!fixtures/item.html',
+    'text!fixtures/disableditem.html',
     '$',
     'velocity',
     'bellows'
-], function(fixture, items, item, $) {
+], function(fixture, items, item, disabledItem, $) {
     var element;
 
     describe('Bellows plugin', function() {
@@ -139,6 +140,25 @@ define([
 
             it('throws when attempting to invoke methods that aren\'t functions', function() {
                 assert.throws(function() { element.bellows().bellows('singleItemOpen'); });
+            });
+        });
+
+        describe('disabling a bellows item', function() {
+            it('does not open item when header clicked', function(done) {
+                element.bellows();
+
+                var $disabledItem = $(disabledItem);
+
+                element.bellows('add', $disabledItem);
+
+                $disabledItem
+                    .find('.bellows__header')
+                    .trigger('click');
+
+                setTimeout(function() {
+                    assert.isFalse($disabledItem.hasClass('bellows--is-open'));
+                    done();
+                });
             });
         });
     });
