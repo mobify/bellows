@@ -141,5 +141,25 @@ define([
                 assert.throws(function() { element.bellows().bellows('singleItemOpen'); });
             });
         });
+
+        describe('disabling touch events on bellows items via CSS class', function() {
+            it('does not apply \'.bellows--is-open\' to bellows items on touch event', function(done) {
+                element.bellows();
+
+                var $item = $(item);
+
+                element.bellows('add', $item, true);
+
+                $item
+                    .addClass('bellows--is-disabled')
+                    .find('.bellows__header')
+                    .trigger('click');
+
+                setTimeout(function() {
+                    assert.isFalse($item.hasClass('bellows--is-open'));
+                    done();
+                }, 300);
+            });
+        });
     });
 });
