@@ -2,10 +2,11 @@ define([
     'text!fixtures/bellows.html',
     'text!fixtures/items.html',
     'text!fixtures/item.html',
+    'text!fixtures/disableditem.html',
     '$',
     'velocity',
     'bellows'
-], function(fixture, items, item, $) {
+], function(fixture, items, item, disabledItem, $) {
     var element;
 
     describe('Bellows plugin', function() {
@@ -142,23 +143,22 @@ define([
             });
         });
 
-        describe('disabling touch events on bellows items via CSS class', function() {
-            it('does not apply \'.bellows--is-open\' to bellows items on touch event', function(done) {
+        describe('disabling a bellows item', function() {
+            it('does not open item when header clicked', function(done) {
                 element.bellows();
 
-                var $item = $(item);
+                var $disabledItem = $(disabledItem);
 
-                element.bellows('add', $item, true);
+                element.bellows('add', $disabledItem);
 
-                $item
-                    .addClass('bellows--is-disabled')
+                $disabledItem
                     .find('.bellows__header')
                     .trigger('click');
 
                 setTimeout(function() {
-                    assert.isFalse($item.hasClass('bellows--is-open'));
+                    assert.isFalse($disabledItem.hasClass('bellows--is-open'));
                     done();
-                }, 300);
+                });
             });
         });
     });
