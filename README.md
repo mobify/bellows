@@ -92,7 +92,8 @@ At a bare minimum, your markup structure should follow the above structure. You 
             <p>Content</p>
         </div>
     </div>
-    <div class="bellows__item">
+    <!-- Use the disabled class if you want items to not respond to open/closed events -->
+    <div class="bellows__item bellows--is-disabled">
         <div class="bellows__header">
             <h3>Header</h3>
         </div>
