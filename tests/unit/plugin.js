@@ -156,6 +156,7 @@ define([
                     .trigger('click');
 
                 setTimeout(function() {
+                    assert.isTrue($disabledItem.hasClass('bellows--is-disabled'));
                     assert.isFalse($disabledItem.hasClass('bellows--is-open'));
                     done();
                 });
