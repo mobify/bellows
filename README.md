@@ -265,12 +265,6 @@ $('.bellows').bellows({
 });
 ```
 
-### Storing bellows object for future use
-
-```js
-var $bellows = $('.bellows');
-```
-
 ## Methods
 
 ### Open
