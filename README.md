@@ -332,7 +332,7 @@ $bellows.bellows('add', items, true);
 ### Steps
 1. `npm install`
 1. `bower install`
-1. `grunt build-dist`
+1. `grunt build`
 
 The `dist` directory will be populated with minified versions of the css and javascript files for distribution and use with whatever build system you might use. The `src` directory has our raw unminified Sass and Javascript files if you prefer to work with those.
 
