@@ -35,7 +35,7 @@ Increment the version number in the package.json file according to the [semver](
 Run the following `grunt` task to build the dist:
 
 ```
-grunt build-dist
+grunt build
 ```
 
 Push to your fork, and open a [pull request](https://github.com/mobify/bellows/compare). Please ensure you describe your changes in your pull request, as they have a higher liklihood of being merged. 
