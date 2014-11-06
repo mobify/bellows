@@ -6,4 +6,5 @@ test:
     pre:
         - bower install
     override:
+        - grunt lint
         - grunt test 
