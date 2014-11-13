@@ -2,12 +2,13 @@ machine:
   node:
     version: 0.10.21
 
+environment: 
+  COVERALLS_REPO_TOKEN: ZXJSa3bEYBoUd68pUoMU7YvA21RcWlf6k
+
 test:
     pre:
         - bower install
     override:
-      environment: 
-          COVERALLS_REPO_TOKEN: ZXJSa3bEYBoUd68pUoMU7YvA21RcWlf6k
         - grunt lint
         - grunt test 
 
