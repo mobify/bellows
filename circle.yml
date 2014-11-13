@@ -4,7 +4,10 @@ machine:
 
 test:
     pre:
+      environment: 
+        COVERALLS_REPO_TOKEN: ZXJSa3bEYBoUd68pUoMU7YvA21RcWlf6k
         - bower install
     override:
         - grunt lint
         - grunt test 
+
