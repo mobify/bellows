@@ -3,9 +3,9 @@ machine:
     version: 0.10.21
 
 test:
-    pre:
-      environment: 
+    environment: 
         COVERALLS_REPO_TOKEN: ZXJSa3bEYBoUd68pUoMU7YvA21RcWlf6k
+    pre:
         - bower install
     override:
         - grunt lint
