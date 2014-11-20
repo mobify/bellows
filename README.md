@@ -105,7 +105,8 @@ At a bare minimum, your markup structure should follow the above structure. You 
 
 <!-- Include dependencies -->
 <script src="zepto.min.js"></script>
-<script src="velocity.min.js"></script>
+<script src="/bower_components/mobify-velocity/dist/velocity.min.js"></script>
+<script src="/bower_components/plugin/dist/plugin.min.js"></script>
 
 <!-- Include bellows.js -->
 <script src="bellows.min.js"></script>
