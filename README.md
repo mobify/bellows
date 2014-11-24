@@ -310,6 +310,23 @@ or replacing existing elements
 $bellows.bellows('add', items, true);
 ```
 
+## Known Issues and Workarounds
+
+When the `singleItemOpen` configuration option is selected and the bellows items contain content that is larger than the overall viewport, closing an item can leave the user disoriented. This is due to the way `singleItemOpen` works; it closes all open items, then animates the selected one open. This can cause the positioning of the active item in the viewport to shift either up or down, resulting it it not being in the same position as when it was clicked.
+
+To get around this, you can scroll to the item once the animation finishes. To do so, you just need to add the following to the `opened` event:
+
+```
+$('.bellows').bellows({
+    singleItemOpen: true,
+    opened: function(e, ui) {
+        Velocity.animate(ui.item, 'scroll');
+    }
+});
+```
+
+This will scroll the viewport to the opened bellows item, restoring its position in the viewport. 
+
 ## Browser Compatibility
 
 | Browser           | Version | Support                    |
