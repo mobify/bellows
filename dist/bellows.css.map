@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEI,yDAAoB;EAChB,OAAO,EAAE,IAAI;;AAMjB;8DAA4B;EAExB,OAAO,EAAE,KAAK;;AAItB,yBAA0B;EACtB,OAAO,EAAE,IAAI",
-"sources": ["../src/style/bellows.scss"],
-"names": [],
-"file": "bellows.css"
-}
