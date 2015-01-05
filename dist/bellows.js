@@ -52,6 +52,12 @@
             this._bindEvents();
         },
 
+        destroy: function() {
+            this.$bellows
+                .removeData(this.name)
+                .off(this.options.event);
+        },
+
         _bindEvents: function() {
             var plugin = this;
 

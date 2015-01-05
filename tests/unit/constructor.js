@@ -5,18 +5,20 @@ define([
     'bellows'
 ], function(fixture, $) {
     var Bellows;
-    var element;
+    var $element;
 
     describe('Bellows constructor', function() {
         beforeEach(function() {
             Bellows = $.fn.bellows.Constructor;
-            element = $(fixture);
+            $element = $(fixture);
         });
 
         it('creates a bellows instance', function() {
-            var bellows = new Bellows(element);
+            var bellows = new Bellows($element);
 
             assert.isDefined(bellows);
+
+            bellows.destroy();
         });
     });
 });
