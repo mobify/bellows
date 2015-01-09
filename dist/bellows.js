@@ -33,7 +33,7 @@
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
-        event: 'click',
+        event: 'click.bellow',
         duration: 200,
         easing: 'swing',
         open: $.noop,
