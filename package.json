@@ -4,7 +4,7 @@
     "type" : "git",
     "url" : "https://github.com/mobify/bellows.git"
   },
-  "version": "4.2.0",
+  "version": "5.0.0",
   "description": "A mobile first accordion UI plugin",
   "devDependencies": {
     "grunt": "~0.4.x",
