@@ -25,6 +25,10 @@
         ITEM_CONTENT: '> .bellows__item > .bellows__content'
     };
 
+    var events = {
+        CLICK: 'click.bellows'
+    };
+
     function Bellows(element, options) {
         Bellows.__super__.call(this, element, options, Bellows.DEFAULTS);
     }
@@ -33,7 +37,6 @@
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
-        event: 'click.bellow',
         duration: 200,
         easing: 'swing',
         open: $.noop,
@@ -55,7 +58,7 @@
         destroy: function() {
             this.$bellows
                 .removeData(this.name)
-                .off(this.options.event);
+                .off(events.CLICK);
         },
 
         _bindEvents: function() {
@@ -69,7 +72,7 @@
                the event from a direct child, not a bellows child from a nested bellows.
              */
             this.$bellows
-                .on(this.options.event, function(e) {
+                .on(events.CLICK, function(e) {
                     var $target = $(e.target);
                     var $closestBellows = $target.closest('.bellows');
 
