@@ -120,8 +120,8 @@ define([
                     }
                 });
 
+                $element.bellows('add', items);
                 $element
-                    .bellows('add', items)
                     .find('.bellows__header:eq(3)')
                     .trigger('click');
             });
