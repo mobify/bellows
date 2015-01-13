@@ -19,7 +19,7 @@
     "./!(src|dist|lib|templates)"
   ],
   "dependencies": {
-    "plugin": "2.1.0",
+    "plugin": "~3.0.0",
     "mobify-velocity": "1.1.2",
     "requirejs-text": "~2.0.12",
     "requirejs": "~2.1.14"
