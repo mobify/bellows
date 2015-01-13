@@ -7,15 +7,11 @@ define([
     'velocity',
     'bellows'
 ], function(fixture, items, item, disabledItem, $) {
-    var element;
+    var $element;
 
     describe('Bellows plugin', function() {
         beforeEach(function() {
-            element = $(fixture).appendTo('#container');
-        });
-
-        afterEach(function() {
-            element = null;
+            $element = $(fixture).appendTo('#container');
         });
 
         describe('binding to Zepto\'s fn', function() {
@@ -33,47 +29,55 @@ define([
         });
 
         describe('invoking bellows', function() {
-            it('creates bellows instance on element', function() {
-                element.bellows();
-
-                assert.isDefined(element.data('bellows'));
+            afterEach(function() {
+                $element.bellows('destroy');
             });
 
-            it('stores element inside instance', function() {
-                element.bellows();
+            it('creates bellows instance on $element', function() {
+                $element.bellows();
 
-                assert.isDefined(element.data('bellows').$bellows);
+                assert.isDefined($element.data('bellows'));
+            });
+
+            it('stores $element inside instance', function() {
+                $element.bellows();
+
+                assert.isDefined($element.data('bellows').$bellows);
             });
 
             it('wraps each content section with correct CSS class', function() {
-                element.bellows();
+                $element.bellows();
 
-                assert.lengthOf(element.find('.bellows__content-wrapper'), 2);
+                assert.lengthOf($element.find('.bellows__content-wrapper'), 2);
             });
         });
 
         describe('invoking bellows methods before plugin is initialized', function() {
             it('throws when not initialized', function() {
-                assert.throws(function() { element.bellows('open'); });
+                assert.throws(function() { $element.bellows('open'); });
             });
         });
 
         describe('invoking bellows methods using the plugin interface', function() {
+            afterEach(function() {
+                $element.bellows('destroy');
+            });
+
             it('opens a bellows item using the open method', function(done) {
-                element.bellows({
+                $element.bellows({
                     opened: function(e, ui) {
                         assert.isTrue(ui.item.hasClass('bellows--is-open'));
                         done();
                     }
                 });
 
-                element.bellows('open', 0);
+                $element.bellows('open', 0);
             });
 
             it('closes a bellows item using the close method', function(done) {
-                element.bellows({
+                $element.bellows({
                     opened: function() {
-                        element.bellows('close', 0);
+                        $element.bellows('close', 0);
                     },
                     closed: function(e, ui) {
                         assert.isFalse(ui.item.hasClass('bellows--is-open'));
@@ -81,24 +85,24 @@ define([
                     }
                 });
 
-                element.bellows('open', 0);
+                $element.bellows('open', 0);
             });
 
             it('removes aria-hidden attribute when open', function(done) {
-                element.bellows({
+                $element.bellows({
                     opened: function(e, ui) {
                         assert.isFalse(!!ui.item.find('.bellows__content-wrapper').attr('aria-hidden'));
                         done();
                     }
                 });
 
-                element.bellows('open', 0);
+                $element.bellows('open', 0);
             });
 
             it('adds aria-hidden attribute when closed', function(done) {
-                element.bellows({
+                $element.bellows({
                     opened: function() {
-                        element.bellows('close', 0);
+                        $element.bellows('close', 0);
                     },
                     closed: function(e, ui) {
                         assert.isTrue(!!ui.item.find('.bellows__content-wrapper').attr('aria-hidden'));
@@ -106,50 +110,54 @@ define([
                     }
                 });
 
-                element.bellows('open', 0);
+                $element.bellows('open', 0);
             });
 
             it('enables handlers for dynamically added items', function(done) {
-                element.bellows({
+                $element.bellows({
                     open: function() {
                         done();
                     }
                 });
 
-                element
+                $element
                     .bellows('add', items)
                     .find('.bellows__header:eq(3)')
                     .trigger('click');
             });
 
             it('replaces items when adding with replace', function() {
-                element.bellows();
+                $element.bellows();
 
-                element.bellows('add', item, true);
+                $element.bellows('add', item, true);
 
-                assert.equal(element.find('.bellows__item').length, 1);
+                assert.equal($element.find('.bellows__item').length, 1);
             });
 
             it('throws for method calls that don\'t exist', function() {
-                assert.throws(function() { element.bellows().bellows('noMethod'); });
+                assert.throws(function() { $element.bellows().bellows('noMethod'); });
             });
 
             it('throws when attempting to invoke private methods', function() {
-                assert.throws(function() { element.bellows().bellows('_init'); });
+                assert.throws(function() { $element.bellows().bellows('_init'); });
             });
 
             it('throws when attempting to invoke methods that aren\'t functions', function() {
-                assert.throws(function() { element.bellows().bellows('singleItemOpen'); });
+                assert.throws(function() { $element.bellows().bellows('singleItemOpen'); });
             });
         });
 
         describe('disabling a bellows item', function() {
+            afterEach(function() {
+                $element.bellows('destroy');
+            });
+
             it('does not open item when header clicked', function(done) {
-                element.bellows();
+                $element.bellows();
 
                 var $disabledItem = $(disabledItem);
 
-                element.bellows('add', $disabledItem);
+                $element.bellows('add', $disabledItem);
 
                 $disabledItem
                     .find('.bellows__header')

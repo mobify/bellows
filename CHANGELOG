@@ -1,3 +1,6 @@
+5.0.0
+  - Adding `destroy` method
+  - Removing `event` option in favour of internalizing a namespaced event 
 4.1.2
   - Moved gremlins.js dependency to devDependencies
 4.1.1
