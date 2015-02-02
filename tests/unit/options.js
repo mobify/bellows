@@ -1,42 +1,48 @@
 define([
-    'text!fixtures/bellows.html',
-    '$',
-    'velocity',
-    'bellows'
-], function(fixture, $) {
+    'iframe-fixture',
+    'text!fixtures/bellows.html'
+], function(iframeFixture, fixture) {
     var Bellows;
-    var element;
+    var $element;
+    var $;
 
     describe('Bellows options', function() {
-        beforeEach(function() {
-            Bellows = $.fn.bellows.Constructor;
-            element = $(fixture);
+        beforeEach(function(done) {
+            var setUp = function(iFrame$) {
+                $ = iFrame$;
+                Bellows = $.fn.bellows.Constructor;
+                $element = $(fixture);
+
+                done();
+            };
+
+            iframeFixture.setUp('iframe-bellows', setUp);
         });
 
         describe('creates default options when no options parameter not used', function() {
             it('correctly defines singleItemOpen', function() {
-                var bellows = new Bellows(element);
+                var bellows = new Bellows($element);
 
                 assert.isFalse(bellows.options.singleItemOpen);
                 assert.isBoolean(bellows.options.singleItemOpen);
             });
 
             it('correctly defines duration', function() {
-                var bellows = new Bellows(element);
+                var bellows = new Bellows($element);
 
                 assert.equal(bellows.options.duration, 200);
                 assert.isNumber(bellows.options.duration);
             });
 
             it('correctly defines easing', function() {
-                var bellows = new Bellows(element);
+                var bellows = new Bellows($element);
 
                 assert.equal(bellows.options.easing, 'swing');
                 assert.isString(bellows.options.easing);
             });
 
             it('correctly defines events', function() {
-                var bellows = new Bellows(element);
+                var bellows = new Bellows($element);
 
                 assert.isFunction(bellows.options.open);
                 assert.isFunction(bellows.options.opened);
@@ -47,21 +53,21 @@ define([
 
         describe('creates custom options when options parameter used', function() {
             it('correctly defines singleItemOpen as true', function() {
-                var bellows = new Bellows(element, { singleItemOpen: true });
+                var bellows = new Bellows($element, { singleItemOpen: true });
 
                 assert.isTrue(bellows.options.singleItemOpen);
                 assert.isBoolean(bellows.options.singleItemOpen);
             });
 
             it('correctly defines duration of 400', function() {
-                var bellows = new Bellows(element, { duration: 400 });
+                var bellows = new Bellows($element, { duration: 400 });
 
                 assert.equal(bellows.options.duration, 400);
                 assert.isNumber(bellows.options.duration);
             });
 
             it('correctly defines easing as ease-in-out', function() {
-                var bellows = new Bellows(element, { easing: 'ease-in-out'});
+                var bellows = new Bellows($element, { easing: 'ease-in-out'});
 
                 assert.equal(bellows.options.easing, 'ease-in-out');
                 assert.isString(bellows.options.easing);
@@ -71,7 +77,7 @@ define([
                 var open = function() {
                     console.log('I\'m open!')
                 };
-                var bellows = new Bellows(element, { open: open });
+                var bellows = new Bellows($element, { open: open });
 
                 assert.equal(bellows.options.open, open);
                 assert.isFunction(bellows.options.open);
@@ -81,7 +87,7 @@ define([
                 var open = function() {
                     console.log('Open!')
                 };
-                var bellows = new Bellows(element, { open: open });
+                var bellows = new Bellows($element, { open: open });
 
                 assert.equal(bellows.options.open, open);
                 assert.isFunction(bellows.options.open);
@@ -91,7 +97,7 @@ define([
                 var opened = function() {
                     console.log('Opened!')
                 };
-                var bellows = new Bellows(element, { opened: opened });
+                var bellows = new Bellows($element, { opened: opened });
 
                 assert.equal(bellows.options.opened, opened);
                 assert.isFunction(bellows.options.opened);
@@ -101,7 +107,7 @@ define([
                 var close = function() {
                     console.log('Close!')
                 };
-                var bellows = new Bellows(element, { close: close });
+                var bellows = new Bellows($element, { close: close });
 
                 assert.equal(bellows.options.close, close);
                 assert.isFunction(bellows.options.close);
@@ -111,7 +117,7 @@ define([
                 var closed = function() {
                     console.log('Closed!')
                 };
-                var bellows = new Bellows(element, { closed: closed });
+                var bellows = new Bellows($element, { closed: closed });
 
                 assert.equal(bellows.options.closed, closed);
                 assert.isFunction(bellows.options.closed);

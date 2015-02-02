@@ -1,12 +1,12 @@
 define([
-    'text!fixtures/bellows.html',
-    '$',
-    'velocity',
-    'bellows'
-], function(fixture, $) {
+    'iframe-fixture',
+    'text!fixtures/bellows.html'
+], function(iframeFixture, fixture) {
+    var Bellows;
     var $element;
+    var $;
 
-    describe('Bellows events', function() {
+    describe('Bellows constructor', function() {
         var stringify = JSON.stringify;
 
         before(function() {
@@ -27,12 +27,16 @@ define([
             JSON.stringify = stringify;
         });
 
-        beforeEach(function() {
-            $element = $(fixture).appendTo('#container');
-        });
+        beforeEach(function(done) {
+            var setUp = function(iFrame$) {
+                $ = iFrame$;
+                Bellows = $.fn.bellows.Constructor;
+                $element = $(fixture).appendTo('#container');
 
-        afterEach(function() {
-            $element.bellows('destroy');
+                done();
+            };
+
+            iframeFixture.setUp('iframe-bellows', setUp);
         });
 
         it('fires the open event when the header is clicked', function(done) {

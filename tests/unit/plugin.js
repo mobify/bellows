@@ -1,17 +1,25 @@
 define([
+    'iframe-fixture',
     'text!fixtures/bellows.html',
     'text!fixtures/items.html',
     'text!fixtures/item.html',
-    'text!fixtures/disableditem.html',
-    '$',
-    'velocity',
-    'bellows'
-], function(fixture, items, item, disabledItem, $) {
+    'text!fixtures/disableditem.html'
+], function(iframeFixture, fixture, items, item, disabledItem) {
+    var Bellows;
     var $element;
+    var $;
 
     describe('Bellows plugin', function() {
-        beforeEach(function() {
-            $element = $(fixture).appendTo('#container');
+        beforeEach(function(done) {
+            var setUp = function(iFrame$) {
+                $ = iFrame$;
+                Bellows = $.fn.bellows.Constructor;
+                $element = $(fixture).appendTo('#container');
+
+                done();
+            };
+
+            iframeFixture.setUp('iframe-bellows', setUp);
         });
 
         describe('binding to Zepto\'s fn', function() {
@@ -29,10 +37,6 @@ define([
         });
 
         describe('invoking bellows', function() {
-            afterEach(function() {
-                $element.bellows('destroy');
-            });
-
             it('creates bellows instance on $element', function() {
                 $element.bellows();
 
@@ -59,10 +63,6 @@ define([
         });
 
         describe('invoking bellows methods using the plugin interface', function() {
-            afterEach(function() {
-                $element.bellows('destroy');
-            });
-
             it('opens a bellows item using the open method', function(done) {
                 $element.bellows({
                     opened: function(e, ui) {
@@ -148,10 +148,6 @@ define([
         });
 
         describe('disabling a bellows item', function() {
-            afterEach(function() {
-                $element.bellows('destroy');
-            });
-
             it('does not open item when header clicked', function(done) {
                 $element.bellows();
 

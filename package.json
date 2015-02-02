@@ -4,7 +4,7 @@
     "type" : "git",
     "url" : "https://github.com/mobify/bellows.git"
   },
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A mobile first accordion UI plugin",
   "devDependencies": {
     "grunt": "~0.4.x",
@@ -12,7 +12,7 @@
     "grunt-css": "~0.5.4",
     "grunt-shell": "~0.2.1",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-connect": "~0.9.0",
     "grunt-contrib-watch": "~0.5.1",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-autoprefixer": "~2.0.0",
@@ -25,7 +25,8 @@
     "grunt-mocha-phantomjs": "~0.3.2",
     "grunt-open": "^0.2.3",
     "mocha": "~1.14.0",
-    "chai": "~1.9.0"
+    "chai": "~1.9.0",
+    "requirejs-glob": "git+ssh://git@github.com:mobify/requirejs-glob.git"
   },
   "license": "MIT"
 }

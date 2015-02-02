@@ -1,4 +1,9 @@
 module.exports = function(grunt) {
+    var addRequireJSGlob = function(connect, options, middlewares) {
+        middlewares.unshift(require('requirejs-glob')());
+        return middlewares;
+    };
+
     return {
         server: {
             options: {
@@ -11,7 +16,8 @@ module.exports = function(grunt) {
             options: {
                 hostname: '0.0.0.0',
                 port: 8888,
-                base: '.'
+                base: '.',
+                middleware: addRequireJSGlob
             }
         }
     };
