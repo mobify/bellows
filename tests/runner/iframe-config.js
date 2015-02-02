@@ -3,7 +3,6 @@ require.config({
     paths: {
         'text': 'bower_components/requirejs-text/text',
         'fixtures': 'tests/fixtures',
-        'bouncefix': 'bower_components/bouncefix.js/dist/bouncefix.min',
         '$': 'lib/zeptojs/dist/zepto',
         'velocity': 'bower_components/mobify-velocity/velocity',
         'chai': 'node_modules/chai/chai',
