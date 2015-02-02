@@ -1,14 +1,14 @@
 define([
-    'iframe-fixture',
+    'test-sandbox',
     'text!fixtures/bellows.html'
-], function(iframeFixture, fixture) {
+], function(testSandbox, fixture) {
     var Bellows;
     var $element;
     var $;
 
     describe('Bellows constructor', function() {
         beforeEach(function(done) {
-            var setUp = function(iFrame$) {
+            var setUpComplete = function(iFrame$) {
                 $ = iFrame$;
                 Bellows = $.fn.bellows.Constructor;
                 $element = $(fixture);
@@ -16,7 +16,7 @@ define([
                 done();
             };
 
-            iframeFixture.setUp('iframe-bellows', setUp);
+            testSandbox.setUp('sandbox', setUpComplete);
         });
 
         it('creates a bellows instance', function() {

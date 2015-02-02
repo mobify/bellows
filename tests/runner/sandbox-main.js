@@ -1,5 +1,5 @@
 
-require(['iframe-config'], function() {
+require(['sandbox-config'], function() {
     require([
         '$',
         'velocity',

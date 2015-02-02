@@ -7,7 +7,7 @@ require.config({
         '$': 'lib/zeptojs/dist/zepto.min',
         'chai': 'node_modules/chai/chai',
         'mocha': 'node_modules/mocha/mocha',
-        'iframe-fixture': 'tests/utils/iframe-fixture'
+        'test-sandbox': 'tests/utils/test-sandbox'
     },
     'shim': {
         'mocha': {

@@ -1,17 +1,17 @@
 define([
-    'iframe-fixture',
+    'test-sandbox',
     'text!fixtures/bellows.html',
     'text!fixtures/items.html',
     'text!fixtures/item.html',
     'text!fixtures/disableditem.html'
-], function(iframeFixture, fixture, items, item, disabledItem) {
+], function(testSandbox, fixture, items, item, disabledItem) {
     var Bellows;
     var $element;
     var $;
 
     describe('Bellows plugin', function() {
         beforeEach(function(done) {
-            var setUp = function(iFrame$) {
+            var setUpComplete = function(iFrame$) {
                 $ = iFrame$;
                 Bellows = $.fn.bellows.Constructor;
                 $element = $(fixture).appendTo('#container');
@@ -19,7 +19,7 @@ define([
                 done();
             };
 
-            iframeFixture.setUp('iframe-bellows', setUp);
+            testSandbox.setUp('sandbox', setUpComplete);
         });
 
         describe('binding to Zepto\'s fn', function() {

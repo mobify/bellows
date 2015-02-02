@@ -4,7 +4,7 @@ define([
 
     var $body = $(document.body);
 
-    var setUp = function(fixture, suite) {
+    var setUp = function(fixture, setUpComplete) {
         var $frame = $('<iframe />').attr('src', '/tests/fixtures/' + fixture + '.html');
 
         var $oldiFrame = $body.find('iframe');
@@ -21,7 +21,7 @@ define([
 
             // once the iframe is loaded, call back to the parent,
             // passing through the required dependencies
-            suite(frameWindow.$, frameWindow.dependencies);
+            setUpComplete(frameWindow.$, frameWindow.dependencies);
         });
     };
 

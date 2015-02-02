@@ -1,7 +1,7 @@
 define([
-    'iframe-fixture',
+    'test-sandbox',
     'text!fixtures/bellows.html'
-], function(iframeFixture, fixture) {
+], function(testSandbox, fixture) {
     var Bellows;
     var $element;
     var $;
@@ -28,7 +28,7 @@ define([
         });
 
         beforeEach(function(done) {
-            var setUp = function(iFrame$) {
+            var setUpComplete = function(iFrame$) {
                 $ = iFrame$;
                 Bellows = $.fn.bellows.Constructor;
                 $element = $(fixture).appendTo('#container');
@@ -36,7 +36,7 @@ define([
                 done();
             };
 
-            iframeFixture.setUp('iframe-bellows', setUp);
+            testSandbox.setUp('sandbox', setUpComplete);
         });
 
         it('fires the open event when the header is clicked', function(done) {
