@@ -6,7 +6,7 @@ require(['test-config'], function() {
         ],
         function(require, chai, mocha) {
             require(['glob!tests/unit/*.js'], function() {
-                window.assert = chai.assert;
+                window.expect = chai.expect;
 
                 if (window.mochaPhantomJS) {
                     return window.mochaPhantomJS.run();

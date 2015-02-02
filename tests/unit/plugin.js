@@ -26,13 +26,13 @@ define([
             it('defines bellows in Zepto', function() {
                 var bellows = $.fn.bellows;
 
-                assert.isDefined(bellows);
+                expect(bellows).to.be.defined;
             });
 
             it('defines bellows as a function', function() {
                 var bellows = $.fn.bellows;
 
-                assert.isFunction(bellows);
+                expect(bellows).to.be.a('function');
             });
         });
 
@@ -40,25 +40,25 @@ define([
             it('creates bellows instance on $element', function() {
                 $element.bellows();
 
-                assert.isDefined($element.data('bellows'));
+                expect($element.data('bellows')).to.be.defined;
             });
 
             it('stores $element inside instance', function() {
                 $element.bellows();
 
-                assert.isDefined($element.data('bellows').$bellows);
+                expect($element.data('bellows').$bellows).to.be.defined;
             });
 
             it('wraps each content section with correct CSS class', function() {
                 $element.bellows();
 
-                assert.lengthOf($element.find('.bellows__content-wrapper'), 2);
+                expect($element.find('.bellows__content-wrapper')).to.have.length(2);
             });
         });
 
         describe('invoking bellows methods before plugin is initialized', function() {
             it('throws when not initialized', function() {
-                assert.throws(function() { $element.bellows('open'); });
+                expect(function() { $element.bellows('open'); }).to.throw;
             });
         });
 
@@ -66,7 +66,7 @@ define([
             it('opens a bellows item using the open method', function(done) {
                 $element.bellows({
                     opened: function(e, ui) {
-                        assert.isTrue(ui.item.hasClass('bellows--is-open'));
+                        expect(ui.item.hasClass('bellows--is-open')).to.be.true;
                         done();
                     }
                 });
@@ -80,7 +80,7 @@ define([
                         $element.bellows('close', 0);
                     },
                     closed: function(e, ui) {
-                        assert.isFalse(ui.item.hasClass('bellows--is-open'));
+                        expect(ui.item.hasClass('bellows--is-open')).to.be.false;
                         done();
                     }
                 });
@@ -91,7 +91,7 @@ define([
             it('removes aria-hidden attribute when open', function(done) {
                 $element.bellows({
                     opened: function(e, ui) {
-                        assert.isFalse(!!ui.item.find('.bellows__content-wrapper').attr('aria-hidden'));
+                        expect(!!ui.item.find('.bellows__content-wrapper').attr('aria-hidden')).to.be.false;
                         done();
                     }
                 });
@@ -105,7 +105,7 @@ define([
                         $element.bellows('close', 0);
                     },
                     closed: function(e, ui) {
-                        assert.isTrue(!!ui.item.find('.bellows__content-wrapper').attr('aria-hidden'));
+                        expect(!!ui.item.find('.bellows__content-wrapper').attr('aria-hidden')).to.be.true;
                         done();
                     }
                 });
@@ -131,19 +131,19 @@ define([
 
                 $element.bellows('add', item, true);
 
-                assert.equal($element.find('.bellows__item').length, 1);
+                expect($element.find('.bellows__item')).to.have.length(1);
             });
 
             it('throws for method calls that don\'t exist', function() {
-                assert.throws(function() { $element.bellows().bellows('noMethod'); });
+                expect(function() { $element.bellows().bellows('noMethod'); }).to.throw;
             });
 
             it('throws when attempting to invoke private methods', function() {
-                assert.throws(function() { $element.bellows().bellows('_init'); });
+                expect(function() { $element.bellows().bellows('_init'); }).to.throw;
             });
 
             it('throws when attempting to invoke methods that aren\'t functions', function() {
-                assert.throws(function() { $element.bellows().bellows('singleItemOpen'); });
+                expect(function() { $element.bellows().bellows('singleItemOpen'); }).to.throw;
             });
         });
 
@@ -160,8 +160,8 @@ define([
                     .trigger('click');
 
                 setTimeout(function() {
-                    assert.isTrue($disabledItem.hasClass('bellows--is-disabled'));
-                    assert.isFalse($disabledItem.hasClass('bellows--is-open'));
+                    expect($disabledItem.hasClass('bellows--is-disabled')).to.be.true;
+                    expect($disabledItem.hasClass('bellows--is-open')).to.be.false;
                     done();
                 });
             });

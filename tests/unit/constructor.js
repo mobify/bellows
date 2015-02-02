@@ -22,7 +22,7 @@ define([
         it('creates a bellows instance', function() {
             var bellows = new Bellows($element);
 
-            assert.isDefined(bellows);
+            expect(bellows).to.be.defined;
         });
     });
 });
