@@ -33,7 +33,7 @@
         Bellows.__super__.call(this, element, options, Bellows.DEFAULTS);
     }
 
-    Bellows.VERSION = '5.0.0';
+    Bellows.VERSION = '5.1.0';
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
@@ -218,7 +218,7 @@
 
         openAll: function() {
             var plugin = this;
-            
+
             this.$bellows.find('.' + cssClasses.ITEM + ':not(.' + cssClasses.OPENED + ')').each(function() {
                 plugin.open($(this));
             });

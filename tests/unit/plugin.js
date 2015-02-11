@@ -96,7 +96,10 @@ define([
                     opened: function(e, ui) {
                         assert.isTrue(ui.item.hasClass('bellows--is-open'));
                         openCount++;
-                        if (openCount === 2) done();
+
+                        if (openCount === 2) {
+                            done();
+                        }
                     }
                 });
 
@@ -111,12 +114,17 @@ define([
                 $element.bellows({
                     opened: function(e, ui) {
                         openCount++;
-                        if (openCount === 2) $element.bellows('closeAll');
+                        if (openCount === 2) {
+                            $element.bellows('closeAll');
+                        }
                     },
                     closed: function(e, ui) {
                         assert.isFalse(ui.item.hasClass('bellows--is-open'));
                         closeCount++;
-                        if (closeCount === 2) done();
+
+                        if (closeCount === 2) {
+                            done();
+                        }
                     }
                 });
 
@@ -134,6 +142,7 @@ define([
                             $element.bellows('openAll');
                             return;
                         }
+
                         assert.equal($element.find('.bellows--is-open').length, 2);
                         done();
                     }
@@ -165,10 +174,13 @@ define([
                 $element.bellows({
                     opened: function(e, ui) {
                         openCount++;
-                        if (openCount === 2) $element.bellows('toggleAll');
+                        if (openCount === 2) {
+                            $element.bellows('toggleAll');
+                        }
                     },
                     closed: function(e, ui) {
                         closeCount++;
+                        
                         if (closeCount === 2) {
                             assert.equal($element.find('.bellows__item:not(.bellows--is-open)').length, 2);
                             done();

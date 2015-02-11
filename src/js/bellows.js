@@ -218,7 +218,7 @@
 
         openAll: function() {
             var plugin = this;
-            
+
             this.$bellows.find('.' + cssClasses.ITEM + ':not(.' + cssClasses.OPENED + ')').each(function() {
                 plugin.open($(this));
             });
