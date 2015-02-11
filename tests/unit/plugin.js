@@ -88,6 +88,97 @@ define([
                 $element.bellows('open', 0);
             });
 
+            it('opens all bellows items using the openAll method', function(done) {
+
+                var openCount = 0;
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        assert.isTrue(ui.item.hasClass('bellows--is-open'));
+                        openCount++;
+                        if (openCount === 2) done();
+                    }
+                });
+
+                $element.bellows('openAll');
+            });
+
+            it('closes all bellows items using the closeAll method', function(done) {
+
+                var openCount = 0;
+                var closeCount = 0;
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        openCount++;
+                        if (openCount === 2) $element.bellows('closeAll');
+                    },
+                    closed: function(e, ui) {
+                        assert.isFalse(ui.item.hasClass('bellows--is-open'));
+                        closeCount++;
+                        if (closeCount === 2) done();
+                    }
+                });
+
+                $element.bellows('openAll');
+            });
+
+            it('opens all bellows items when not all are open', function(done) {
+
+                var openedSingle = false;
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        if (!openedSingle) {
+                            openedSingle = true;
+                            $element.bellows('openAll');
+                            return;
+                        }
+                        assert.equal($element.find('.bellows--is-open').length, 2);
+                        done();
+                    }
+                });
+
+                $element.bellows('open', 0);
+            });
+
+            it('closes all bellows items when not all are closed', function(done) {
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        $element.bellows('closeAll');
+                    },
+                    closed: function(e, ui) {
+                        assert.equal($element.find('.bellows__item:not(.bellows--is-open)').length, 2);
+                        done();
+                    }
+                });
+
+                $element.bellows('open', 0);
+            });
+
+            it('toggles all bellows items', function(done) {
+
+                var openCount = 0;
+                var closeCount = 0;
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        openCount++;
+                        if (openCount === 2) $element.bellows('toggleAll');
+                    },
+                    closed: function(e, ui) {
+                        closeCount++;
+                        if (closeCount === 2) {
+                            assert.equal($element.find('.bellows__item:not(.bellows--is-open)').length, 2);
+                            done();
+                        }
+                    }
+                });
+
+                $element.bellows('toggleAll');
+            });
+
             it('removes aria-hidden attribute when open', function(done) {
                 $element.bellows({
                     opened: function(e, ui) {
