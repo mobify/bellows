@@ -33,7 +33,7 @@
         Bellows.__super__.call(this, element, options, Bellows.DEFAULTS);
     }
 
-    Bellows.VERSION = '5.0.1';
+    Bellows.VERSION = '5.1.1';
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
@@ -206,6 +206,22 @@
                         plugin._trigger('closed', { item: $item });
                     }
                 });
+        },
+
+        toggleAll: function() {
+            var plugin = this;
+
+            this.$bellows.find('.' + cssClasses.ITEM).each(function() {
+                plugin.toggle($(this));
+            });
+        },
+
+        openAll: function() {
+            var plugin = this;
+
+            this.$bellows.find('.' + cssClasses.ITEM + ':not(.' + cssClasses.OPENED + ')').each(function() {
+                plugin.open($(this));
+            });
         },
 
         closeAll: function() {

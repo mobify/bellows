@@ -88,6 +88,109 @@ define([
                 $element.bellows('open', 0);
             });
 
+            it('opens all bellows items using the openAll method', function(done) {
+
+                var openCount = 0;
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        expect(ui.item.hasClass('bellows--is-open')).to.be.true;
+                        openCount++;
+
+                        if (openCount === 2) {
+                            done();
+                        }
+                    }
+                });
+
+                $element.bellows('openAll');
+            });
+
+            it('closes all bellows items using the closeAll method', function(done) {
+
+                var openCount = 0;
+                var closeCount = 0;
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        openCount++;
+                        if (openCount === 2) {
+                            $element.bellows('closeAll');
+                        }
+                    },
+                    closed: function(e, ui) {
+                        expect(ui.item.hasClass('bellows--is-open')).to.be.false;
+                        closeCount++;
+
+                        if (closeCount === 2) {
+                            done();
+                        }
+                    }
+                });
+
+                $element.bellows('openAll');
+            });
+
+            it('opens all bellows items when not all are open', function(done) {
+
+                var openedSingle = false;
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        if (!openedSingle) {
+                            openedSingle = true;
+                            $element.bellows('openAll');
+                            return;
+                        }
+
+                        expect($element.find('.bellows--is-open')).to.have.length(2);
+                        done();
+                    }
+                });
+
+                $element.bellows('open', 0);
+            });
+
+            it('closes all bellows items when not all are closed', function(done) {
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        $element.bellows('closeAll');
+                    },
+                    closed: function(e, ui) {
+                        expect($element.find('.bellows__item:not(.bellows--is-open)')).to.have.length(2);
+                        done();
+                    }
+                });
+
+                $element.bellows('open', 0);
+            });
+
+            it('toggles all bellows items', function(done) {
+
+                var openCount = 0;
+                var closeCount = 0;
+
+                $element.bellows({
+                    opened: function(e, ui) {
+                        openCount++;
+                        if (openCount === 2) {
+                            $element.bellows('toggleAll');
+                        }
+                    },
+                    closed: function(e, ui) {
+                        closeCount++;
+                        
+                        if (closeCount === 2) {
+                            expect($element.find('.bellows__item:not(.bellows--is-open)')).to.have.length(2);
+                            done();
+                        }
+                    }
+                });
+
+                $element.bellows('toggleAll');
+            });
+
             it('removes aria-hidden attribute when open', function(done) {
                 $element.bellows({
                     opened: function(e, ui) {

@@ -208,6 +208,22 @@
                 });
         },
 
+        toggleAll: function() {
+            var plugin = this;
+
+            this.$bellows.find('.' + cssClasses.ITEM).each(function() {
+                plugin.toggle($(this));
+            });
+        },
+
+        openAll: function() {
+            var plugin = this;
+
+            this.$bellows.find('.' + cssClasses.ITEM + ':not(.' + cssClasses.OPENED + ')').each(function() {
+                plugin.open($(this));
+            });
+        },
+
         closeAll: function() {
             var plugin = this;
 
