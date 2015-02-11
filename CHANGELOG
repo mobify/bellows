@@ -1,3 +1,5 @@
+5.0.1
+  - Reworked test infrastructure to use more robust setup and teardown using iframes
 5.0.0
   - Upgrading to latest version of plugin factory
   - Adding `destroy` method

@@ -1,24 +1,28 @@
 define([
-    'text!fixtures/bellows.html',
-    '$',
-    'velocity',
-    'bellows'
-], function(fixture, $) {
+    'test-sandbox',
+    'text!fixtures/bellows.html'
+], function(testSandbox, fixture) {
     var Bellows;
     var $element;
+    var $;
 
     describe('Bellows constructor', function() {
-        beforeEach(function() {
-            Bellows = $.fn.bellows.Constructor;
-            $element = $(fixture);
+        beforeEach(function(done) {
+            var setUpComplete = function(iFrame$) {
+                $ = iFrame$;
+                Bellows = $.fn.bellows.Constructor;
+                $element = $(fixture);
+
+                done();
+            };
+
+            testSandbox.setUp('sandbox', setUpComplete);
         });
 
         it('creates a bellows instance', function() {
             var bellows = new Bellows($element);
 
-            assert.isDefined(bellows);
-
-            bellows.destroy();
+            expect(bellows).to.be.defined;
         });
     });
 });
