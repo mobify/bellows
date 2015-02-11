@@ -268,7 +268,7 @@ $('.bellows').bellows({
 
 ## Methods
 
-### Open
+### open
 
 Open the selected bellows item by element reference
 
@@ -282,7 +282,15 @@ or by index
 $bellows.bellows('open', 1);
 ```
 
-### Close
+### openAll
+
+Opens all the bellows items
+
+```js
+$bellows.bellows('openAll');
+```
+
+### close
     
 Close the selected bellows item by element reference
 
@@ -296,7 +304,37 @@ or by index
 $bellows.bellows('close', 1);
 ```
 
-### Add
+### closeAll
+
+Closes all the bellows items
+
+```js
+$bellows.bellows('closeAll');
+```
+
+### toggle
+    
+Toggle the selected bellows item by element reference
+
+```js
+$bellows.bellows('toggle', $('.bellows__item'));
+```
+
+or by index
+
+```js
+$bellows.bellows('toggle', 1);
+```
+
+### toggleAll
+
+Toggles all the bellows items
+
+```js
+$bellows.bellows('closeAll');
+```
+
+### add
 
 Adds new items to bellows, and correctly wraps their content elements. Optional third parameter allows you to replace all existing elements with the ones specified.
 
