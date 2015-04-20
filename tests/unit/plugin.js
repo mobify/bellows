@@ -3,8 +3,9 @@ define([
     'text!fixtures/bellows.html',
     'text!fixtures/items.html',
     'text!fixtures/item.html',
-    'text!fixtures/disableditem.html'
-], function(testSandbox, fixture, items, item, disabledItem) {
+    'text!fixtures/disableditem.html',
+    'text!fixtures/open-disabled-item.html'
+], function(testSandbox, fixture, items, item, disabledItem, openDisabledItem) {
     var Bellows;
     var $element;
     var $;
@@ -180,7 +181,7 @@ define([
                     },
                     closed: function(e, ui) {
                         closeCount++;
-                        
+
                         if (closeCount === 2) {
                             expect($element.find('.bellows__item:not(.bellows--is-open)')).to.have.length(2);
                             done();
@@ -265,6 +266,24 @@ define([
                 setTimeout(function() {
                     expect($disabledItem.hasClass('bellows--is-disabled')).to.be.true;
                     expect($disabledItem.hasClass('bellows--is-open')).to.be.false;
+                    done();
+                });
+            });
+
+            it('does not close item when header clicked', function(done) {
+                $element.bellows();
+
+                var $openDisabledItem = $(openDisabledItem);
+
+                $element.bellows('add', $openDisabledItem);
+
+                $openDisabledItem
+                    .find('.bellows__header')
+                    .trigger('click');
+
+                setTimeout(function() {
+                    expect($openDisabledItem.hasClass('bellows--is-disabled')).to.be.true;
+                    expect($openDisabledItem.hasClass('bellows--is-open')).to.be.true;
                     done();
                 });
             });
