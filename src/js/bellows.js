@@ -176,7 +176,7 @@
         close: function($item) {
             $item = this._item($item);
 
-            if (!$item.hasClass(cssClasses.OPENED)) {
+            if (!$item.hasClass(cssClasses.OPENED) || $item.hasClass(cssClasses.DISABLED)) {
                 return;
             }
 
