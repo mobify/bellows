@@ -129,6 +129,18 @@
                 .attr('aria-hidden', true);
         },
 
+        /*
+         Helper methods for determining Bellows item's status
+        */
+        _isOpen: function($item) {
+            $item = this._item($item);
+            return $item.hasClass(cssClasses.OPENED);
+        },
+        _isDisabled: function($item) {
+            $item = this._item($item);
+            return $item.hasClass(cssClasses.DISABLED);
+        },
+
         toggle: function($item) {
             $item = this._item($item);
 
@@ -138,7 +150,7 @@
         open: function($item) {
             $item = this._item($item);
 
-            if ($item.hasClass(cssClasses.OPENED) || $item.hasClass(cssClasses.DISABLED)) {
+            if (this._isOpen($item) || this._isDisabled($item)) {
                 return;
             }
 
@@ -176,7 +188,7 @@
         close: function($item) {
             $item = this._item($item);
 
-            if (!$item.hasClass(cssClasses.OPENED) || $item.hasClass(cssClasses.DISABLED)) {
+            if (!this._isOpen($item) || this._isDisabled($item)) {
                 return;
             }
 
