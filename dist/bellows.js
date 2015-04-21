@@ -33,7 +33,7 @@
         Bellows.__super__.call(this, element, options, Bellows.DEFAULTS);
     }
 
-    Bellows.VERSION = '5.1.1';
+    Bellows.VERSION = '5.1.2';
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
