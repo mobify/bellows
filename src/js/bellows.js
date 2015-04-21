@@ -67,9 +67,9 @@
             /**
              * Ghetto Event Delegation™
 
-               Zepto doesn't support descendant selectors in event delegation,
-               so we compare against the closest bellows to ensure we are invoking
-               the event from a direct child, not a bellows child from a nested bellows.
+             Zepto doesn't support descendant selectors in event delegation,
+             so we compare against the closest bellows to ensure we are invoking
+             the event from a direct child, not a bellows child from a nested bellows.
              */
             this.$bellows
                 .on(events.CLICK, function(e) {
@@ -118,6 +118,14 @@
             return item;
         },
 
+        _isOpen: function($item) {
+            return $item.hasClass(cssClasses.OPENED);
+        },
+
+        _isDisabled: function($item) {
+            return $item.hasClass(cssClasses.DISABLED);
+        },
+
         _wrapContent: function($items) {
             $items
                 .find(selectors.ITEM_CONTENT)
@@ -127,18 +135,6 @@
                 .parents('.bellows__item:not(.bellows--is-open)')
                 .find(selectors.ITEM_CONTENT_WRAPPER)
                 .attr('aria-hidden', true);
-        },
-
-        /*
-         Helper methods for determining Bellows item's status
-        */
-        _isOpen: function($item) {
-            $item = this._item($item);
-            return $item.hasClass(cssClasses.OPENED);
-        },
-        _isDisabled: function($item) {
-            $item = this._item($item);
-            return $item.hasClass(cssClasses.DISABLED);
         },
 
         toggle: function($item) {
@@ -161,7 +157,7 @@
                 this.closeAll();
             }
 
-            this._trigger('open', { item: $item });
+            this._trigger('open', {item: $item});
 
             Velocity
                 .animate($contentWrapper, 'slideDown', {
@@ -180,7 +176,7 @@
 
                         plugin._setHeight();
 
-                        plugin._trigger('opened', { item: $item });
+                        plugin._trigger('opened', {item: $item});
                     }
                 });
         },
@@ -195,7 +191,7 @@
             var plugin = this;
             var $contentWrapper = $item.find(selectors.ITEM_CONTENT_WRAPPER);
 
-            this._trigger('close', { item: $item });
+            this._trigger('close', {item: $item});
 
             Velocity
                 .animate($contentWrapper, 'slideUp', {
@@ -215,7 +211,7 @@
 
                         plugin._setHeight();
 
-                        plugin._trigger('closed', { item: $item });
+                        plugin._trigger('closed', {item: $item});
                     }
                 });
         },

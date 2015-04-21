@@ -252,7 +252,7 @@ define([
         });
 
         describe('disabling a bellows item', function() {
-            it('does not open item when header clicked', function(done) {
+            it('does not open item when header clicked', function() {
                 $element.bellows();
 
                 var $disabledItem = $(disabledItem);
@@ -263,14 +263,11 @@ define([
                     .find('.bellows__header')
                     .trigger('click');
 
-                setTimeout(function() {
-                    expect($disabledItem.hasClass('bellows--is-disabled')).to.be.true;
-                    expect($disabledItem.hasClass('bellows--is-open')).to.be.false;
-                    done();
-                });
+                expect($disabledItem.hasClass('bellows--is-disabled')).to.be.true;
+                expect($disabledItem.hasClass('bellows--is-open')).to.be.false;
             });
 
-            it('does not close item when header clicked', function(done) {
+            it('does not close item when header clicked', function() {
                 $element.bellows();
 
                 var $openDisabledItem = $(openDisabledItem);
@@ -281,11 +278,8 @@ define([
                     .find('.bellows__header')
                     .trigger('click');
 
-                setTimeout(function() {
-                    expect($openDisabledItem.hasClass('bellows--is-disabled')).to.be.true;
-                    expect($openDisabledItem.hasClass('bellows--is-open')).to.be.true;
-                    done();
-                });
+                expect($openDisabledItem.hasClass('bellows--is-disabled')).to.be.true;
+                expect($openDisabledItem.hasClass('bellows--is-open')).to.be.true;
             });
         });
     });
