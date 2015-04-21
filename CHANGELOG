@@ -1,9 +1,11 @@
+5.1.2
+  - Ensuring disabled items don't close on close
 5.0.1
   - Reworked test infrastructure to use more robust setup and teardown using iframes
 5.0.0
   - Upgrading to latest version of plugin factory
   - Adding `destroy` method
-  - Removing `event` option in favour of internalizing a namespaced event 
+  - Removing `event` option in favour of internalizing a namespaced event
 4.1.2
   - Moved gremlins.js dependency to devDependencies
 4.1.1

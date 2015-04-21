@@ -33,7 +33,7 @@
         Bellows.__super__.call(this, element, options, Bellows.DEFAULTS);
     }
 
-    Bellows.VERSION = '5.1.1';
+    Bellows.VERSION = '5.1.2';
 
     Bellows.DEFAULTS = {
         singleItemOpen: false,
@@ -67,9 +67,9 @@
             /**
              * Ghetto Event Delegation™
 
-               Zepto doesn't support descendant selectors in event delegation,
-               so we compare against the closest bellows to ensure we are invoking
-               the event from a direct child, not a bellows child from a nested bellows.
+             Zepto doesn't support descendant selectors in event delegation,
+             so we compare against the closest bellows to ensure we are invoking
+             the event from a direct child, not a bellows child from a nested bellows.
              */
             this.$bellows
                 .on(events.CLICK, function(e) {
@@ -118,6 +118,14 @@
             return item;
         },
 
+        _isOpen: function($item) {
+            return $item.hasClass(cssClasses.OPENED);
+        },
+
+        _isDisabled: function($item) {
+            return $item.hasClass(cssClasses.DISABLED);
+        },
+
         _wrapContent: function($items) {
             $items
                 .find(selectors.ITEM_CONTENT)
@@ -138,7 +146,7 @@
         open: function($item) {
             $item = this._item($item);
 
-            if ($item.hasClass(cssClasses.OPENED) || $item.hasClass(cssClasses.DISABLED)) {
+            if (this._isOpen($item) || this._isDisabled($item)) {
                 return;
             }
 
@@ -149,7 +157,7 @@
                 this.closeAll();
             }
 
-            this._trigger('open', { item: $item });
+            this._trigger('open', {item: $item});
 
             Velocity
                 .animate($contentWrapper, 'slideDown', {
@@ -168,7 +176,7 @@
 
                         plugin._setHeight();
 
-                        plugin._trigger('opened', { item: $item });
+                        plugin._trigger('opened', {item: $item});
                     }
                 });
         },
@@ -176,14 +184,14 @@
         close: function($item) {
             $item = this._item($item);
 
-            if (!$item.hasClass(cssClasses.OPENED)) {
+            if (!this._isOpen($item) || this._isDisabled($item)) {
                 return;
             }
 
             var plugin = this;
             var $contentWrapper = $item.find(selectors.ITEM_CONTENT_WRAPPER);
 
-            this._trigger('close', { item: $item });
+            this._trigger('close', {item: $item});
 
             Velocity
                 .animate($contentWrapper, 'slideUp', {
@@ -203,7 +211,7 @@
 
                         plugin._setHeight();
 
-                        plugin._trigger('closed', { item: $item });
+                        plugin._trigger('closed', {item: $item});
                     }
                 });
         },
