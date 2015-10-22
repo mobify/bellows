@@ -80,10 +80,17 @@
                     if ($target.is('a') || !!$target.parents('a').length) {
                         return;
                     }
+                    // If the header has an input, we'll assume that the active area is narrowed to that input
+                    // and clicking elsewhere in the header will not do anything
+                    if ($target.hasClass(cssClasses.HEADER) && !!$target.find('input').length) {
+                        return;
+                    }
 
                     // We need to verify not only that we're inside the direct bellows of the item, but also if the item is a header/child of a header
                     if ($closestBellows[0] === plugin.$bellows[0] && ($target.hasClass(cssClasses.HEADER) || !!$target.closest('.bellows__header').length)) {
-                        e.preventDefault();
+                        if ($target.is(':not(input)')) {
+                            e.preventDefault();
+                        }
 
                         plugin.toggle($target.closest('.bellows__item'));
                     }
