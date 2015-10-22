@@ -85,6 +85,7 @@
                     if ($target.hasClass(cssClasses.HEADER) && !!$target.find('input').length) {
                         return;
                     }
+                    // TODO: remember to run `grunt build`
 
                     // We need to verify not only that we're inside the direct bellows of the item, but also if the item is a header/child of a header
                     if ($closestBellows[0] === plugin.$bellows[0] && ($target.hasClass(cssClasses.HEADER) || !!$target.closest('.bellows__header').length)) {
