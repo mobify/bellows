@@ -1,3 +1,7 @@
+6.0.0
+  - Publish to NPM
+  - Remove Zepto support in favor of jQuery
+  - Migrate all dependencies to NPM, remove Bower
 5.1.2
   - Ensuring disabled items don't close on close
 5.0.1
