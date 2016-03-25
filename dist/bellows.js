@@ -6,7 +6,7 @@
             'plugin'
         ], factory);
     } else {
-        var framework = window.Zepto || window.jQuery;
+        var framework = window.jQuery;
         factory(framework, framework.Velocity, window.Plugin);
     }
 }(function($, Velocity, Plugin) {
@@ -66,7 +66,7 @@
 
             /**
              * Ghetto Event Delegation™
-
+             TODO: Re-evalute this for new default of jQuery
              Zepto doesn't support descendant selectors in event delegation,
              so we compare against the closest bellows to ensure we are invoking
              the event from a direct child, not a bellows child from a nested bellows.
