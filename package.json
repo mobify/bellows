@@ -1,32 +1,53 @@
 {
   "name": "bellows",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/mobify/bellows.git"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mobify/bellows.git"
   },
   "version": "5.1.2",
-  "description": "A mobile first accordion UI plugin",
+  "description": "A mobile-first JavaScript-driven accordion UI plugin",
   "devDependencies": {
-    "grunt": "~0.4.x",
-    "grunt-contrib-uglify": "~0.1.1",
-    "grunt-css": "~0.5.4",
-    "grunt-shell": "~0.2.1",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-connect": "~0.9.0",
-    "grunt-contrib-watch": "~0.5.1",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-autoprefixer": "~2.0.0",
-    "grunt-contrib-sass": "~0.8.1",
+    "chai": "1.9.2",
+    "grunt": "0.4.5",
+    "grunt-autoprefixer": "2.0.0",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-connect": "0.9.0",
+    "grunt-contrib-copy": "0.4.1",
     "grunt-contrib-jshint": "0.10.0",
-    "grunt-version": "^0.3.0",
-    "jshint": "2.5.0",
+    "grunt-contrib-sass": "0.8.1",
+    "grunt-contrib-uglify": "0.8.1",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-css": "0.5.4",
     "grunt-jscs-checker": "0.4.1",
+    "grunt-mocha-phantomjs": "0.3.2",
+    "grunt-open": "0.2.3",
+    "grunt-shell": "0.2.2",
+    "grunt-version": "0.3.3",
+    "jshint": "2.5.0",
     "mobify-code-style": "0.0.3",
-    "grunt-mocha-phantomjs": "~0.3.2",
-    "grunt-open": "^0.2.3",
-    "mocha": "~1.14.0",
-    "chai": "~1.9.0",
-    "requirejs-glob": "git+ssh://git@github.com:mobify/requirejs-glob.git"
+    "mocha": "1.14.0",
+    "requirejs-glob": "git+https://github.com/mobify/requirejs-glob.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mobify/bellows/issues"
+  },
+  "homepage": "https://github.com/mobify/bellows#readme",
+  "main": "dist/bellows.min.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "accordion",
+    "mobile",
+    "first",
+    "mobile",
+    "toggle",
+    "mobify"
+  ],
+  "author": "Mobify"
 }
