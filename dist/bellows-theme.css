@@ -28,9 +28,9 @@
   height: 4px;
   margin-top: -2px;
   background: white;
-  pointer-events: none;
   -webkit-transition: -webkit-transform 0.25s ease-in-out;
           transition: transform 0.25s ease-in-out;
+  pointer-events: none;
 }
 
 .bellows__header::before {

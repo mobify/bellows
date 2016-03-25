@@ -11,13 +11,13 @@ $active-header-background: #2980b9;
     padding: 15px 20px;
     border: 1px solid $active-header-background;
     border-width: 0 0 1px;
-    
+
     background: $header-background;
-    
+
     color: white;
-    
+
     -webkit-tap-highlight-color: rgba(black, 0);
-    
+
     &:active {
         background: $active-header-background;
     }
@@ -25,22 +25,22 @@ $active-header-background: #2980b9;
     &::before,
     &::after {
         content: '';
-        
+
         position: absolute;
         top: 50%;
         right: 20px;
         z-index: 2;
-        
+
         display: block;
         width: 16px;
         height: 4px;
         margin-top: -2px;
-        
+
         background: white;
 
-        pointer-events: none;
-        
         transition: transform 0.25s ease-in-out;
+
+        pointer-events: none;
     }
 
     &::before {
@@ -55,18 +55,18 @@ $active-header-background: #2980b9;
 
     .bellows__item.bellows--is-open > &,
     .bellows__item.bellows--is-opening > & {
-        &::before {            
+        &::before {
             transform: rotate(180deg);
         }
 
         &::after {
             transform: rotate(360deg);
         }
-        
+
     }
 
     .bellows__item.bellows--is-closing > & {
-        
+
     }
 
     .bellows__item:last-child > & {
@@ -84,7 +84,7 @@ $active-header-background: #2980b9;
 .bellows__content {
     padding: 20px;
     border: 1px solid #ecf0f1;
-        
+
     .bellows {
         margin-top: 20px;
     }

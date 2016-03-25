@@ -20,6 +20,7 @@
     "grunt-mocha-phantomjs": "0.3.2",
     "grunt-open": "0.2.3",
     "grunt-sass": "1.1.0",
+    "grunt-sass-lint": "git+https://github.com/mobify/grunt-sass-lint.git#toggle-rules-in-src",
     "grunt-shell": "0.2.2",
     "grunt-version": "0.3.3",
     "mobify-code-style": "^2.4.2",

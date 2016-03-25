@@ -37,6 +37,7 @@ module.exports = function(grunt) {
         'grunt-eslint',
         'grunt-mocha-phantomjs',
         'grunt-sass',
+        'grunt-sass-lint',
         'grunt-shell',
         'grunt-version'
     ];
@@ -48,8 +49,8 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('serve', ['build', 'connect:server', 'watch']);
-    grunt.registerTask('build', ['lint:prod', 'copy', 'uglify', 'version:all', 'sass', 'autoprefixer']);
-    grunt.registerTask('release', ['lint:prod', 'test', 'shell:tagRelease']);
+    grunt.registerTask('build', ['sasslint', 'lint:prod', 'copy', 'uglify', 'version:all', 'sass', 'autoprefixer']);
+    grunt.registerTask('release', ['test', 'shell:tagRelease']);
     grunt.registerTask('test', ['build', 'connect:test', 'mocha_phantomjs']);
     grunt.registerTask('test:browser', ['build', 'connect:test:keepalive']);
     grunt.registerTask('default', 'build');
