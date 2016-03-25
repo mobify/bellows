@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var path = require('path');
 
@@ -32,6 +32,7 @@ module.exports = function(grunt) {
         'grunt-contrib-watch',
         'grunt-contrib-connect',
         'grunt-css',
+        'grunt-eslint',
         'grunt-shell',
         'grunt-contrib-clean',
         'grunt-contrib-copy',
@@ -48,8 +49,8 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('serve', ['build', 'connect:server', 'watch']);
-    grunt.registerTask('build', ['lint:dev', 'copy', 'uglify', 'version:all', 'sass', 'autoprefixer', 'cssmin']);
-    grunt.registerTask('release', ['lint:dev', 'test', 'shell:tagRelease']);
+    grunt.registerTask('build', ['lint:prod', 'copy', 'uglify', 'version:all', 'sass', 'autoprefixer', 'cssmin']);
+    grunt.registerTask('release', ['lint:prod', 'test', 'shell:tagRelease']);
     grunt.registerTask('test', ['build', 'connect:test', 'mocha_phantomjs']);
     grunt.registerTask('test:browser', ['build', 'connect:test:keepalive']);
     grunt.registerTask('default', 'build');

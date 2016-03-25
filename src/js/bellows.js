@@ -9,7 +9,7 @@
         var framework = window.jQuery;
         factory(framework, framework.Velocity, window.Plugin);
     }
-}(function($, Velocity, Plugin) {
+})(function($, Velocity, Plugin) {
     var cssClasses = {
         ITEM: 'bellows__item',
         HEADER: 'bellows__header',
@@ -29,9 +29,9 @@
         CLICK: 'click.bellows'
     };
 
-    function Bellows(element, options) {
+    var Bellows = function(element, options) {
         Bellows.__super__.call(this, element, options, Bellows.DEFAULTS);
-    }
+    };
 
     Bellows.VERSION = '0';
 
@@ -254,4 +254,4 @@
     $('[data-bellows]').bellows();
 
     return $;
-}));
+});
