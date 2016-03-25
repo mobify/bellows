@@ -5,6 +5,7 @@
   - Migrate JS linting to eslint
   - Migrate SCSS compilation to libsass
   - Lint SCSS with sass-lint
+  - Update circleCI config with modern testing steps
 5.1.2
   - Ensuring disabled items don't close on close
 5.0.1
