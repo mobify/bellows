@@ -28,17 +28,16 @@ module.exports = function(grunt) {
 
     // load npm tasks
     var npmTasks = [
+        'grunt-autoprefixer',
+        'grunt-contrib-clean',
+        'grunt-contrib-connect',
+        'grunt-contrib-copy',
         'grunt-contrib-uglify',
         'grunt-contrib-watch',
-        'grunt-contrib-connect',
-        'grunt-css',
         'grunt-eslint',
-        'grunt-shell',
-        'grunt-contrib-clean',
-        'grunt-contrib-copy',
-        'grunt-autoprefixer',
-        'grunt-contrib-sass',
         'grunt-mocha-phantomjs',
+        'grunt-sass',
+        'grunt-shell',
         'grunt-version'
     ];
 
@@ -49,7 +48,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('serve', ['build', 'connect:server', 'watch']);
-    grunt.registerTask('build', ['lint:prod', 'copy', 'uglify', 'version:all', 'sass', 'autoprefixer', 'cssmin']);
+    grunt.registerTask('build', ['lint:prod', 'copy', 'uglify', 'version:all', 'sass', 'autoprefixer']);
     grunt.registerTask('release', ['lint:prod', 'test', 'shell:tagRelease']);
     grunt.registerTask('test', ['build', 'connect:test', 'mocha_phantomjs']);
     grunt.registerTask('test:browser', ['build', 'connect:test:keepalive']);
