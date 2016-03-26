@@ -1,6 +1,9 @@
 module.exports = function(grunt) {
     return {
-        files: ["src/**/*"],
+        files: [
+            'src/**/*',
+            'examples/**/*'
+        ],
         tasks: ['build']
     };
 };

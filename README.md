@@ -9,7 +9,7 @@ A mobile-first accordion UI module for progressive disclosure on the web.
 
 ## Demo
 
-You can find a simple demo on [the Documentation page](http://mobify.github.io/bellows). More demos can be found inside the `examples` folder in the repo.
+You can find a simple demo on [the Documentation page](http://mobify.github.io/bellows). More demos can be found inside the `examples` folder in the repo. Run `grunt examples` to see them in Chrome (mobile device emulation is recommended).
 
 ## Requirements
 
