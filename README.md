@@ -2,6 +2,7 @@
 
 A mobile-first accordion UI module for progressive disclosure on the web.
 
+[![NPM](https://nodei.co/npm/bellows-ui.png?downloads=true)](https://nodei.co/npm/bellows-ui/)
 [![Dependency Status](https://www.versioneye.com/user/projects/53ff9b7deab62a5003000009/badge.svg?style=flat)](https://www.versioneye.com/user/projects/53ff9b7deab62a5003000009)
 [![Build Status](https://circleci.com/gh/mobify/bellows/tree/master.svg?style=shield&circle-token=8c096b513a1f04ef1b977178c4f3358c2a42a132)](https://circleci.com/gh/mobify/bellows)
 
@@ -26,7 +27,7 @@ Bellows supports Zepto up until v5.1.2 but is not actively developed for it. You
 Bellows can be installed using NPM:
 
 ```
-npm install bellows
+npm install bellows-ui
 ```
 
 ## Usage with Require.js
@@ -38,7 +39,7 @@ To use with require.js, after installing through NPM you merely have to referenc
 {
     'paths': {
         'plugin': 'node_modules/plugin/dist/plugin.min',
-        'bellows': 'node_modules/bellows/dist/bellows.min',
+        'bellows': 'node_modules/bellows-ui/dist/bellows.min',
         'velocity': 'node_modules/velocity-animate/velocity'
     }
 }

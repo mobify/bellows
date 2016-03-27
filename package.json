@@ -1,5 +1,5 @@
 {
-  "name": "bellows",
+  "name": "bellows-ui",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mobify/bellows.git"
