@@ -374,7 +374,7 @@ This will scroll the viewport to the opened bellows item, restoring its position
 ## Building a distribution
 
 ### Requirements
-* [node.js 0.10.x/npm](http://nodejs.org/download/)
+* [Node.js v4.x LTS + NPM v2.x](https://nodejs.org/en/download/) (Mobify recommends [NVM](https://github.com/creationix/nvm) for installing Node + NPM)
 * [Grunt](http://gruntjs.com/)
     * Install with `npm install -g grunt-cli`
 
@@ -386,4 +386,4 @@ The `dist` directory will be populated with minified versions of the css and jav
 
 ## License
 
-_MIT License. Bellows is Copyright © 2014 Mobify. It is free software and may be redistributed under the terms specified in the LICENSE file._
+_MIT License. Bellows is Copyright © 2016 Mobify. It is free software and may be redistributed under the terms specified in the LICENSE file._
