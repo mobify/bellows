@@ -19,7 +19,7 @@ You can find a simple demo on [the Documentation page](http://mobify.github.io/b
 
 ### Zepto Support
 
-Bellows supports Zepto up until v5.1.2 but is not actively developed for it. You should be able to use Bellows directly with Zepto. While we don't actively support Zepto for Bellows, we welcome any and all issues and PRs to help us make it work.
+Bellows supports Zepto up until v5.1.2 but is not actively developed for it. While we don't actively support Zepto for Bellows, we welcome any and all issues and PRs to help us make it work.
 
 
 ## Installation
@@ -32,15 +32,16 @@ npm install bellows-ui
 
 ## Usage with Require.js
 
-To use with require.js, after installing through NPM you merely have to reference bellows in your require config file:
+To use with require.js, after installing through NPM you merely have to reference bellows in your require config file (**Note**: If your project already has these external dependencies, and the versions are compatible, it's recommended that you use the one in your project to reduce duplication):
 
 ```config.js
 
 {
     'paths': {
-        'plugin': 'node_modules/plugin/dist/plugin.min',
+        '$': 'node_modules/bellows-ui/node_modules/jquery/dist/jquery.min',
+        'plugin': 'node_modules/bellows-ui/node_modules/plugin/dist/plugin.min',
+        'velocity': 'node_modules/bellows-ui/node_modules/velocity-animate/velocity'
         'bellows': 'node_modules/bellows-ui/dist/bellows.min',
-        'velocity': 'node_modules/velocity-animate/velocity'
     }
 }
 
