@@ -19,7 +19,7 @@ Ensure the tests pass:
 ```
 grunt test
 ```
-	
+
 Make your changes, add tests for your changes, then run the tests again:
 
 ```
@@ -38,6 +38,4 @@ Run the following `grunt` task to build the dist:
 grunt build
 ```
 
-Push to your fork, and open a [pull request](https://github.com/mobify/bellows/compare). Please ensure you describe your changes in your pull request, as they have a higher liklihood of being merged. 
-
-
+Push to your fork, and open a [pull request](https://github.com/mobify/bellows/compare). Please ensure you describe your changes in your pull request, as they have a higher likelihood of being merged.

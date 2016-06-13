@@ -6,10 +6,10 @@
             'plugin'
         ], factory);
     } else {
-        var framework = window.Zepto || window.jQuery;
+        var framework = window.jQuery;
         factory(framework, framework.Velocity, window.Plugin);
     }
-}(function($, Velocity, Plugin) {
+})(function($, Velocity, Plugin) {
     var cssClasses = {
         ITEM: 'bellows__item',
         HEADER: 'bellows__header',
@@ -29,9 +29,9 @@
         CLICK: 'click.bellows'
     };
 
-    function Bellows(element, options) {
+    var Bellows = function(element, options) {
         Bellows.__super__.call(this, element, options, Bellows.DEFAULTS);
-    }
+    };
 
     Bellows.VERSION = '0';
 
@@ -66,7 +66,7 @@
 
             /**
              * Ghetto Event Delegation™
-
+             TODO: Re-evalute this for new default of jQuery
              Zepto doesn't support descendant selectors in event delegation,
              so we compare against the closest bellows to ensure we are invoking
              the event from a direct child, not a bellows child from a nested bellows.
@@ -254,4 +254,4 @@
     $('[data-bellows]').bellows();
 
     return $;
-}));
+});

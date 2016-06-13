@@ -4,7 +4,7 @@
         define(['bellows'], factory);
     } else {
         // Browser globals
-        root.setupBellows = factory(window.Zepto || window.jQuery);
+        root.setupBellows = factory(window.jQuery);
     }
 }(this, function ($) {
 

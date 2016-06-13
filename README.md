@@ -2,7 +2,7 @@
 
 A mobile-first accordion UI module for progressive disclosure on the web.
 
-[![Bower version](https://badge.fury.io/bo/bellows.svg)](http://badge.fury.io/bo/bellows)
+[![NPM](https://nodei.co/npm/bellows-ui.png?downloads=true)](https://nodei.co/npm/bellows-ui/)
 [![Dependency Status](https://www.versioneye.com/user/projects/53ff9b7deab62a5003000009/badge.svg?style=flat)](https://www.versioneye.com/user/projects/53ff9b7deab62a5003000009)
 [![Build Status](https://circleci.com/gh/mobify/bellows/tree/master.svg?style=shield&circle-token=8c096b513a1f04ef1b977178c4f3358c2a42a132)](https://circleci.com/gh/mobify/bellows)
 
@@ -10,41 +10,38 @@ A mobile-first accordion UI module for progressive disclosure on the web.
 
 ## Demo
 
-You can find a simple demo on [the Documentation page](http://mobify.github.io/bellows). More demos can be found inside the `examples` folder in the repo.
+You can find a simple demo on [the Documentation page](http://mobify.github.io/bellows). More demos can be found inside the `examples` folder in the repo. Run `grunt examples` to see them in Chrome (mobile device emulation is recommended).
 
 ## Requirements
 
-* [Zepto](http://zeptojs.com/)
-* [Velocity.js](http://velocityjs.org)
+* [jQuery](http://jquery.com/)
+* [Velocity.js](http://julian.com/research/velocity/)
 
-### Velocity
+### Zepto Support
 
-If you are using Zepto, you need to load `bower_components/velocity/velocity.js` (this file comes with a jQuery shim bundled directly in it). If you are using jQuery, you need to load `bower_components/velocity/jquery.velocity.js`.
-
-### jQuery Support
-
-Bellows supports jQuery but is not actively developed for it. You should be able to use Bellows directly with jQuery 2.0. While we don't actively support jQuery for Bellows, we welcome any and all issues and PRs to help us make it work.
+Bellows supports Zepto up until v5.1.2 but is not actively developed for it. While we don't actively support Zepto for Bellows, we welcome any and all issues and PRs to help us make it work.
 
 
 ## Installation
 
-Bellows can be installed using bower:
+Bellows can be installed using NPM:
 
 ```
-bower install bellows
+npm install bellows-ui
 ```
 
 ## Usage with Require.js
 
-To use with require.js, after installing through bower you merely have to reference bellows in your require config file:
+To use with require.js, after installing through NPM you merely have to reference bellows in your require config file (**Note**: If your project already has these external dependencies, and the versions are compatible, it's recommended that you use the one in your project to reduce duplication):
 
 ```config.js
 
 {
     'paths': {
-        'plugin': 'bower_components/plugin/dist/plugin.min',
-        'bellows': 'bower_components/bellows/dist/bellows.min',
-        'velocity': 'bower_components/mobify-velocity/velocity'
+        '$': 'node_modules/bellows-ui/node_modules/jquery/dist/jquery.min',
+        'plugin': 'node_modules/bellows-ui/node_modules/plugin/dist/plugin.min',
+        'velocity': 'node_modules/bellows-ui/node_modules/velocity-animate/velocity'
+        'bellows': 'node_modules/bellows-ui/dist/bellows.min',
     }
 }
 
@@ -54,7 +51,7 @@ And then require bellows in as needed:
 
 ```
 define(
-    ['zepto', 'bellows'],
+    ['$', 'bellows'],
     function($) {
         $('.bellows').bellows();
     }
@@ -104,9 +101,9 @@ At a bare minimum, your markup structure should follow the above structure. You 
 </div>
 
 <!-- Include dependencies -->
-<script src="zepto.min.js"></script>
-<script src="bower_components/mobify-velocity/dist/velocity.min.js"></script>
-<script src="bower_components/plugin/dist/plugin.min.js"></script>
+<script src="jqueryin.js"></script>
+<script src="node_modules/velocity-animate/velocity.min.js"></script>
+<script src="node_modules/plugin/dist/plugin.min.js"></script>
 
 <!-- Include bellows.js -->
 <script src="bellows.min.js"></script>
@@ -173,10 +170,10 @@ default: `swing`
 
 Sets the easing for the animation. Bellows takes all of the same easing properties that [Velocity.js](http://julian.com/research/velocity) accepts.
 
-> * [jQuery UI's easings](http://easings.net/) and CSS3's easings ("ease", "ease-in", "ease-out", and "ease-in-out"), which are pre-packaged into Velocity. A bonus "spring" easing (sampled in the CSS Support pane) is also included. 
-* CSS3's bezier curves: Pass in a four-item array of bezier points. (Refer to [Cubic-Bezier.com](http://cubic-bezier.com/) for crafing custom bezier curves.) 
-* Spring physics: Pass a two-item array in the form of [ tension, friction ]. A higher tension (default: 600) increases total speed and bounciness. A lower friction (default: 20) increases ending vibration speed. 
-* Step easing: Pass a one-item array in the form of [ steps ]. The animation will jump toward its end values using the specified number of steps. 
+> * [jQuery UI's easings](http://easings.net/) and CSS3's easings ("ease", "ease-in", "ease-out", and "ease-in-out"), which are pre-packaged into Velocity. A bonus "spring" easing (sampled in the CSS Support pane) is also included.
+* CSS3's bezier curves: Pass in a four-item array of bezier points. (Refer to [Cubic-Bezier.com](http://cubic-bezier.com/) for crafing custom bezier curves.)
+* Spring physics: Pass a two-item array in the form of [ tension, friction ]. A higher tension (default: 600) increases total speed and bounciness. A lower friction (default: 20) increases ending vibration speed.
+* Step easing: Pass a one-item array in the form of [ steps ]. The animation will jump toward its end values using the specified number of steps.
 
 For more information, check out [Velocity's docs on easing](http://julian.com/research/velocity/#easing).
 
@@ -197,11 +194,11 @@ Triggered every time the selected bellows item is starting to open.
 | Parameter name | Description |
 |----------------|-------------|
 | **e** | An Event object passed to the callback |
-| **ui** | An object containing any associated data for use inside the callback | 
+| **ui** | An object containing any associated data for use inside the callback |
 
 ```js
 $('.bellows').bellows({
-    open: function(e, ui) { 
+    open: function(e, ui) {
         // ui.item contains the item opening
     }
 });
@@ -218,11 +215,11 @@ Triggered every time the selected bellows item has finished opening.
 | Parameter name | Description |
 |----------------|-------------|
 | **e** | An Event object passed to the callback |
-| **ui** | An object containing any associated data for use inside the callback | 
+| **ui** | An object containing any associated data for use inside the callback |
 
 ```js
 $('.bellows').bellows({
-    opened: function(e, ui) { 
+    opened: function(e, ui) {
         // ui.item contains the item that opened
     }
 });
@@ -237,11 +234,11 @@ Triggered every time an bellows item is starting to close.
 | Parameter name | Description |
 |----------------|-------------|
 | **e** | An Event object passed to the callback |
-| **ui** | An object containing any associated data for use inside the callback | 
+| **ui** | An object containing any associated data for use inside the callback |
 
 ```js
 $('.bellows').bellows({
-    close: function(e, ui) { 
+    close: function(e, ui) {
         // ui.item contains the item closing
     }
 });
@@ -256,11 +253,11 @@ Triggered every time an bellows item is finished closing.
 | Parameter name | Description |
 |----------------|-------------|
 | **e** | An Event object passed to the callback |
-| **ui** | An object containing any associated data for use inside the callback | 
+| **ui** | An object containing any associated data for use inside the callback |
 
 ```js
 $('.bellows').bellows({
-    closed: function(e, ui) { 
+    closed: function(e, ui) {
         // ui.item contains the item that closed
     }
 });
@@ -291,7 +288,7 @@ $bellows.bellows('openAll');
 ```
 
 ### close
-    
+
 Close the selected bellows item by element reference
 
 ```js
@@ -313,7 +310,7 @@ $bellows.bellows('closeAll');
 ```
 
 ### toggle
-    
+
 Toggle the selected bellows item by element reference
 
 ```js
@@ -363,7 +360,7 @@ $('.bellows').bellows({
 });
 ```
 
-This will scroll the viewport to the opened bellows item, restoring its position in the viewport. 
+This will scroll the viewport to the opened bellows item, restoring its position in the viewport.
 
 ## Browser Compatibility
 
@@ -379,19 +376,16 @@ This will scroll the viewport to the opened bellows item, restoring its position
 ## Building a distribution
 
 ### Requirements
-* [node.js 0.10.x/npm](http://nodejs.org/download/)
+* [Node.js v4.x LTS + NPM v2.x](https://nodejs.org/en/download/) (Mobify recommends [NVM](https://github.com/creationix/nvm) for installing Node + NPM)
 * [Grunt](http://gruntjs.com/)
     * Install with `npm install -g grunt-cli`
-* [Bower](http://bower.io/)
-    * Install with `npm install -g bower`
 
 ### Steps
 1. `npm install`
-1. `bower install`
 1. `grunt build`
 
 The `dist` directory will be populated with minified versions of the css and javascript files for distribution and use with whatever build system you might use. The `src` directory has our raw unminified Sass and Javascript files if you prefer to work with those.
 
 ## License
 
-_MIT License. Bellows is Copyright © 2014 Mobify. It is free software and may be redistributed under the terms specified in the LICENSE file._
+_MIT License. Bellows is Copyright © 2016 Mobify. It is free software and may be redistributed under the terms specified in the LICENSE file._

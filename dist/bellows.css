@@ -1,9 +1,12 @@
 .bellows__item:not(.bellows--is-open) > .bellows__content {
-  display: none; }
+  display: none;
+}
 
 .bellows__item.bellows--is-open > .bellows__content-wrapper,
 .bellows__item.bellows--is-closing > .bellows__content-wrapper {
-  display: block; }
+  display: block;
+}
 
 .bellows__content-wrapper {
-  display: none; }
+  display: none;
+}

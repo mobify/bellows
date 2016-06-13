@@ -23,8 +23,8 @@ define([
             testSandbox.setUp('sandbox', setUpComplete);
         });
 
-        describe('binding to Zepto\'s fn', function() {
-            it('defines bellows in Zepto', function() {
+        describe('binding to jQuery\'s fn', function() {
+            it('defines bellows in jQuery', function() {
                 var bellows = $.fn.bellows;
 
                 expect(bellows).to.be.defined;

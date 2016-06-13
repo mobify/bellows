@@ -1,10 +1,10 @@
 require.config({
     baseUrl: '../../',
     paths: {
-        'text': 'bower_components/requirejs-text/text',
+        'text': 'node_modules/text/text',
         'glob': 'node_modules/requirejs-glob/lib/glob',
         'fixtures': 'tests/fixtures',
-        '$': 'lib/zeptojs/dist/zepto.min',
+        '$': 'node_modules/jquery/dist/jquery',
         'chai': 'node_modules/chai/chai',
         'mocha': 'node_modules/mocha/mocha',
         'test-sandbox': 'tests/utils/test-sandbox'

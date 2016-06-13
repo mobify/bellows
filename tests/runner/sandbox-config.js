@@ -1,13 +1,13 @@
 require.config({
     baseUrl: '../../',
     paths: {
-        'text': 'bower_components/requirejs-text/text',
+        'text': 'node_modules/text/text',
         'fixtures': 'tests/fixtures',
-        '$': 'lib/zeptojs/dist/zepto',
-        'velocity': 'bower_components/mobify-velocity/velocity',
+        '$': 'node_modules/jquery/dist/jquery',
+        'velocity': 'node_modules/velocity-animate/velocity',
         'chai': 'node_modules/chai/chai',
         'mocha': 'node_modules/mocha/mocha',
-        'plugin': 'bower_components/plugin/dist/plugin',
+        'plugin': 'node_modules/plugin/dist/plugin',
         'bellows': 'dist/bellows'
     },
     'shim': {
