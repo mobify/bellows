@@ -1,0 +1,8 @@
+# Ref https://docs.npmjs.com/misc/developers
+.github/
+examples/
+tasks/
+templates/
+tests/
+circle.yml
+Gruntfile.js
