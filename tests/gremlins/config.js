@@ -1,10 +1,10 @@
 require.config({
     baseUrl: '../../',
     paths: {
-        'text': 'bower_components/requirejs-text/text',
-        'gremlins': 'bower_components/gremlins.js/gremlins.min',
-        '$': 'lib/zeptojs/dist/zepto.min',
-        'velocity': 'bower_components/mobify-velocity/velocity',
+        'text': 'node_modules/text/text',
+        'gremlins': 'node_modules/gremlins.js/gremlins.min',
+        '$': 'node_modules/jquery/dist/jquery',
+        'velocity': 'node_modules/velocity-animate/velocity',
         'bellows': 'dist/bellows'
     },
     'shim': {
