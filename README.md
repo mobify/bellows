@@ -16,6 +16,7 @@ You can find a simple demo on [the Documentation page](http://mobify.github.io/b
 
 * [jQuery](http://jquery.com/)
 * [Velocity.js](http://julian.com/research/velocity/)
+* [Mobify's Plugin Factory](https://www.npmjs.com/package/mobify-plugin/)
 
 ### Zepto Support
 
@@ -39,7 +40,7 @@ To use with require.js, after installing through NPM you merely have to referenc
 {
     'paths': {
         '$': 'node_modules/bellows-ui/node_modules/jquery/dist/jquery.min',
-        'plugin': 'node_modules/bellows-ui/node_modules/plugin/dist/plugin.min',
+        'plugin': 'node_modules/bellows-ui/node_modules/mobify-plugin/dist/plugin.min',
         'velocity': 'node_modules/bellows-ui/node_modules/velocity-animate/velocity'
         'bellows': 'node_modules/bellows-ui/dist/bellows.min',
     }
@@ -103,7 +104,7 @@ At a bare minimum, your markup structure should follow the above structure. You 
 <!-- Include dependencies -->
 <script src="jqueryin.js"></script>
 <script src="node_modules/velocity-animate/velocity.min.js"></script>
-<script src="node_modules/plugin/dist/plugin.min.js"></script>
+<script src="node_modules/mobify-plugin/dist/plugin.min.js"></script>
 
 <!-- Include bellows.js -->
 <script src="bellows.min.js"></script>
