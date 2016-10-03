@@ -137,6 +137,13 @@
                 .attr('aria-hidden', true);
         },
 
+        /*
+        Checks if other bellows items are currently opening
+        */
+        _othersAreOpening: function() {
+            return this.$bellows.find('.' + cssClasses.OPENING).length > 0;
+        },
+
         toggle: function($item) {
             $item = this._item($item);
 
@@ -155,6 +162,11 @@
 
             if (this.options.singleItemOpen) {
                 this.closeAll();
+
+                // Fix #63
+                if (this._othersAreOpening()) {
+                    return;
+                }
             }
 
             this._trigger('open', {item: $item});
