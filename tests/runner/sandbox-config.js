@@ -7,7 +7,7 @@ require.config({
         'velocity': 'node_modules/velocity-animate/velocity',
         'chai': 'node_modules/chai/chai',
         'mocha': 'node_modules/mocha/mocha',
-        'plugin': 'node_modules/plugin/dist/plugin',
+        'plugin': 'node_modules/mobify-plugin/dist/plugin',
         'bellows': 'dist/bellows'
     },
     'shim': {
