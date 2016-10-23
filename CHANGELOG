@@ -1,3 +1,6 @@
+6.0.1
+  - Fix [#62](https://github.com/mobify/bellows/issues/62): Use published Plugin dependency
+  - Fix [#63](https://github.com/mobify/bellows/issues/63): Short circuit open if other items are opening
 6.0.0
   - Publish to NPM
   - Remove Zepto support in favor of jQuery

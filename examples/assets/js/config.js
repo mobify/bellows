@@ -5,7 +5,7 @@ require.config({
         'text': 'node_modules/text/text',
         '$': 'node_modules/jquery/dist/jquery',
         'velocity': 'node_modules/velocity-animate/velocity',
-        'plugin': 'node_modules/plugin/dist/plugin.min',
+        'plugin': 'node_modules/mobify-plugin/dist/plugin.min',
         'bellows': 'dist/bellows',
         'setup-bellows': 'examples/assets/js/setup-bellows'
     },

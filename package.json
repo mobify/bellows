@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/mobify/bellows.git"
   },
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "A mobile-first JavaScript-driven accordion UI plugin",
   "devDependencies": {
     "chai": "1.9.2",
@@ -26,7 +26,6 @@
     "mobify-code-style": "^2.4.2",
     "mocha": "1.14.0",
     "node-sass-import-once": "1.2.0",
-    "plugin": "git+https://github.com/mobify/plugin.git#3.1.0",
     "requirejs": "2.2.0",
     "requirejs-glob": "git+https://github.com/mobify/requirejs-glob.git",
     "text": "requirejs/text"
@@ -55,6 +54,7 @@
   "author": "Mobify",
   "dependencies": {
     "jquery": "2.2.2",
-    "velocity-animate": "1.2.3"
+    "velocity-animate": "1.2.3",
+    "mobify-plugin": "4.0.0"
   }
 }

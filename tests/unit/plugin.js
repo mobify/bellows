@@ -282,5 +282,20 @@ define([
                 expect($openDisabledItem.hasClass('bellows--is-open')).to.be.true;
             });
         });
+
+        describe('a Bellows instance with singleItemOpen set', function() {
+            it('only allows a single item open when opening another item', function() {
+                $element.bellows({
+                    singleItemOpen: true,
+                    opened: function() {
+                        $element.bellows('open', 1);
+                        $element.find('.bellows__item.bellows--is-open').to.have.length(1);
+                        done();
+                    }
+                });
+
+                $element.bellows('open', 0);
+            });
+        });
     });
 });
